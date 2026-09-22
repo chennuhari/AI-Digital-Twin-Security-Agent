@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  font-family: "Space Grotesk", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  color: #e2e8f0;
+  background: #020617;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #020617;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08), transparent 30rem),
+    radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.10), transparent 32rem),
+    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.06), transparent 28rem),
+    linear-gradient(180deg, #020617 0%, #050b14 45%, #020617 100%);
+}
+
+/* Cyber Glow Utilities */
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+}
+
+.glow-rose {
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.4);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 25px rgba(0, 255, 157, 0.35);
+}
+
+/* Cyber Terminal Scanline */
+.scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0, 240, 255, 0.06) 50%,
+    rgba(0, 240, 255, 0.06)
+  );
+  background-size: 100% 4px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff, #8b5cf6);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Holographic glass HUD */
+.glass-panel {
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 240, 255, 0.12);
+  background: rgba(2, 6, 23, 0.72);
+  box-shadow: 0 20px 50px rgba(0, 240, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
