@@ -84,6 +84,61 @@ class ThreatAgent:
                     "mitre_technique": "T1021.001 - Remote Desktop Protocol",
                     "description": "Remote administrative access point. Ensure multi-factor authentication, IP allowlisting, and rate limiting."
                 })
+            elif num == 5353 or "mdns" in service or "bonjour" in service:
+                findings.append({
+                    "assetId": asset_id,
+                    "portNumber": num,
+                    "service": p.service,
+                    "category": "MULTICAST_DNS",
+                    "severity": "MEDIUM",
+                    "cvss": 5.5,
+                    "mitre_technique": "T1040 - Network Sniffing & Fingerprinting",
+                    "description": "Multicast DNS broadcasts device hostname, OS version, and active service banners to any untrusted device on the local network."
+                })
+            elif num == 1900 or "ssdp" in service or "upnp" in service:
+                findings.append({
+                    "assetId": asset_id,
+                    "portNumber": num,
+                    "service": p.service,
+                    "category": "UPNP_DISCOVERY",
+                    "severity": "MEDIUM",
+                    "cvss": 5.8,
+                    "mitre_technique": "T1046 - Network Service Discovery",
+                    "description": "UPnP/SSDP daemon exposed. Susceptible to external router pinholing, rogue port-mapping, and local amplification attacks."
+                })
+            elif num in (137, 138, 139) or "netbios" in service:
+                findings.append({
+                    "assetId": asset_id,
+                    "portNumber": num,
+                    "service": p.service,
+                    "category": "NETBIOS_NAME_SERVICE",
+                    "severity": "HIGH",
+                    "cvss": 7.1,
+                    "mitre_technique": "T1557.001 - LLMNR/NBT-NS Poisoning",
+                    "description": "Legacy NetBIOS name resolution active. Adversaries on the same subnet can poison lookup responses and harvest NTLMv2 hashes."
+                })
+            elif num == 53 or "dns" in service:
+                findings.append({
+                    "assetId": asset_id,
+                    "portNumber": num,
+                    "service": p.service,
+                    "category": "UNENCRYPTED_DNS",
+                    "severity": "LOW",
+                    "cvss": 4.8,
+                    "mitre_technique": "T1071.004 - Cleartext Domain Name Resolution",
+                    "description": "Device issues unencrypted DNS requests over port 53. Upstream networks and rogue Wi-Fi access points can log all browsing activity."
+                })
+            elif num in (3000, 5173, 8000, 8080) and "dev" in service:
+                findings.append({
+                    "assetId": asset_id,
+                    "portNumber": num,
+                    "service": p.service,
+                    "category": "DEVELOPMENT_SERVER_EXPOSURE",
+                    "severity": "MEDIUM",
+                    "cvss": 6.2,
+                    "mitre_technique": "T1190 - Exploit Public-Facing Application",
+                    "description": "Local development socket listening without authentication. Exposes internal dev APIs, hot-reloading hooks, or environment secrets."
+                })
             else:
                 findings.append({
                     "assetId": asset_id,

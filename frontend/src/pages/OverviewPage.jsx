@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   ShieldCheck,
   ShieldAlert,
@@ -13,6 +14,7 @@ import {
   Compass,
   Cpu,
 } from "lucide-react";
+import { getVisitorDeviceInfo, fetchVisitorIp } from "../deviceUtils";
 
 export default function OverviewPage({
   assets,
@@ -27,7 +29,18 @@ export default function OverviewPage({
   showAllAssets,
   handleSelectAssetByIp,
   switchPage,
+  scanVisitorDevice,
 }) {
+  const [visitorInfo, setVisitorInfo] = useState(null);
+  const [visitorIp, setVisitorIp] = useState("Detecting IP...");
+  const [scanningMyDevice, setScanningMyDevice] = useState(false);
+
+  useEffect(() => {
+    const info = getVisitorDeviceInfo();
+    setVisitorInfo(info);
+    fetchVisitorIp().then((ip) => setVisitorIp(ip));
+  }, []);
+
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
       {/* Executive Hero Banner */}
@@ -66,6 +79,51 @@ export default function OverviewPage({
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Visitor Device Threat Telemetry Widget */}
+      <div className="rounded-2xl border border-cyan-400/40 bg-gradient-to-r from-cyan-950/50 via-slate-900/95 to-blue-950/50 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0 shadow-lg shadow-cyan-950/60">
+            <Radar className="h-6 w-6 animate-pulse text-cyan-400" />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300 border border-cyan-400/30 font-bold">
+                Visitor Device Threat Detector
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
+                Live Client Telemetry
+              </span>
+            </div>
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-300">
+              <span className="text-white font-bold">{visitorInfo?.os || "Windows Workstation"}</span>
+              <span>·</span>
+              <span className="text-cyan-300">{visitorInfo?.browser || "Browser"}</span>
+              <span>·</span>
+              <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-emerald-300 font-bold">
+                IP: {visitorIp}
+              </span>
+              <span className="text-slate-400 text-[11px] hidden sm:inline">({visitorInfo?.screen})</span>
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={async () => {
+            if (scanVisitorDevice) {
+              setScanningMyDevice(true);
+              await scanVisitorDevice();
+              setScanningMyDevice(false);
+            }
+          }}
+          disabled={scanningMyDevice}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 font-mono text-xs font-black uppercase tracking-wider hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/40"
+        >
+          <ShieldAlert className="h-4 w-4" />
+          <span>{scanningMyDevice ? "Analyzing Device Threats..." : "Analyze My Device Threats"}</span>
+        </button>
       </div>
 
       {/* 4 Executive KPI Hero Cards */}

@@ -70,6 +70,61 @@ class DefenseAgent:
                     "recommendation": "Enforce HTTPS with automated HSTS header. Deploy Web Application Firewall (WAF) rate limiting and vulnerability scanning.",
                     "command_hint": "Add Content-Security-Policy and Strict-Transport-Security reverse proxy headers."
                 })
+            elif category == "MULTICAST_DNS" or port == 5353:
+                recommendations.append({
+                    "portNumber": port,
+                    "service": service,
+                    "category": category,
+                    "priority": "P2 - HIGH",
+                    "cis_control": "CIS Control 9.2 - Enforce Network Boundaries",
+                    "nist_mapping": "NIST SP 800-53 SC-7 Boundary Protection",
+                    "recommendation": "Disable mDNS / Bonjour discovery on untrusted or public Wi-Fi networks to prevent device fingerprinting and broadcast snooping.",
+                    "command_hint": "Stop-Service -Name 'Bonjour Service' -PassThru | Set-Service -StartupType Disabled"
+                })
+            elif category == "NETBIOS_NAME_SERVICE" or port in (137, 138, 139):
+                recommendations.append({
+                    "portNumber": port,
+                    "service": service,
+                    "category": category,
+                    "priority": "P1 - CRITICAL",
+                    "cis_control": "CIS Control 4.1 - Secure Baseline Configuration",
+                    "nist_mapping": "NIST SP 800-53 AC-3 Access Enforcement",
+                    "recommendation": "Disable NetBIOS over TCP/IP in network adapter settings to neutralize LLMNR/NBT-NS hash relay attacks.",
+                    "command_hint": "wmic nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios 2"
+                })
+            elif category == "UPNP_DISCOVERY" or port == 1900:
+                recommendations.append({
+                    "portNumber": port,
+                    "service": service,
+                    "category": category,
+                    "priority": "P2 - HIGH",
+                    "cis_control": "CIS Control 9.4 - Restrict Unnecessary Services",
+                    "nist_mapping": "NIST SP 800-53 CM-7 Least Functionality",
+                    "recommendation": "Disable SSDP / UPnP service on the operating system and turn off UPnP in local router gateway firmware.",
+                    "command_hint": "Stop-Service SSDPSRV; Set-Service SSDPSRV -StartupType Disabled"
+                })
+            elif category == "UNENCRYPTED_DNS" or port == 53:
+                recommendations.append({
+                    "portNumber": port,
+                    "service": service,
+                    "category": category,
+                    "priority": "P3 - MEDIUM",
+                    "cis_control": "CIS Control 8.5 - Encrypt Sensitive Data in Transit",
+                    "nist_mapping": "NIST SP 800-53 SC-8 Transmission Confidentiality",
+                    "recommendation": "Configure DNS-over-HTTPS (DoH) using Cloudflare (1.1.1.1) or Quad9 (9.9.9.9) to encrypt all outbound domain queries.",
+                    "command_hint": "Set-DnsClientServerAddress -InterfaceAlias 'Wi-Fi' -ServerAddresses ('1.1.1.1','1.0.0.1')"
+                })
+            elif category == "DEVELOPMENT_SERVER_EXPOSURE":
+                recommendations.append({
+                    "portNumber": port,
+                    "service": service,
+                    "category": category,
+                    "priority": "P2 - HIGH",
+                    "cis_control": "CIS Control 7.2 - Restrict Development Environments",
+                    "nist_mapping": "NIST SP 800-53 CM-2 Baseline Configuration",
+                    "recommendation": "Bind local dev servers strictly to 127.0.0.1 rather than 0.0.0.0 to prevent LAN adversaries from probing debug endpoints.",
+                    "command_hint": "Set server host flag: --host 127.0.0.1 instead of 0.0.0.0"
+                })
             else:
                 recommendations.append({
                     "portNumber": port,

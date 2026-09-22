@@ -14,11 +14,20 @@ router = APIRouter(prefix="/api/recon", tags=["Recon Agent"])
 
 class ScanRequest(BaseModel):
     target: str = "127.0.0.1"
+    hostname: str = None
+    operating_system: str = None
+    is_client_device: bool = False
 
 @router.post("/scan")
 def trigger_recon_scan(req: ScanRequest, db: Session = Depends(get_db)):
     try:
-        scan_res = recon_agent.scan_target(req.target, db)
+        scan_res = recon_agent.scan_target(
+            req.target,
+            db,
+            hostname=req.hostname,
+            operating_system=req.operating_system,
+            is_client_device=req.is_client_device
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

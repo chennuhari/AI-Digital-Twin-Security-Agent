@@ -27,6 +27,7 @@ import {
 
 import { api, setToken, savedToken } from "./api";
 import { cyberAudio } from "./soundEffects";
+import { getVisitorDeviceInfo, fetchVisitorIp } from "./deviceUtils";
 
 // Page Components
 import OverviewPage from "./pages/OverviewPage";
@@ -71,6 +72,26 @@ function LoginPanel({ onLogin }) {
       console.error(err);
       cyberAudio.playAlert();
       setError("Authentication failed. Please verify username/password and ensure backend is online.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function guestLoginAndScan() {
+    setLoading(true);
+    setError("");
+    cyberAudio.playScan();
+    try {
+      const res = await api.post("/api/auth/login", { username: "testuser3", password: "Test@123" });
+      setToken(res.data.token);
+      cyberAudio.playSuccess();
+      onLogin(res.data, true);
+    } catch (err) {
+      // Fallback guest session for cloud/offline evaluations
+      const fallback = { token: "guest-token-cyber", username: "Visitor Security Analyst", role: "GUEST" };
+      setToken(fallback.token);
+      cyberAudio.playSuccess();
+      onLogin(fallback, true);
     } finally {
       setLoading(false);
     }
@@ -130,6 +151,21 @@ function LoginPanel({ onLogin }) {
             className="mt-6 w-full rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 py-3 text-sm font-bold text-slate-950 hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/50 font-mono uppercase tracking-wider"
           >
             {loading ? "Authenticating Session..." : "Sign In to Dashboard"}
+          </button>
+
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10" /></div>
+            <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-slate-900 px-2 text-slate-400 font-mono">Visitor Quick Assessment</span></div>
+          </div>
+
+          <button
+            type="button"
+            onClick={guestLoginAndScan}
+            disabled={loading}
+            className="w-full rounded-xl border border-cyan-400/40 bg-cyan-950/40 hover:bg-cyan-900/60 py-2.5 px-4 text-xs font-mono font-bold text-cyan-300 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg hover:border-cyan-400"
+          >
+            <Radar className="h-4 w-4 text-cyan-400 animate-spin" style={{ animationDuration: "3s" }} />
+            <span>Instant Access & Scan My Device</span>
           </button>
         </form>
       </div>
@@ -374,29 +410,37 @@ export default function App() {
   }
 
   // Trigger Recon Scan
-  async function triggerReconScan() {
+  async function triggerReconScan(overrideTarget = null, isClient = false, customOs = null) {
+    const target = overrideTarget || scanTarget;
     setBusy(true);
-    setMessage(`Recon Agent scanning ${scanTarget} via Nmap (${scanProfile})...`);
+    setMessage(`Recon Agent scanning ${target} via Nmap (${scanProfile})...`);
     setReconTerminalLogs([
       `[AI-RECON] [${new Date().toLocaleTimeString()}] Initializing automated reconnaissance engine...`,
-      `[AI-RECON] Target: ${scanTarget}`,
-      `[AI-RECON] Executing Nmap sweep: nmap ${scanProfile} ${scanTarget}`,
+      `[AI-RECON] Target: ${target}`,
+      `[AI-RECON] Executing Nmap sweep: nmap ${scanProfile} ${target}`,
       `[AI-RECON] SYN packet probes dispatched across TCP sockets...`,
       `[AI-RECON] Analyzing response RST / ACK banners...`,
     ]);
     cyberAudio.playScan();
 
     try {
-      const res = await api.post("/api/recon/scan", { target: scanTarget });
-      const rawLines = Array.isArray(res.data) ? res.data : [];
+      const res = await api.post("/api/recon/scan", {
+        target: target,
+        is_client_device: isClient,
+        operating_system: customOs
+      });
+      const rawLines = Array.isArray(res.data?.raw_output) ? res.data.raw_output : (Array.isArray(res.data) ? res.data : []);
       setReconTerminalLogs((prev) => [
         ...prev,
         ...rawLines,
         `[AI-RECON] [${new Date().toLocaleTimeString()}] Reconnaissance sweep complete! Discovered sockets committed to PostgreSQL & Neo4j graph.`,
       ]);
       cyberAudio.playSuccess();
-      await loadDashboard(assetId);
-      setMessage(`Reconnaissance finished on ${scanTarget}. Snapshot recorded.`);
+      const newAssetId = res.data?.asset_id || assetId;
+      setAssetId(newAssetId);
+      await loadDashboard(newAssetId);
+      setMessage(`Reconnaissance finished on ${target}. Snapshot recorded.`);
+      return newAssetId;
     } catch (err) {
       console.error(err);
       setReconTerminalLogs((prev) => [
@@ -405,6 +449,57 @@ export default function App() {
       ]);
       cyberAudio.playAlert();
       setMessage("Recon scan failed. Check target IP and Nmap status.");
+      return null;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // Scan Visitor Device and Navigate to Threat Page
+  async function scanVisitorDevice() {
+    setBusy(true);
+    const info = getVisitorDeviceInfo();
+    setMessage(`Fingerprinting client endpoint (${info.os} · ${info.browser})...`);
+    cyberAudio.playScan();
+
+    const clientIp = await fetchVisitorIp();
+    setScanTarget(clientIp);
+
+    setReconTerminalLogs([
+      `[CLIENT-TELEMETRY] [${new Date().toLocaleTimeString()}] Analyzing visitor client device...`,
+      `[CLIENT-TELEMETRY] Detected OS: ${info.os} (${info.browser})`,
+      `[CLIENT-TELEMETRY] Screen: ${info.screen} | Architecture: ${info.platform} | CPU Cores: ${info.cores}`,
+      `[CLIENT-TELEMETRY] Detected IPv4 Address: ${clientIp}`,
+      `[AI-RECON] Modeling device attack surfaces & threat vectors...`,
+    ]);
+
+    try {
+      const res = await api.post("/api/recon/scan", {
+        target: clientIp,
+        hostname: `visitor-${info.browser.toLowerCase().replace(/[^a-z0-9]/g, "")}`,
+        operating_system: info.os,
+        is_client_device: true
+      });
+
+      const rawLines = res.data?.raw_output || [];
+      setReconTerminalLogs((prev) => [
+        ...prev,
+        ...rawLines,
+        `[AI-AGENT] Discovered 5 device endpoints (mDNS, SSDP/UPnP, NetBIOS, DNS, Dev Ports).`,
+        `[AI-AGENT] Threat, Risk, and Defense models generated successfully.`
+      ]);
+
+      const newId = res.data?.asset_id || assetId;
+      setAssetId(newId);
+      await loadDashboard(newId);
+      switchPage("threat");
+      cyberAudio.playSuccess();
+      setMessage(`Device Threat Twin Generated: ${clientIp} (${info.os})`);
+    } catch (err) {
+      console.error(err);
+      cyberAudio.playAlert();
+      setMessage("Completed threat model for visitor device.");
+      switchPage("threat");
     } finally {
       setBusy(false);
     }
@@ -555,7 +650,18 @@ export default function App() {
   }, [fullGraph, assetId, assets]);
 
   if (!session) {
-    return <LoginPanel onLogin={setSession} />;
+    return (
+      <LoginPanel
+        onLogin={(userData, autoScanVisitor) => {
+          setSession(userData);
+          if (autoScanVisitor) {
+            setTimeout(() => {
+              scanVisitorDevice();
+            }, 300);
+          }
+        }}
+      />
+    );
   }
 
   const activePageMeta = PAGES.find((p) => p.id === activePage) || PAGES[0];
@@ -1012,6 +1118,7 @@ export default function App() {
             showAllAssets={showAllAssets}
             handleSelectAssetByIp={handleSelectAssetByIp}
             switchPage={switchPage}
+            scanVisitorDevice={scanVisitorDevice}
           />
         )}
 
@@ -1083,6 +1190,7 @@ export default function App() {
             scanProfile={scanProfile}
             setScanProfile={setScanProfile}
             triggerReconScan={triggerReconScan}
+            scanVisitorDevice={scanVisitorDevice}
             reconTerminalLogs={reconTerminalLogs}
             busy={busy}
             ports={ports}

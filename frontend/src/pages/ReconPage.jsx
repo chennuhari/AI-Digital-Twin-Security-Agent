@@ -3,13 +3,16 @@ import {
   Server,
   TerminalSquare,
   ShieldCheck,
+  ShieldAlert,
   ArrowRight,
   ArrowLeft,
   CheckCircle2,
   AlertTriangle,
   RefreshCw,
+  Laptop,
 } from "lucide-react";
 import { cyberAudio } from "../soundEffects";
+import { fetchVisitorIp } from "../deviceUtils";
 
 export default function ReconPage({
   scanTarget,
@@ -17,6 +20,7 @@ export default function ReconPage({
   scanProfile,
   setScanProfile,
   triggerReconScan,
+  scanVisitorDevice,
   reconTerminalLogs,
   busy,
   ports,
@@ -47,14 +51,36 @@ export default function ReconPage({
               High-speed active socket discovery, TCP syn probes, OS fingerprinting, and dynamic twin registration.
             </p>
           </div>
+
+          <button
+            type="button"
+            onClick={scanVisitorDevice}
+            disabled={busy}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-400/40 bg-emerald-950/40 text-emerald-300 text-xs font-mono font-bold hover:bg-emerald-900/50 transition cursor-pointer shadow-lg"
+          >
+            <Laptop className="h-4 w-4 text-emerald-400" />
+            <span>Scan My Current Device Twin</span>
+          </button>
         </div>
 
         {/* Target Input & Scan Controls */}
         <div className="mt-5 pt-4 border-t border-white/10 flex flex-wrap items-center gap-3">
           <div className="flex-1 min-w-[240px] max-w-md">
-            <label className="block text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-1">
-              Target IP Address / Subnet
-            </label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                Target IP Address / Subnet
+              </label>
+              <button
+                type="button"
+                onClick={async () => {
+                  const ip = await fetchVisitorIp();
+                  setScanTarget(ip);
+                }}
+                className="text-[10px] font-mono text-cyan-300 hover:text-cyan-200 underline cursor-pointer"
+              >
+                Use My IP
+              </button>
+            </div>
             <input
               type="text"
               value={scanTarget}
@@ -80,9 +106,9 @@ export default function ReconPage({
             </select>
           </div>
 
-          <div className="self-end">
+          <div className="self-end flex items-center gap-2">
             <button
-              onClick={triggerReconScan}
+              onClick={() => triggerReconScan()}
               disabled={busy}
               className={`px-5 py-2.5 rounded-xl font-mono text-xs font-bold flex items-center gap-2 transition cursor-pointer shadow-lg ${
                 busy
