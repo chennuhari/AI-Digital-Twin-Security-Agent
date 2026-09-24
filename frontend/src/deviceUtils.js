@@ -41,13 +41,19 @@ export function getVisitorDeviceInfo() {
 
 export async function fetchVisitorIp() {
   try {
-    const res = await fetch("https://api.ipify.org?format=json", { cache: "no-store" });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    const res = await fetch("https://api.ipify.org?format=json", { 
+      cache: "no-store",
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
     if (res.ok) {
       const data = await res.json();
       if (data && data.ip) return data.ip;
     }
   } catch (e) {
-    // Fallback to random realistic client IP if blocked by adblockers
+    // Fallback to random realistic client IP if blocked by adblockers or mobile timeout
   }
   return "192.168.1.105";
 }
