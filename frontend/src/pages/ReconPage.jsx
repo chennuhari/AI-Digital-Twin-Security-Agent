@@ -10,6 +10,8 @@ import {
   AlertTriangle,
   RefreshCw,
   Laptop,
+  Smartphone,
+  Zap,
 } from "lucide-react";
 import { cyberAudio } from "../soundEffects";
 import { fetchVisitorIp } from "../deviceUtils";
@@ -21,6 +23,7 @@ export default function ReconPage({
   setScanProfile,
   triggerReconScan,
   scanVisitorDevice,
+  onOpenWholeDeviceScanner,
   reconTerminalLogs,
   busy,
   ports,
@@ -30,21 +33,24 @@ export default function ReconPage({
 }) {
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
-      {/* Header Banner */}
-      <div className="glass-panel p-6 border-cyan-500/30 shadow-2xl relative overflow-hidden">
+      {/* Header Banner (Flipkart Blue & Amazon Orange Accents) */}
+      <div className="card-flipkart p-6 rounded-3xl shadow-2xl relative overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 rounded bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-mono text-xs font-bold">
-                SECTION 03 / 07
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className="badge-flipkart-assured">
+                🛡️ FLIPKART ASSURED RECON
+              </span>
+              <span className="badge-amazon-choice">
+                AMAZON&apos;S <span className="accent">DISCOVERY</span> ENGINE
               </span>
               <span className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                Nmap 7.991 Engine Ready
+                Nmap 7.991 Active
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide mt-1.5 flex items-center gap-2">
-              <Radar className="h-7 w-7 text-cyan-400" />
+            <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide mt-1 flex items-center gap-2">
+              <Radar className="h-7 w-7 text-blue-400" />
               Autonomous Reconnaissance Agent
             </h1>
             <p className="text-xs text-slate-300 mt-1 font-mono">
@@ -52,15 +58,30 @@ export default function ReconPage({
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={scanVisitorDevice}
-            disabled={busy}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-emerald-400/40 bg-emerald-950/40 text-emerald-300 text-xs font-mono font-bold hover:bg-emerald-900/50 transition cursor-pointer shadow-lg"
-          >
-            <Laptop className="h-4 w-4 text-emerald-400" />
-            <span>Scan My Current Device Twin</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => {
+                if (onOpenWholeDeviceScanner) onOpenWholeDeviceScanner();
+                else if (scanVisitorDevice) scanVisitorDevice();
+              }}
+              disabled={busy}
+              className="btn-amazon-primary px-4 py-2.5 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+            >
+              <Smartphone className="h-4 w-4 text-slate-950" />
+              <span>📱 Scan Whole Device</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={scanVisitorDevice}
+              disabled={busy}
+              className="px-4 py-2.5 rounded-xl border border-blue-400/40 bg-blue-950/40 text-blue-300 text-xs font-mono font-bold hover:bg-blue-900/50 transition cursor-pointer shadow-lg"
+            >
+              <Laptop className="h-4 w-4 text-blue-400" />
+              <span>Quick Twin Sync</span>
+            </button>
+          </div>
         </div>
 
         {/* Target Input & Scan Controls */}

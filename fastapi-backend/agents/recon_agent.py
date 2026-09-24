@@ -35,13 +35,15 @@ class ReconAgent:
                 f"Starting Nmap 7.991 at {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}",
                 f"Nmap scan report for {target} ({operating_system or 'Client Device'})",
                 "Host is up (0.0012s latency from browser endpoint telemetry).",
-                "PORT     STATE SERVICE       VERSION",
-                "5353/tcp open  mdns          Apple Bonjour / Multicast DNS Responder",
-                "1900/tcp open  upnp          Universal Plug and Play SSDP Daemon",
-                "137/tcp  open  netbios-ns    Microsoft NetBIOS Name Service (LLMNR Enabled)",
-                "53/tcp   open  domain        Cleartext DNS Resolver (Port 53 UDP/TCP)",
-                "3000/tcp open  dev           Node.js Dev Server (Unauthenticated)",
-                f"Nmap done: 1 visitor device scanned into Digital Twin in 0.72 seconds"
+                "PORT      STATE SERVICE       VERSION",
+                "5353/tcp  open  mdns          Apple Bonjour / Multicast DNS Device Discovery",
+                "1900/tcp  open  upnp          Universal Plug and Play SSDP Media Daemon",
+                "137/tcp   open  netbios-ns    Microsoft NetBIOS Name Service (LLMNR Enabled)",
+                "53/tcp    open  domain        Cleartext DNS Resolver (Port 53 UDP/TCP)",
+                "3000/tcp  open  dev           Local Node.js Development Server (Unauthenticated)",
+                "8080/tcp  open  http-proxy    Secondary Web Proxy & Testing Port",
+                "445/tcp   open  microsoft-ds  Windows SMB File & Printer Sharing Service",
+                f"Nmap done: 1 visitor device full-spectrum scanned into Digital Twin in 0.94 seconds"
             ]
         elif not host_up or not has_ports:
             lines = [

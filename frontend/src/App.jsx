@@ -30,6 +30,7 @@ import {
   KeyRound,
   Mail,
   User as UserIcon,
+  Smartphone,
 } from "lucide-react";
 
 import { api, setToken, savedToken } from "./api";
@@ -45,6 +46,7 @@ import ThreatPage from "./pages/ThreatPage";
 import DefensePage from "./pages/DefensePage";
 import RiskPage from "./pages/RiskPage";
 import AuditPage from "./pages/AuditPage";
+import WholeDeviceScannerModal from "./components/WholeDeviceScannerModal";
 
 // Available Page Tabs
 const PAGES = [
@@ -204,15 +206,25 @@ function LoginPanel({ onLogin }) {
         </div>
 
         {/* Right Side: Interactive Sign In / Sign Up Form */}
-        <div className="glass-panel p-6 sm:p-7 relative border-cyan-500/30 shadow-2xl rounded-2xl bg-slate-950/80 backdrop-blur-xl">
+        <div className="glass-panel p-6 sm:p-7 relative border-blue-500/30 shadow-2xl rounded-3xl bg-slate-950/85 backdrop-blur-xl">
+          {/* Flipkart & Amazon Trust Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <span className="badge-flipkart-assured">
+              🛡️ FLIPKART ASSURED TWIN
+            </span>
+            <span className="badge-amazon-choice">
+              AMAZON&apos;S <span className="accent">CHOICE</span> CLOUD
+            </span>
+          </div>
+
           {/* Auth Mode Switcher Tabs */}
-          <div className="flex items-center rounded-xl bg-slate-900/90 p-1 border border-white/10 mb-6">
+          <div className="flex items-center rounded-2xl bg-slate-900/90 p-1 border border-white/10 mb-6">
             <button
               type="button"
               onClick={() => { setAuthMode("signin"); setError(""); setSuccessMsg(""); }}
-              className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-mono font-bold transition cursor-pointer ${
+              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${
                 authMode === "signin"
-                  ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30"
+                  ? "bg-gradient-to-r from-[#2874F0] to-[#1558C7] text-white shadow-md shadow-blue-900/50"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -222,9 +234,9 @@ function LoginPanel({ onLogin }) {
             <button
               type="button"
               onClick={() => { setAuthMode("signup"); setError(""); setSuccessMsg(""); }}
-              className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-mono font-bold transition cursor-pointer ${
+              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${
                 authMode === "signup"
-                  ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30"
+                  ? "bg-gradient-to-r from-[#10B981] to-[#059669] text-white shadow-md shadow-emerald-900/50"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -306,7 +318,7 @@ function LoginPanel({ onLogin }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 py-3 text-sm font-bold text-slate-950 hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/50 font-mono uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full btn-flipkart-primary py-3 text-sm font-bold text-white hover:brightness-110 transition cursor-pointer shadow-lg font-mono uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <LogIn className="h-4 w-4" />
                 <span>{loading ? "Authenticating Session..." : "Sign In to Dashboard"}</span>
@@ -315,7 +327,7 @@ function LoginPanel({ onLogin }) {
               <div className="relative my-3">
                 <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10" /></div>
                 <div className="relative flex justify-center text-[10px] uppercase">
-                  <span className="bg-slate-950 px-2 text-slate-400 font-mono">Visitor Quick Scan</span>
+                  <span className="bg-slate-950 px-2 text-slate-400 font-mono">1-Click Quick Access</span>
                 </div>
               </div>
 
@@ -323,10 +335,10 @@ function LoginPanel({ onLogin }) {
                 type="button"
                 onClick={guestLoginAndScan}
                 disabled={loading}
-                className="w-full rounded-xl border border-cyan-400/40 bg-cyan-950/40 hover:bg-cyan-900/60 py-2.5 px-4 text-xs font-mono font-bold text-cyan-300 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg hover:border-cyan-400"
+                className="w-full btn-amazon-primary py-2.5 px-4 text-xs font-mono font-black text-slate-950 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg"
               >
-                <Radar className="h-4 w-4 text-cyan-400 animate-spin" style={{ animationDuration: "3s" }} />
-                <span>Instant Access & Scan My Device</span>
+                <Smartphone className="h-4 w-4 text-slate-950" />
+                <span>⚡ 1-Click Instant Device Scan</span>
               </button>
             </form>
           )}
@@ -444,6 +456,9 @@ export default function App() {
 
   // Plain English vs Advanced Cyber Jargon mode (default to true for non-technical users)
   const [plainEnglishMode, setPlainEnglishMode] = useState(true);
+
+  // Whole Device Deep Scanner Modal State
+  const [showDeviceScannerModal, setShowDeviceScannerModal] = useState(false);
 
   // Active Page Routing State - default to overview
   const [activePage, setActivePage] = useState("overview");
@@ -1306,6 +1321,21 @@ export default function App() {
 
           {/* Right: Fleet Switcher, Plain English Mode & Status */}
           <div className="flex items-center gap-2.5 shrink-0">
+            {/* Scan Whole Device Button (Amazon Style Amber 1-Click Action) */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowDeviceScannerModal(true);
+                cyberAudio.playScan();
+              }}
+              className="btn-amazon-primary px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+              title="Deep scan hardware, CPU, RAM, GPU, network, ports, privacy & generate digital twin"
+            >
+              <Smartphone className="h-4 w-4" />
+              <span className="hidden sm:inline">📱 Scan Whole Device</span>
+              <span className="sm:hidden">📱 Scan</span>
+            </button>
+
             {/* Plain English vs Cyber Mode Toggle Button */}
             <button
               type="button"
@@ -1392,6 +1422,7 @@ export default function App() {
             handleSelectAssetByIp={handleSelectAssetByIp}
             switchPage={switchPage}
             scanVisitorDevice={scanVisitorDevice}
+            onOpenWholeDeviceScanner={() => setShowDeviceScannerModal(true)}
             plainEnglishMode={plainEnglishMode}
           />
         )}
@@ -1465,6 +1496,7 @@ export default function App() {
             setScanProfile={setScanProfile}
             triggerReconScan={triggerReconScan}
             scanVisitorDevice={scanVisitorDevice}
+            onOpenWholeDeviceScanner={() => setShowDeviceScannerModal(true)}
             reconTerminalLogs={reconTerminalLogs}
             busy={busy}
             ports={ports}
@@ -1528,6 +1560,20 @@ export default function App() {
         AI Digital Twin Security Agent · Proactive Cybersecurity Intelligence Platform · Python FastAPI + PostgreSQL + Neo4j + Nmap
       </footer>
       </div>
+
+      {/* Whole Device Deep Scanner Interactive Modal */}
+      <WholeDeviceScannerModal
+        isOpen={showDeviceScannerModal}
+        onClose={() => setShowDeviceScannerModal(false)}
+        onScanComplete={async (newId) => {
+          if (newId) {
+            setAssetId(newId);
+            await loadDashboard(newId);
+          }
+        }}
+        switchPage={switchPage}
+        plainEnglishMode={plainEnglishMode}
+      />
     </div>
   );
 }

@@ -6,6 +6,17 @@
   background: #020617;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
+  /* Flipkart & Amazon Iconic Brand Color Tokens */
+  --flipkart-blue: #2874f0;
+  --flipkart-blue-dark: #1259c7;
+  --flipkart-yellow: #ffe500;
+  --flipkart-orange: #fb641b;
+  --amazon-orange: #ff9900;
+  --amazon-amber: #ffa41c;
+  --amazon-gold: #ffd814;
+  --amazon-navy: #131921;
+  --amazon-slate: #232f3e;
 }
 
 * {
@@ -23,10 +34,109 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08), transparent 30rem),
-    radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.10), transparent 32rem),
-    radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.06), transparent 28rem),
-    linear-gradient(180deg, #020617 0%, #050b14 45%, #020617 100%);
+    radial-gradient(circle at 10% 10%, rgba(40, 116, 240, 0.12), transparent 28rem),
+    radial-gradient(circle at 90% 15%, rgba(255, 153, 0, 0.10), transparent 30rem),
+    radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08), transparent 28rem),
+    radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08), transparent 28rem),
+    linear-gradient(180deg, #020617 0%, #060e1d 40%, #030712 100%);
+}
+
+/* Amazon & Flipkart Vibrant Cards */
+.card-flipkart {
+  background: linear-gradient(135deg, rgba(40, 116, 240, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
+  border: 1px solid rgba(40, 116, 240, 0.35);
+  box-shadow: 0 12px 30px rgba(40, 116, 240, 0.08);
+}
+
+.card-amazon {
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.09) 0%, rgba(23, 27, 38, 0.8) 100%);
+  border: 1px solid rgba(255, 153, 0, 0.35);
+  box-shadow: 0 12px 30px rgba(255, 153, 0, 0.08);
+}
+
+.card-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.08);
+}
+
+.card-purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.08);
+}
+
+.card-rose {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.08);
+}
+
+/* Flipkart Assured & Amazon's Choice Style Badges */
+.badge-flipkart-assured {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: linear-gradient(90deg, #2874f0 0%, #1754be 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(40, 116, 240, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge-amazon-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: #131921;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.375rem;
+  border-left: 3px solid #ff9900;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.badge-amazon-choice .accent {
+  color: #ffa41c;
+  font-weight: 800;
+}
+
+/* High-Impact Vibrant Buttons */
+.btn-amazon-primary {
+  background: linear-gradient(180deg, #ffa41c 0%, #ff8800 100%);
+  color: #0f172a;
+  font-weight: 800;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
+  border: 1px solid rgba(255, 200, 100, 0.4);
+  transition: all 0.2s ease;
+}
+.btn-amazon-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 20px rgba(255, 153, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-flipkart-primary {
+  background: linear-gradient(180deg, #2874f0 0%, #1558c7 100%);
+  color: #ffffff;
+  font-weight: 800;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 14px rgba(40, 116, 240, 0.35);
+  border: 1px solid rgba(120, 180, 255, 0.4);
+  transition: all 0.2s ease;
+}
+.btn-flipkart-primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 20px rgba(40, 116, 240, 0.5);
+  transform: translateY(-1px);
 }
 
 /* Cyber Glow Utilities */
@@ -34,24 +144,33 @@ body {
   box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
 }
 
-.glow-rose {
-  box-shadow: 0 0 25px rgba(244, 63, 94, 0.4);
+.glow-flipkart {
+  box-shadow: 0 0 25px rgba(40, 116, 240, 0.4);
+}
+
+.glow-amazon {
+  box-shadow: 0 0 25px rgba(255, 153, 0, 0.4);
 }
 
 .glow-emerald {
-  box-shadow: 0 0 25px rgba(0, 255, 157, 0.35);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
 }
 
-/* Cyber Terminal Scanline */
-.scanline {
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0),
-    rgba(255,255,255,0) 50%,
-    rgba(0, 240, 255, 0.06) 50%,
-    rgba(0, 240, 255, 0.06)
-  );
-  background-size: 100% 4px;
+/* Holographic glass HUD */
+.glass-panel {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 7, 24, 0.75);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(12px);
 }
 
 /* Custom Scrollbar */
@@ -65,36 +184,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #00f0ff, #8b5cf6);
+  background: linear-gradient(180deg, #2874f0, #ff9900, #10b981);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00f0ff;
-}
-
-/* Holographic glass HUD */
-.glass-panel {
-  border-radius: 1rem;
-  border: 1px solid rgba(0, 240, 255, 0.12);
-  background: rgba(2, 6, 23, 0.72);
-  box-shadow: 0 20px 50px rgba(0, 240, 255, 0.06);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.glass-card {
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(12px);
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.9; }
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s infinite ease-in-out;
+  background: #2874f0;
 }

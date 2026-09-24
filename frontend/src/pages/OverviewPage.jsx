@@ -14,6 +14,9 @@ import {
   Compass,
   Cpu,
   Sparkles,
+  Smartphone,
+  Star,
+  Zap,
 } from "lucide-react";
 import { getVisitorDeviceInfo, fetchVisitorIp } from "../deviceUtils";
 
@@ -31,6 +34,7 @@ export default function OverviewPage({
   handleSelectAssetByIp,
   switchPage,
   scanVisitorDevice,
+  onOpenWholeDeviceScanner,
   plainEnglishMode = true,
 }) {
   const [visitorInfo, setVisitorInfo] = useState(null);
@@ -45,39 +49,53 @@ export default function OverviewPage({
 
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
-      {/* Executive Hero Banner */}
-      <div className="relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-blue-950/30 p-7 shadow-2xl backdrop-blur-xl">
+      {/* Executive Hero Banner (Amazon & Flipkart Vibrant Colors) */}
+      <div className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-blue-950/40 p-7 shadow-2xl backdrop-blur-xl">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/60 px-3.5 py-1.5 text-xs font-mono uppercase tracking-widest text-cyan-300">
-              <ShieldCheck className="h-4 w-4 text-cyan-400" />
-              Autonomous AI Cybersecurity Platform
+            {/* Vibrant E-Commerce Trust Badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="badge-flipkart-assured">
+                🛡️ FLIPKART ASSURED TWIN
+              </span>
+              <span className="badge-amazon-choice">
+                AMAZON&apos;S <span className="accent">CHOICE</span> SECURITY
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[10px] font-bold">
+                ⭐ 4.9/5 RATED DEFENSE
+              </span>
             </div>
-            <h1 className="mt-3 text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
               Enterprise Digital Twin <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#2874F0] via-[#FF9900] to-[#10B981] bg-clip-text text-transparent">
                 Security Command Center
               </span>
             </h1>
             <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
-              Continuous reconnaissance, graph-theoretic threat modeling, and proactive mitigation across physical and cloud network infrastructures. Select any IP address to generate its isolated 3D digital twin.
+              Continuous reconnaissance, graph-theoretic threat modeling, and proactive mitigation across physical and cloud network infrastructures. Select any IP address or deep-scan your current device to generate an isolated 3D digital twin.
             </p>
           </div>
 
-          <div className="flex flex-col gap-2.5 shrink-0">
+          <div className="flex flex-col gap-2.5 shrink-0 w-full sm:w-auto">
+            {/* Primary Amazon Amber 1-Click Scan Button */}
+            <button
+              onClick={() => {
+                if (onOpenWholeDeviceScanner) onOpenWholeDeviceScanner();
+                else if (scanVisitorDevice) scanVisitorDevice();
+              }}
+              className="btn-amazon-primary px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-xl"
+            >
+              <Smartphone className="h-4 w-4 text-slate-950" />
+              <span>📱 Scan Whole Device (Phone/PC)</span>
+            </button>
+
             <button
               onClick={() => switchPage("diagram")}
-              className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-mono text-xs font-black uppercase tracking-wider hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/50"
+              className="btn-flipkart-primary px-6 py-3 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
             >
               <Compass className="h-4 w-4" />
               <span>Open 3D Twin Diagram</span>
-            </button>
-            <button
-              onClick={() => switchPage("recon")}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 font-mono text-xs font-bold hover:bg-cyan-500/20 transition cursor-pointer"
-            >
-              <Radar className="h-4 w-4 text-cyan-400" />
-              <span>Launch Reconnaissance</span>
             </button>
           </div>
         </div>
@@ -85,38 +103,38 @@ export default function OverviewPage({
 
       {/* Plain English Guide for Non-Technical Users */}
       {plainEnglishMode && (
-        <div className="p-5 rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-slate-900/80 to-blue-950/30 backdrop-blur-md shadow-xl">
-          <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+        <div className="p-5 rounded-2xl border border-blue-500/30 bg-gradient-to-r from-blue-950/30 via-slate-900/80 to-amber-950/20 backdrop-blur-md shadow-xl">
+          <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
             <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
             <span>💡 How this system works in 3 Easy Steps (Plain English):</span>
           </div>
           <div className="mt-3 grid sm:grid-cols-3 gap-3 text-xs text-slate-300 font-sans">
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
-              <span className="font-bold text-cyan-400 block mb-1">1. Scan &amp; Discover</span>
-              Tap <strong>&ldquo;Analyze My Device Threats&rdquo;</strong> below. We find your device&apos;s open digital doors and create a safe 3D virtual copy.
+            <div className="p-3.5 rounded-xl card-flipkart">
+              <span className="font-bold text-blue-400 block mb-1">1. Scan &amp; Discover</span>
+              Tap <strong>&ldquo;Scan Whole Device&rdquo;</strong> to inspect phone hardware, Wi-Fi speed, and open digital doors. We create a safe 3D virtual copy.
             </div>
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
-              <span className="font-bold text-rose-400 block mb-1">2. Simulate Attacks</span>
-              Our AI simulates how an internet intruder would try to break into your virtual copy, without touching your real phone.
+            <div className="p-3.5 rounded-xl card-amazon">
+              <span className="font-bold text-amber-400 block mb-1">2. Simulate Attacks</span>
+              Our AI simulates how an internet intruder would try to break into your virtual copy, without touching or risking your real phone.
             </div>
-            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
+            <div className="p-3.5 rounded-xl card-emerald">
               <span className="font-bold text-emerald-400 block mb-1">3. 1-Click Hardening</span>
-              Go to the <strong>Defense tab</strong> to test digital locks, block attackers, and watch your security score drop to safe levels!
+              Click <strong>&ldquo;1-Click Shield &amp; Harden&rdquo;</strong> to lock vulnerable ports, stop local eavesdropping, and raise your score to 100%!
             </div>
           </div>
         </div>
       )}
 
-      {/* Visitor Device Threat Telemetry Widget */}
-      <div className="rounded-2xl border border-cyan-400/40 bg-gradient-to-r from-cyan-950/50 via-slate-900/95 to-blue-950/50 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
+      {/* Visitor Device Threat Telemetry Widget (Vibrant E-Commerce Card) */}
+      <div className="rounded-2xl border border-blue-500/40 bg-gradient-to-r from-blue-950/50 via-slate-900/95 to-amber-950/40 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 shrink-0 shadow-lg shadow-cyan-950/60">
-            <Radar className="h-6 w-6 animate-pulse text-cyan-400" />
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#2874F0] to-[#FF9900] flex items-center justify-center text-white shrink-0 shadow-lg shadow-blue-950/60">
+            <Smartphone className="h-6 w-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300 border border-cyan-400/30 font-bold">
-                Visitor Device Threat Detector
+              <span className="badge-flipkart-assured">
+                AI DEVICE SCANNER
               </span>
               <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
@@ -124,9 +142,9 @@ export default function OverviewPage({
               </span>
             </div>
             <div className="mt-1 flex flex-wrap items-center gap-2 text-xs font-mono text-slate-300">
-              <span className="text-white font-bold">{visitorInfo?.os || "Windows Workstation"}</span>
+              <span className="text-white font-bold">{visitorInfo?.deviceModel || "Workstation"}</span>
               <span>·</span>
-              <span className="text-cyan-300">{visitorInfo?.browser || "Browser"}</span>
+              <span className="text-blue-300">{visitorInfo?.os || "OS"}</span>
               <span>·</span>
               <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-emerald-300 font-bold">
                 IP: {visitorIp}
@@ -136,66 +154,64 @@ export default function OverviewPage({
           </div>
         </div>
 
-        <button
-          onClick={async () => {
-            if (scanVisitorDevice) {
-              setScanningMyDevice(true);
-              await scanVisitorDevice();
-              setScanningMyDevice(false);
-            }
-          }}
-          disabled={scanningMyDevice}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 font-mono text-xs font-black uppercase tracking-wider hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/40"
-        >
-          <ShieldAlert className="h-4 w-4" />
-          <span>{scanningMyDevice ? "Analyzing Device Threats..." : "Analyze My Device Threats"}</span>
-        </button>
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={() => {
+              if (onOpenWholeDeviceScanner) onOpenWholeDeviceScanner();
+              else if (scanVisitorDevice) scanVisitorDevice();
+            }}
+            className="btn-amazon-primary px-5 py-2.5 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+          >
+            <Zap className="h-4 w-4 fill-slate-950" />
+            <span>Deep Scan Whole Device</span>
+          </button>
+        </div>
       </div>
 
-      {/* 4 Executive KPI Hero Cards */}
+      {/* 4 Executive KPI Hero Cards (Flipkart Blue, Amazon Orange, Rose, Emerald) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="glass-panel p-5 border-cyan-500/20 relative overflow-hidden group hover:border-cyan-400/50 transition">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="card-flipkart p-5 rounded-2xl relative overflow-hidden group hover:border-blue-400 transition">
+          <div className="flex items-center justify-between text-xs font-mono text-blue-300 font-bold">
             <span>MONITORED TWINS</span>
-            <Server className="h-4 w-4 text-cyan-400" />
+            <Server className="h-4 w-4 text-blue-400" />
           </div>
           <div className="mt-3 text-3xl font-black font-mono text-white tracking-tight">
             {assets.length} <span className="text-xs font-normal text-slate-400">Hosts</span>
           </div>
-          <p className="mt-1 text-xs text-slate-400">Synchronized in PostgreSQL & Neo4j</p>
+          <p className="mt-1 text-xs text-slate-300">Synchronized in PostgreSQL &amp; Neo4j</p>
         </div>
 
-        <div className="glass-panel p-5 border-sky-500/20 relative overflow-hidden group hover:border-sky-400/50 transition">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="card-amazon p-5 rounded-2xl relative overflow-hidden group hover:border-amber-400 transition">
+          <div className="flex items-center justify-between text-xs font-mono text-amber-300 font-bold">
             <span>EXPOSED SOCKETS</span>
-            <Radar className="h-4 w-4 text-sky-400" />
+            <Radar className="h-4 w-4 text-amber-400" />
           </div>
-          <div className="mt-3 text-3xl font-black font-mono text-sky-300 tracking-tight">
+          <div className="mt-3 text-3xl font-black font-mono text-amber-300 tracking-tight">
             {ports.length} <span className="text-xs font-normal text-slate-400">Ports</span>
           </div>
-          <p className="mt-1 text-xs text-slate-400">Active attack surface listening services</p>
+          <p className="mt-1 text-xs text-slate-300">Active attack surface listening services</p>
         </div>
 
-        <div className="glass-panel p-5 border-rose-500/20 relative overflow-hidden group hover:border-rose-400/50 transition">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="card-rose p-5 rounded-2xl relative overflow-hidden group hover:border-rose-400 transition">
+          <div className="flex items-center justify-between text-xs font-mono text-rose-300 font-bold">
             <span>ACTIVE THREATS</span>
             <Flame className="h-4 w-4 text-rose-400" />
           </div>
           <div className="mt-3 text-3xl font-black font-mono text-rose-400 tracking-tight">
             {threats.length} <span className="text-xs font-normal text-slate-400">CVEs</span>
           </div>
-          <p className="mt-1 text-xs text-slate-400">Exploit vectors identified by Threat Agent</p>
+          <p className="mt-1 text-xs text-slate-300">Exploit vectors identified by Threat Agent</p>
         </div>
 
-        <div className="glass-panel p-5 border-emerald-500/20 relative overflow-hidden group hover:border-emerald-400/50 transition">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400">
+        <div className="card-emerald p-5 rounded-2xl relative overflow-hidden group hover:border-emerald-400 transition">
+          <div className="flex items-center justify-between text-xs font-mono text-emerald-300 font-bold">
             <span>DEFENSE MITIGATIONS</span>
             <ShieldCheck className="h-4 w-4 text-emerald-400" />
           </div>
           <div className="mt-3 text-3xl font-black font-mono text-emerald-400 tracking-tight">
             {defense?.recommendations?.length || 0} <span className="text-xs font-normal text-slate-400">Playbooks</span>
           </div>
-          <p className="mt-1 text-xs text-slate-400">CIS/NIST aligned hardening playbooks</p>
+          <p className="mt-1 text-xs text-slate-300">CIS/NIST aligned hardening playbooks</p>
         </div>
       </div>
 
@@ -212,47 +228,47 @@ export default function OverviewPage({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Agent 1: Recon */}
+          {/* Agent 1: Recon (Flipkart Blue) */}
           <div
             onClick={() => switchPage("recon")}
-            className="glass-panel p-5 border-cyan-500/25 hover:border-cyan-400/60 transition cursor-pointer group flex flex-col justify-between"
+            className="card-flipkart p-5 rounded-2xl hover:border-blue-400 transition cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition">
+                <span className="p-2 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-300 group-hover:scale-110 transition">
                   <Radar className="h-5 w-5" />
                 </span>
-                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 text-[10px] font-mono font-bold">
-                  ACTIVE
+                <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-mono font-bold">
+                  ACTIVE 7.99
                 </span>
               </div>
-              <h3 className="text-base font-bold text-white group-hover:text-cyan-300 transition">Recon Agent</h3>
-              <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
-                Autonomous Nmap discovery engine detecting listening ports, OS fingerprints, and service banners.
+              <h3 className="text-base font-bold text-white group-hover:text-blue-300 transition">Recon Agent</h3>
+              <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
+                Autonomous discovery engine detecting listening ports, OS fingerprints, and exposed digital doors.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-cyan-400">
-              <span>Open Console</span>
+            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-blue-400">
+              <span>Launch Discovery</span>
               <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition" />
             </div>
           </div>
 
-          {/* Agent 2: Threat */}
+          {/* Agent 2: Threat (Crimson Rose) */}
           <div
             onClick={() => switchPage("threat")}
-            className="glass-panel p-5 border-rose-500/25 hover:border-rose-400/60 transition cursor-pointer group flex flex-col justify-between"
+            className="card-rose p-5 rounded-2xl hover:border-rose-400 transition cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="p-2 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 group-hover:scale-110 transition">
+                <span className="p-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 group-hover:scale-110 transition">
                   <Flame className="h-5 w-5" />
                 </span>
-                <span className="px-2 py-0.5 rounded bg-rose-500/10 text-rose-300 text-[10px] font-mono font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 text-[10px] font-mono font-bold">
                   SIMULATING
                 </span>
               </div>
               <h3 className="text-base font-bold text-white group-hover:text-rose-300 transition">Threat Agent</h3>
-              <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+              <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
                 Graph-theoretic attack simulator calculating multi-hop kill chains targeting crown jewels.
               </p>
             </div>
@@ -262,22 +278,22 @@ export default function OverviewPage({
             </div>
           </div>
 
-          {/* Agent 3: Defense */}
+          {/* Agent 3: Defense (Emerald Green) */}
           <div
             onClick={() => switchPage("defense")}
-            className="glass-panel p-5 border-emerald-500/25 hover:border-emerald-400/60 transition cursor-pointer group flex flex-col justify-between"
+            className="card-emerald p-5 rounded-2xl hover:border-emerald-400 transition cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition">
+                <span className="p-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 group-hover:scale-110 transition">
                   <ShieldCheck className="h-5 w-5" />
                 </span>
-                <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 text-[10px] font-mono font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-mono font-bold">
                   READY
                 </span>
               </div>
               <h3 className="text-base font-bold text-white group-hover:text-emerald-300 transition">Defense Agent</h3>
-              <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+              <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
                 Generates prioritized CIS/NIST remediation playbooks and 1-click virtual hardening.
               </p>
             </div>
@@ -287,26 +303,26 @@ export default function OverviewPage({
             </div>
           </div>
 
-          {/* Agent 4: Risk */}
+          {/* Agent 4: Risk (Royal Purple) */}
           <div
             onClick={() => switchPage("risk")}
-            className="glass-panel p-5 border-amber-500/25 hover:border-amber-400/60 transition cursor-pointer group flex flex-col justify-between"
+            className="card-purple p-5 rounded-2xl hover:border-purple-400 transition cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 group-hover:scale-110 transition">
+                <span className="p-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 group-hover:scale-110 transition">
                   <Activity className="h-5 w-5" />
                 </span>
-                <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 text-[10px] font-mono font-bold">
+                <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-mono font-bold">
                   EVALUATING
                 </span>
               </div>
-              <h3 className="text-base font-bold text-white group-hover:text-amber-300 transition">Risk Agent</h3>
-              <p className="mt-1.5 text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-white group-hover:text-purple-300 transition">Risk Agent</h3>
+              <p className="mt-1.5 text-xs text-slate-300 leading-relaxed">
                 Quantitative risk assessment engine weighing asset criticality, CVSS severity, and exposure depth.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-amber-400">
+            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-purple-400">
               <span>Risk Heatmap</span>
               <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition" />
             </div>
