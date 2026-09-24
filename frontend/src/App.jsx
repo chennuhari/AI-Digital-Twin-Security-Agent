@@ -23,6 +23,13 @@ import {
   CheckCircle2,
   X,
   Menu,
+  UserPlus,
+  LogIn,
+  Sparkles,
+  HelpCircle,
+  KeyRound,
+  Mail,
+  User as UserIcon,
 } from "lucide-react";
 
 import { api, setToken, savedToken } from "./api";
@@ -52,15 +59,27 @@ const PAGES = [
 ];
 
 function LoginPanel({ onLogin }) {
+  const [authMode, setAuthMode] = useState("signin"); // "signin" | "signup"
+
+  // Sign In inputs
   const [username, setUsername] = useState("testuser3");
   const [password, setPassword] = useState("Test@123");
+
+  // Sign Up inputs
+  const [regUsername, setRegUsername] = useState("");
+  const [regEmail, setRegEmail] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regConfirmPassword, setRegConfirmPassword] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
-  async function submit(e) {
+  async function handleLogin(e) {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccessMsg("");
     cyberAudio.playBeep(440, 0.08);
 
     try {
@@ -71,7 +90,51 @@ function LoginPanel({ onLogin }) {
     } catch (err) {
       console.error(err);
       cyberAudio.playAlert();
-      setError("Authentication failed. Please verify username/password and ensure backend is online.");
+      const msg = err.response?.data?.detail || "Authentication failed. Please verify credentials or use Instant Access.";
+      setError(typeof msg === "string" ? msg : "Login failed. Check your credentials.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    setError("");
+    setSuccessMsg("");
+
+    if (!regUsername.trim() || !regEmail.trim() || !regPassword) {
+      setError("Please fill out all fields.");
+      return;
+    }
+    if (regPassword !== regConfirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+    if (regPassword.length < 4) {
+      setError("Password must be at least 4 characters long.");
+      return;
+    }
+
+    setLoading(true);
+    cyberAudio.playBeep(520, 0.08);
+
+    try {
+      const res = await api.post("/api/auth/register", {
+        username: regUsername.trim(),
+        email: regEmail.trim(),
+        password: regPassword,
+      });
+      setToken(res.data.token);
+      cyberAudio.playSuccess();
+      setSuccessMsg("Account created successfully! Loading your Digital Twin...");
+      setTimeout(() => {
+        onLogin(res.data);
+      }, 700);
+    } catch (err) {
+      console.error(err);
+      cyberAudio.playAlert();
+      const msg = err.response?.data?.detail || "Registration failed. Username or email may already be in use.";
+      setError(typeof msg === "string" ? msg : "Registration failed. Please try a different username.");
     } finally {
       setLoading(false);
     }
@@ -80,6 +143,7 @@ function LoginPanel({ onLogin }) {
   async function guestLoginAndScan() {
     setLoading(true);
     setError("");
+    setSuccessMsg("");
     cyberAudio.playScan();
     try {
       const res = await api.post("/api/auth/login", { username: "testuser3", password: "Test@123" });
@@ -87,7 +151,7 @@ function LoginPanel({ onLogin }) {
       cyberAudio.playSuccess();
       onLogin(res.data, true);
     } catch (err) {
-      // Fallback guest session for cloud/offline evaluations
+      // Fallback guest session for offline / network testing
       const fallback = { token: "guest-token-cyber", username: "Visitor Security Analyst", role: "GUEST" };
       setToken(fallback.token);
       cyberAudio.playSuccess();
@@ -99,75 +163,261 @@ function LoginPanel({ onLogin }) {
 
   return (
     <div className="relative min-h-screen overflow-hidden px-4 py-8 flex items-center justify-center bg-[#020617]">
-      <div className="relative z-10 w-full max-w-5xl mx-auto grid lg:grid-cols-[1.3fr_.7fr] gap-8 items-center">
+      {/* Background Cyber Ambient Glows */}
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-5xl mx-auto grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
+        {/* Left Side: Plain English Introduction */}
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/50 px-3.5 py-1.5 text-xs font-mono uppercase tracking-widest text-cyan-300">
             <BrainCircuit className="h-4 w-4 text-cyan-400 animate-pulse" />
             Autonomous AI Security Platform
           </div>
+
           <h1 className="mt-4 text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
             AI Digital Twin <br />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
               Security Agent
             </span>
           </h1>
-          <p className="mt-4 max-w-xl text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
-            Replicates organizational network assets, services, and security relationships in a living 3D virtual twin.
-            Autonomous Recon, Threat, Defense, and Risk agents simulate multi-hop attack paths and enforce proactive hardening.
-          </p>
+
+          {/* Plain English Explanation Box */}
+          <div className="mt-5 p-4 rounded-2xl border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-md">
+            <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+              <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
+              <span>In Plain English: What does this system do?</span>
+            </div>
+            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+              It creates a <strong>safe, 3D virtual copy (Digital Twin)</strong> of your phone, computer, or office network.
+              Instead of testing risks on your real device, our AI agents simulate cyber attacks in the virtual copy,
+              spot unlocked security doors, and show you exactly how to protect yourself!
+            </p>
+          </div>
+
           <div className="mt-6 flex flex-wrap gap-4 text-xs font-mono text-slate-400">
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" /> Python FastAPI</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> PostgreSQL Storage</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-violet-400" /> Neo4j Graph Models</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-amber-400" /> Nmap Auto-Recon</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" /> Python FastAPI Cloud</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> 3D Three.js Visualizer</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-violet-400" /> MITRE ATT&CK Paths</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-amber-400" /> 1-Click Defense Hardening</span>
           </div>
         </div>
 
-        <form onSubmit={submit} className="glass-panel p-7 relative border-cyan-500/20 shadow-2xl">
-          <div className="mb-5">
-            <div className="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400">Terminal Access</div>
-            <h2 className="mt-1 text-2xl font-bold text-white">Sign In to Dashboard</h2>
-          </div>
-          <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5">User Identity</label>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
-          />
-
-          <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mt-4 mb-1.5">Passcode</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-xl border border-white/10 bg-slate-900/80 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
-          />
-
-          {error && <div className="mt-4 rounded-xl border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300 font-mono">{error}</div>}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="mt-6 w-full rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 py-3 text-sm font-bold text-slate-950 hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/50 font-mono uppercase tracking-wider"
-          >
-            {loading ? "Authenticating Session..." : "Sign In to Dashboard"}
-          </button>
-
-          <div className="relative my-4">
-            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10" /></div>
-            <div className="relative flex justify-center text-[10px] uppercase"><span className="bg-slate-900 px-2 text-slate-400 font-mono">Visitor Quick Assessment</span></div>
+        {/* Right Side: Interactive Sign In / Sign Up Form */}
+        <div className="glass-panel p-6 sm:p-7 relative border-cyan-500/30 shadow-2xl rounded-2xl bg-slate-950/80 backdrop-blur-xl">
+          {/* Auth Mode Switcher Tabs */}
+          <div className="flex items-center rounded-xl bg-slate-900/90 p-1 border border-white/10 mb-6">
+            <button
+              type="button"
+              onClick={() => { setAuthMode("signin"); setError(""); setSuccessMsg(""); }}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-mono font-bold transition cursor-pointer ${
+                authMode === "signin"
+                  ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <LogIn className="h-3.5 w-3.5" />
+              <span>Sign In</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => { setAuthMode("signup"); setError(""); setSuccessMsg(""); }}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-mono font-bold transition cursor-pointer ${
+                authMode === "signup"
+                  ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/30"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              <UserPlus className="h-3.5 w-3.5" />
+              <span>Create Account</span>
+            </button>
           </div>
 
-          <button
-            type="button"
-            onClick={guestLoginAndScan}
-            disabled={loading}
-            className="w-full rounded-xl border border-cyan-400/40 bg-cyan-950/40 hover:bg-cyan-900/60 py-2.5 px-4 text-xs font-mono font-bold text-cyan-300 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg hover:border-cyan-400"
-          >
-            <Radar className="h-4 w-4 text-cyan-400 animate-spin" style={{ animationDuration: "3s" }} />
-            <span>Instant Access & Scan My Device</span>
-          </button>
-        </form>
+          {/* Form Header */}
+          <div className="mb-4">
+            <h2 className="text-xl font-bold text-white">
+              {authMode === "signin" ? "Sign In to Your Twin" : "Register New Account"}
+            </h2>
+            <p className="text-xs text-slate-400 mt-1">
+              {authMode === "signin"
+                ? "Enter your credentials or use the demo account below."
+                : "Create your personal security account in seconds."}
+            </p>
+          </div>
+
+          {/* Feedback Messages */}
+          {error && (
+            <div className="mb-4 rounded-xl border border-rose-500/40 bg-rose-500/15 p-3 text-xs text-rose-300 font-mono flex items-start gap-2">
+              <AlertTriangle className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          {successMsg && (
+            <div className="mb-4 rounded-xl border border-emerald-500/40 bg-emerald-500/15 p-3 text-xs text-emerald-300 font-mono flex items-start gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
+              <span>{successMsg}</span>
+            </div>
+          )}
+
+          {/* SIGN IN FORM */}
+          {authMode === "signin" && (
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <UserIcon className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Username</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="e.g. testuser3"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                  <KeyRound className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Password</span>
+                </label>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              {/* Demo Credentials Quick Fill */}
+              <div
+                onClick={() => { setUsername("testuser3"); setPassword("Test@123"); }}
+                className="p-2 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-[11px] font-mono text-cyan-300 cursor-pointer hover:bg-cyan-900/40 transition flex items-center justify-between"
+                title="Click to auto-fill default demo account"
+              >
+                <span>Demo Account: <strong>testuser3</strong></span>
+                <span className="text-cyan-400 font-bold underline">Click to Auto-fill</span>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 py-3 text-sm font-bold text-slate-950 hover:brightness-110 transition cursor-pointer shadow-lg shadow-cyan-950/50 font-mono uppercase tracking-wider flex items-center justify-center gap-2"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>{loading ? "Authenticating Session..." : "Sign In to Dashboard"}</span>
+              </button>
+
+              <div className="relative my-3">
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10" /></div>
+                <div className="relative flex justify-center text-[10px] uppercase">
+                  <span className="bg-slate-950 px-2 text-slate-400 font-mono">Visitor Quick Scan</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={guestLoginAndScan}
+                disabled={loading}
+                className="w-full rounded-xl border border-cyan-400/40 bg-cyan-950/40 hover:bg-cyan-900/60 py-2.5 px-4 text-xs font-mono font-bold text-cyan-300 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg hover:border-cyan-400"
+              >
+                <Radar className="h-4 w-4 text-cyan-400 animate-spin" style={{ animationDuration: "3s" }} />
+                <span>Instant Access & Scan My Device</span>
+              </button>
+            </form>
+          )}
+
+          {/* SIGN UP FORM */}
+          {authMode === "signup" && (
+            <form onSubmit={handleRegister} className="space-y-3.5">
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <UserIcon className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Choose Username</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={regUsername}
+                  onChange={(e) => setRegUsername(e.target.value)}
+                  placeholder="e.g. cyber_analyst"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <Mail className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Email Address</span>
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={regEmail}
+                  onChange={(e) => setRegEmail(e.target.value)}
+                  placeholder="e.g. user@digitaltwin.ai"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <KeyRound className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Password</span>
+                </label>
+                <input
+                  type="password"
+                  required
+                  value={regPassword}
+                  onChange={(e) => setRegPassword(e.target.value)}
+                  placeholder="At least 4 characters"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <ShieldCheck className="h-3.5 w-3.5 text-cyan-400" />
+                  <span>Confirm Password</span>
+                </label>
+                <input
+                  type="password"
+                  required
+                  value={regConfirmPassword}
+                  onChange={(e) => setRegConfirmPassword(e.target.value)}
+                  placeholder="Re-enter password"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full mt-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-500 py-3 text-sm font-bold text-slate-950 hover:brightness-110 transition cursor-pointer shadow-lg shadow-emerald-950/50 font-mono uppercase tracking-wider flex items-center justify-center gap-2"
+              >
+                <UserPlus className="h-4 w-4" />
+                <span>{loading ? "Creating Account..." : "Create Account & Enter Twin"}</span>
+              </button>
+
+              <div className="text-center pt-2">
+                <span className="text-xs text-slate-400 font-sans">
+                  Already have an account?{" "}
+                  <button
+                    type="button"
+                    onClick={() => { setAuthMode("signin"); setError(""); }}
+                    className="text-cyan-400 font-bold hover:underline cursor-pointer"
+                  >
+                    Sign In
+                  </button>
+                </span>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -191,6 +441,9 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("AI Digital Twin Systems Online");
   const [soundEnabled, setSoundEnabled] = useState(cyberAudio.enabled);
+
+  // Plain English vs Advanced Cyber Jargon mode (default to true for non-technical users)
+  const [plainEnglishMode, setPlainEnglishMode] = useState(true);
 
   // Active Page Routing State - default to overview
   const [activePage, setActivePage] = useState("overview");
@@ -1051,8 +1304,27 @@ export default function App() {
             )}
           </div>
 
-          {/* Right: Fleet Switcher & Status */}
+          {/* Right: Fleet Switcher, Plain English Mode & Status */}
           <div className="flex items-center gap-2.5 shrink-0">
+            {/* Plain English vs Cyber Mode Toggle Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setPlainEnglishMode((prev) => !prev);
+                cyberAudio.playBeep(plainEnglishMode ? 440 : 660, 0.06);
+              }}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-mono font-bold transition cursor-pointer shadow-md ${
+                plainEnglishMode
+                  ? "bg-amber-400/20 border-amber-400/50 text-amber-300 shadow-amber-950/40 hover:bg-amber-400/30"
+                  : "bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10"
+              }`}
+              title="Toggle between Easy Plain English (for non-technical users) and Advanced Cyber Mode"
+            >
+              <Sparkles className={`h-3.5 w-3.5 ${plainEnglishMode ? "text-amber-400 animate-spin" : "text-slate-400"}`} style={{ animationDuration: "6s" }} />
+              <span className="hidden sm:inline">{plainEnglishMode ? "💡 Plain English: ON" : "⚙️ Advanced Cyber Mode"}</span>
+              <span className="sm:hidden">{plainEnglishMode ? "💡 Simple" : "⚙️ Expert"}</span>
+            </button>
+
             <select
               value={showAllAssets ? "all" : assetId}
               onChange={(e) => {
@@ -1120,6 +1392,7 @@ export default function App() {
             handleSelectAssetByIp={handleSelectAssetByIp}
             switchPage={switchPage}
             scanVisitorDevice={scanVisitorDevice}
+            plainEnglishMode={plainEnglishMode}
           />
         )}
 
@@ -1212,6 +1485,8 @@ export default function App() {
             setActiveMitreStep={setActiveMitreStep}
             simCurrentStepIndex={simCurrentStepIndex}
             switchPage={switchPage}
+            plainEnglishMode={plainEnglishMode}
+            setPlainEnglishMode={setPlainEnglishMode}
           />
         )}
 
@@ -1223,6 +1498,8 @@ export default function App() {
             ports={ports}
             busy={busy}
             switchPage={switchPage}
+            plainEnglishMode={plainEnglishMode}
+            setPlainEnglishMode={setPlainEnglishMode}
           />
         )}
 
@@ -1231,6 +1508,8 @@ export default function App() {
           <RiskPage
             risk={risk}
             switchPage={switchPage}
+            plainEnglishMode={plainEnglishMode}
+            setPlainEnglishMode={setPlainEnglishMode}
           />
         )}
 

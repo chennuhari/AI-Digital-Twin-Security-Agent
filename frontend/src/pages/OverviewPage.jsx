@@ -13,6 +13,7 @@ import {
   AlertTriangle,
   Compass,
   Cpu,
+  Sparkles,
 } from "lucide-react";
 import { getVisitorDeviceInfo, fetchVisitorIp } from "../deviceUtils";
 
@@ -30,6 +31,7 @@ export default function OverviewPage({
   handleSelectAssetByIp,
   switchPage,
   scanVisitorDevice,
+  plainEnglishMode = true,
 }) {
   const [visitorInfo, setVisitorInfo] = useState(null);
   const [visitorIp, setVisitorIp] = useState("Detecting IP...");
@@ -80,6 +82,30 @@ export default function OverviewPage({
           </div>
         </div>
       </div>
+
+      {/* Plain English Guide for Non-Technical Users */}
+      {plainEnglishMode && (
+        <div className="p-5 rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/30 via-slate-900/80 to-blue-950/30 backdrop-blur-md shadow-xl">
+          <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+            <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
+            <span>💡 How this system works in 3 Easy Steps (Plain English):</span>
+          </div>
+          <div className="mt-3 grid sm:grid-cols-3 gap-3 text-xs text-slate-300 font-sans">
+            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
+              <span className="font-bold text-cyan-400 block mb-1">1. Scan &amp; Discover</span>
+              Tap <strong>&ldquo;Analyze My Device Threats&rdquo;</strong> below. We find your device&apos;s open digital doors and create a safe 3D virtual copy.
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
+              <span className="font-bold text-rose-400 block mb-1">2. Simulate Attacks</span>
+              Our AI simulates how an internet intruder would try to break into your virtual copy, without touching your real phone.
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950/60 border border-white/5">
+              <span className="font-bold text-emerald-400 block mb-1">3. 1-Click Hardening</span>
+              Go to the <strong>Defense tab</strong> to test digital locks, block attackers, and watch your security score drop to safe levels!
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Visitor Device Threat Telemetry Widget */}
       <div className="rounded-2xl border border-cyan-400/40 bg-gradient-to-r from-cyan-950/50 via-slate-900/95 to-blue-950/50 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
