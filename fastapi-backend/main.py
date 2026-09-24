@@ -16,6 +16,23 @@ from routers.history import router as history_router
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("AI-Digital-Twin")
 
+from sqlalchemy import text
+
+# SQLite autoincrement schema migration check
+try:
+    with engine.connect() as conn:
+        res = conn.execute(text("PRAGMA table_info(assets)"))
+        cols = {row[1]: str(row[2]).upper() for row in res}
+        if cols.get("id") == "BIGINT":
+            logger.info("Migrating SQLite tables to INTEGER AUTOINCREMENT...")
+            conn.execute(text("DROP TABLE IF EXISTS ports"))
+            conn.execute(text("DROP TABLE IF EXISTS scan_history"))
+            conn.execute(text("DROP TABLE IF EXISTS assets"))
+            conn.execute(text("DROP TABLE IF EXISTS users"))
+            conn.commit()
+except Exception as e:
+    logger.debug(f"Schema check notice: {e}")
+
 # Create tables if not present
 Base.metadata.create_all(bind=engine)
 

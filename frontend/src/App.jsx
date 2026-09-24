@@ -443,12 +443,13 @@ export default function App() {
       return newAssetId;
     } catch (err) {
       console.error(err);
+      const errDetail = err.response?.data?.detail || err.message || "Scan execution encountered an issue.";
       setReconTerminalLogs((prev) => [
         ...prev,
-        `[ERROR] Scan execution encountered an issue. Localhost/authorized addresses only.`,
+        `[ERROR] ${errDetail}`,
       ]);
       cyberAudio.playAlert();
-      setMessage("Recon scan failed. Check target IP and Nmap status.");
+      setMessage(`Recon scan failed: ${typeof errDetail === 'string' ? errDetail.slice(0, 60) : 'Error'}`);
       return null;
     } finally {
       setBusy(false);
