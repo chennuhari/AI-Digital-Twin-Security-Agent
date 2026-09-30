@@ -8,7 +8,7 @@ This project is an open-source, kid-friendly, AI-powered cybersecurity digital t
 
 ## Code of Conduct
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please report unacceptable behavior to `chennuharikrishnareddy@gmail.com`.
+By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md). Please report unacceptable behavior to `harikrishnachennu607@gmail.com`.
 
 ---
 

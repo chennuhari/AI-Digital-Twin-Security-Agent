@@ -46,7 +46,7 @@ or harmful.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project maintainers at `chennuharikrishnareddy@gmail.com`.
+reported to the project maintainers at `harikrishnachennu607@gmail.com`.
 All complaints will be reviewed and investigated promptly and fairly.
 
 ## Attribution

@@ -20,7 +20,7 @@ The AI Digital Twin Security Agent team takes security vulnerabilities seriously
 If you discover a security issue or vulnerability:
 1. **Do not** open a public GitHub issue.
 2. Email your findings directly to the project maintainers at:
-   - **Email:** `chennuharikrishnareddy@gmail.com`
+   - **Email:** `harikrishnachennu607@gmail.com`
 3. Please include in your report:
    - Type of vulnerability (e.g., buffer overflow, command injection, cross-site scripting, denial of service).
    - Full steps to reproduce or proof-of-concept (PoC) code/scripts.
