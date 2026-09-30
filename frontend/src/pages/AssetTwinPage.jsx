@@ -84,18 +84,18 @@ export default function AssetTwinPage({
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
       {/* ========================================================================= */}
-      {/* 1. HERO BANNER: DEDICATED IP DIGITAL TWIN TELEMETRY                       */}
+      {/* 1. HERO BANNER: DEDICATED IP DIGITAL TWIN TELEMETRY (NO BLUE)             */}
       {/* ========================================================================= */}
-      <div className="relative overflow-hidden rounded-2xl border border-cyan-500/40 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-cyan-950/40 p-6 shadow-2xl backdrop-blur-xl">
-        <div className="absolute top-0 right-0 h-64 w-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 h-48 w-48 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-purple-950/40 p-6 shadow-2xl backdrop-blur-xl">
+        <div className="absolute top-0 right-0 h-64 w-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-10 -left-10 h-48 w-48 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-mono text-xs font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(0,240,255,0.4)]">
-                <Cpu className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
-                Dedicated IP Digital Twin
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 font-mono text-xs font-bold tracking-widest uppercase shadow-[0_0_12px_rgba(16,185,129,0.3)]">
+                <Cpu className="h-3.5 w-3.5 text-emerald-400 animate-pulse" />
+                Dedicated Toy Twin Robot 🤖
               </span>
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-bold flex items-center gap-1">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
@@ -103,14 +103,14 @@ export default function AssetTwinPage({
               </span>
               {currentAsset.isCrownJewel && (
                 <span className="px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-xs font-bold">
-                  Crown Jewel Asset
+                  Important Device
                 </span>
               )}
             </div>
 
             <div className="mt-3 flex flex-wrap items-baseline gap-3">
               <h1 className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-white flex items-center gap-2">
-                <span className="text-cyan-400">{currentAsset.ipAddress}</span>
+                <span className="text-emerald-400">{currentAsset.ipAddress}</span>
                 <span className="text-xl sm:text-2xl font-normal text-slate-400 font-sans">
                   ({currentAsset.hostname || "Host Device"})
                 </span>
@@ -119,18 +119,18 @@ export default function AssetTwinPage({
 
             <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
               <span className="flex items-center gap-1.5">
-                <Server className="h-3.5 w-3.5 text-cyan-400" />
+                <Server className="h-3.5 w-3.5 text-emerald-400" />
                 {currentAsset.operatingSystem || "Enterprise Linux / Windows"}
               </span>
               <span>·</span>
               <span className="flex items-center gap-1.5">
-                <Crosshair className="h-3.5 w-3.5 text-violet-400" />
-                Criticality: <strong className="text-white">{currentAsset.criticality || "TIER-1 HIGH"}</strong>
+                <Crosshair className="h-3.5 w-3.5 text-purple-400" />
+                Priority: <strong className="text-white">{currentAsset.criticality || "PRIMARY"}</strong>
               </span>
               <span>·</span>
               <span className="flex items-center gap-1.5">
                 <TerminalSquare className="h-3.5 w-3.5 text-emerald-400" />
-                Asset ID: #{currentAsset.id}
+                Toy ID: #{currentAsset.id}
               </span>
             </div>
           </div>
@@ -146,15 +146,15 @@ export default function AssetTwinPage({
             </div>
 
             <div className="p-3.5 rounded-xl border border-white/10 bg-slate-900/80 text-center min-w-[95px]">
-              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Sockets</div>
-              <div className="text-xl font-mono font-black text-cyan-300 mt-0.5">{ports.length}</div>
-              <div className="text-[10px] font-mono text-emerald-400">Open & Monitored</div>
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Doors 🚪</div>
+              <div className="text-xl font-mono font-black text-amber-300 mt-0.5">{ports.length}</div>
+              <div className="text-[10px] font-mono text-emerald-400">Open & Safe</div>
             </div>
 
             <div className="p-3.5 rounded-xl border border-white/10 bg-slate-900/80 text-center min-w-[95px]">
-              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Threats</div>
+              <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">Hazards ⚠️</div>
               <div className="text-xl font-mono font-black text-rose-400 mt-0.5">{threats.length}</div>
-              <div className="text-[10px] font-mono text-rose-400/80">Identified</div>
+              <div className="text-[10px] font-mono text-rose-400/80">Spotted</div>
             </div>
           </div>
         </div>
@@ -168,10 +168,10 @@ export default function AssetTwinPage({
                 switchPage("recon");
                 cyberAudio.playScan();
               }}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-200 text-xs font-mono font-bold hover:bg-cyan-500/25 transition cursor-pointer shadow-md"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/40 text-amber-200 text-xs font-mono font-bold hover:bg-amber-500/25 transition cursor-pointer shadow-md"
             >
-              <Radar className="h-3.5 w-3.5 text-cyan-400" />
-              Nmap Re-Scan {currentAsset.ipAddress}
+              <Radar className="h-3.5 w-3.5 text-amber-400" />
+              Check Doors on {currentAsset.ipAddress}
             </button>
 
             <button
@@ -179,11 +179,11 @@ export default function AssetTwinPage({
               className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl border text-xs font-mono font-bold transition cursor-pointer shadow-md ${
                 simulationRunning
                   ? "border-rose-500 bg-rose-500/25 text-rose-200 animate-pulse"
-                  : "border-amber-400/40 bg-amber-400/15 text-amber-200 hover:bg-amber-400/25"
+                  : "border-purple-400/40 bg-purple-400/15 text-purple-200 hover:bg-purple-400/25"
               }`}
             >
               {simulationRunning ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-              {simulationRunning ? "Pause Attack Vector" : "Simulate Attack on this IP"}
+              {simulationRunning ? "Pause Game Test" : "🎮 Play Intruder Test Game"}
             </button>
 
             <button
@@ -191,7 +191,7 @@ export default function AssetTwinPage({
               className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-200 text-xs font-mono font-bold hover:bg-emerald-500/25 transition cursor-pointer shadow-md"
             >
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-              Apply Virtual Hardening
+              Apply Super Shield Lock 🔒
             </button>
           </div>
 
@@ -200,8 +200,8 @@ export default function AssetTwinPage({
               onClick={exportReport}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 text-xs font-mono hover:bg-white/10 hover:text-white transition cursor-pointer"
             >
-              <FileDown className="h-3.5 w-3.5 text-cyan-400" />
-              Export IP Audit JSON
+              <FileDown className="h-3.5 w-3.5 text-purple-400" />
+              Save Report File
             </button>
 
             <button
@@ -216,23 +216,23 @@ export default function AssetTwinPage({
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. DEDICATED 3D HOLOGRAPHIC DIGITAL TWIN DIAGRAM FOR THIS IP              */}
+      {/* 2. DEDICATED 3D HOLOGRAPHIC DIGITAL TWIN DIAGRAM FOR THIS IP (NO BLUE)    */}
       {/* ========================================================================= */}
-      <div className="relative rounded-2xl border border-cyan-500/30 bg-slate-950/90 p-5 shadow-2xl backdrop-blur-xl">
+      <div className="relative rounded-2xl border border-emerald-500/30 bg-slate-950/90 p-5 shadow-2xl backdrop-blur-xl">
         {/* Viewport Top Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4 border-b border-white/10 pb-3">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
                 3D Constellation: {currentAsset.ipAddress}
               </span>
               <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">
-                {graph?.nodes?.length || 0} Nodes · {graph?.edges?.length || 0} Relationships
+                {graph?.nodes?.length || 0} Toys · {graph?.edges?.length || 0} Magic Bridges
               </span>
             </div>
             <p className="text-xs text-slate-400 mt-0.5 font-mono">
-              Displaying ONLY nodes and security edges directly belonging to {currentAsset.ipAddress}
+              Displaying ONLY toys and security links directly belonging to {currentAsset.ipAddress}
             </p>
           </div>
 
@@ -242,12 +242,12 @@ export default function AssetTwinPage({
               onClick={() => setIsSpinning((prev) => !prev)}
               className={`px-3 py-1.5 rounded-xl border text-xs font-mono font-bold flex items-center gap-1.5 transition cursor-pointer ${
                 isSpinning
-                  ? "border-cyan-400/40 bg-cyan-400/15 text-cyan-300 shadow-[0_0_12px_rgba(0,240,255,0.3)]"
+                  ? "border-emerald-400/40 bg-emerald-400/20 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.3)]"
                   : "border-white/10 bg-white/5 text-slate-400 hover:text-white"
               }`}
             >
-              <RotateCcw className={`h-3.5 w-3.5 ${isSpinning ? "animate-spin text-cyan-400" : ""}`} />
-              {isSpinning ? "Spinning Active" : "Resume Spin"}
+              <RotateCcw className={`h-3.5 w-3.5 ${isSpinning ? "animate-spin text-emerald-400" : ""}`} />
+              {isSpinning ? "Spinning Around" : "Pause Spin"}
             </button>
 
             {/* Spin Speed Multiplier */}
@@ -267,7 +267,7 @@ export default function AssetTwinPage({
                   }}
                   className={`px-2 py-0.5 rounded-lg transition cursor-pointer ${
                     spinSpeed === s.speed && isSpinning
-                      ? "bg-cyan-400 text-slate-950 font-bold"
+                      ? "bg-emerald-400 text-slate-950 font-bold"
                       : "text-slate-400 hover:text-white"
                   }`}
                   title={`Set 3D Spin Speed to ${s.label}`}
@@ -280,11 +280,10 @@ export default function AssetTwinPage({
             {/* Layer Filters */}
             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-[11px] font-mono">
               {[
-                { id: "ALL", label: "All" },
-                { id: "SERVICE", label: "Services" },
-                { id: "THREAT", label: "Threats" },
-                { id: "RISK", label: "Risks" },
-                { id: "RECOMMENDATION", label: "Defense" },
+                { id: "ALL", label: "Show All" },
+                { id: "SERVICE", label: "Doors 🚪" },
+                { id: "THREAT", label: "Hazards ⚠️" },
+                { id: "RECOMMENDATION", label: "Locks 🔒" },
               ].map((layer) => (
                 <button
                   key={layer.id}
@@ -294,7 +293,7 @@ export default function AssetTwinPage({
                   }}
                   className={`px-2.5 py-1 rounded-lg transition cursor-pointer ${
                     layerFilter === layer.id
-                      ? "bg-cyan-400 text-slate-950 font-bold"
+                      ? "bg-emerald-400 text-slate-950 font-bold"
                       : "text-slate-400 hover:text-white"
                   }`}
                 >
@@ -307,19 +306,19 @@ export default function AssetTwinPage({
             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-[11px] font-mono">
               <button
                 onClick={() => setCameraPreset("overview")}
-                className={`px-2 py-1 rounded-lg ${cameraPreset === "overview" ? "bg-white/10 text-cyan-300 font-bold" : "text-slate-400"}`}
+                className={`px-2 py-1 rounded-lg ${cameraPreset === "overview" ? "bg-white/10 text-emerald-300 font-bold" : "text-slate-400"}`}
               >
                 Orbit
               </button>
               <button
                 onClick={() => setCameraPreset("isometric")}
-                className={`px-2 py-1 rounded-lg ${cameraPreset === "isometric" ? "bg-white/10 text-cyan-300 font-bold" : "text-slate-400"}`}
+                className={`px-2 py-1 rounded-lg ${cameraPreset === "isometric" ? "bg-white/10 text-emerald-300 font-bold" : "text-slate-400"}`}
               >
-                Isometric
+                Angle
               </button>
               <button
                 onClick={() => setCameraPreset("topdown")}
-                className={`px-2 py-1 rounded-lg ${cameraPreset === "topdown" ? "bg-white/10 text-cyan-300 font-bold" : "text-slate-400"}`}
+                className={`px-2 py-1 rounded-lg ${cameraPreset === "topdown" ? "bg-white/10 text-emerald-300 font-bold" : "text-slate-400"}`}
               >
                 Top-Down
               </button>
@@ -327,14 +326,14 @@ export default function AssetTwinPage({
 
             {/* 3D Zoom Controls */}
             <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-xs font-mono">
-              <span className="text-[10px] text-slate-500 uppercase px-1 hidden sm:inline">Zoom</span>
+              <span className="text-[10px] text-slate-400 uppercase px-1 hidden sm:inline">Zoom</span>
               <button
                 type="button"
                 onClick={() => {
                   zoomRef?.current?.zoomIn();
                   cyberAudio.playBeep(700, 0.04);
                 }}
-                className="h-6 w-6 rounded-lg bg-white/5 hover:bg-cyan-400/20 text-cyan-300 hover:text-white flex items-center justify-center font-bold text-base transition cursor-pointer border border-white/10 hover:border-cyan-400/50"
+                className="h-6 w-6 rounded-lg bg-white/5 hover:bg-emerald-400/20 text-emerald-300 hover:text-white flex items-center justify-center font-bold text-base transition cursor-pointer border border-white/10 hover:border-emerald-400/50"
                 title="Zoom In (+)"
               >
                 +
@@ -345,7 +344,7 @@ export default function AssetTwinPage({
                   zoomRef?.current?.zoomOut();
                   cyberAudio.playBeep(500, 0.04);
                 }}
-                className="h-6 w-6 rounded-lg bg-white/5 hover:bg-cyan-400/20 text-cyan-300 hover:text-white flex items-center justify-center font-bold text-base transition cursor-pointer border border-white/10 hover:border-cyan-400/50"
+                className="h-6 w-6 rounded-lg bg-white/5 hover:bg-emerald-400/20 text-emerald-300 hover:text-white flex items-center justify-center font-bold text-base transition cursor-pointer border border-white/10 hover:border-emerald-400/50"
                 title="Zoom Out (-)"
               >
                 &minus;
@@ -355,7 +354,7 @@ export default function AssetTwinPage({
         </div>
 
         {/* 3D Canvas Viewport */}
-        <div className="relative w-full h-[580px] rounded-2xl overflow-hidden border border-cyan-500/25 bg-slate-950/80 shadow-2xl">
+        <div className="relative w-full h-[580px] rounded-2xl overflow-hidden border border-emerald-500/25 bg-slate-950/80 shadow-2xl">
           <NetworkScene
             graph={graph}
             selectedNode={selectedNode}
@@ -383,7 +382,7 @@ export default function AssetTwinPage({
               }`}
             >
               {simulationRunning ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-              {simulationRunning ? "Pause Attack Simulation" : "Simulate Adversary Attack in 3D"}
+              {simulationRunning ? "Pause Game Test" : "🎮 Play Intruder Test Game"}
             </button>
 
             {simulationRunning && currentStep && (
@@ -401,11 +400,11 @@ export default function AssetTwinPage({
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                className="absolute bottom-6 right-6 z-20 w-88 rounded-2xl border border-cyan-400/50 bg-slate-950/95 p-4 shadow-2xl backdrop-blur-xl"
+                className="absolute bottom-6 right-6 z-20 w-88 rounded-2xl border border-emerald-400/50 bg-slate-950/95 p-4 shadow-2xl backdrop-blur-xl"
               >
                 <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <Info className="h-3.5 w-3.5" /> {selectedNode.type} Node Inspector
+                  <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <Info className="h-3.5 w-3.5" /> Toy Inspector
                   </span>
                   <button
                     onClick={() => setSelectedNode(null)}
@@ -421,18 +420,18 @@ export default function AssetTwinPage({
                 {selectedNode.type === "SERVICE" && (
                   <div className="mt-3 space-y-2 text-xs font-mono">
                     <div className="flex justify-between text-slate-400">
-                      <span>Port Number:</span>
-                      <span className="text-cyan-300 font-bold">{selectedNode.label}/TCP</span>
+                      <span>Door Number:</span>
+                      <span className="text-amber-300 font-bold">Door #{selectedNode.label}</span>
                     </div>
                     <div className="flex justify-between text-slate-400">
-                      <span>Service State:</span>
-                      <span className="text-emerald-400 font-bold">ACTIVE & OPEN</span>
+                      <span>Door State:</span>
+                      <span className="text-emerald-400 font-bold">🚪 OPEN & ACTIVE</span>
                     </div>
                     <button
                       onClick={() => applyMitigation(Number(selectedNode.label))}
-                      className="w-full mt-2 py-2 rounded-xl bg-cyan-400/20 border border-cyan-400/40 text-cyan-200 font-bold hover:bg-cyan-400/30 transition cursor-pointer flex items-center justify-center gap-1.5"
+                      className="w-full mt-2 py-2 rounded-xl bg-emerald-400/20 border border-emerald-400/40 text-emerald-200 font-bold hover:bg-emerald-400/30 transition cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                      <ShieldCheck className="h-4 w-4" /> Apply Virtual Hardening
+                      <ShieldCheck className="h-4 w-4" /> Put Padlock On Door 🔒
                     </button>
                   </div>
                 )}
@@ -440,11 +439,11 @@ export default function AssetTwinPage({
                 {selectedNode.type === "THREAT" && (
                   <div className="mt-3 text-xs space-y-2">
                     <div className="flex justify-between font-mono">
-                      <span className="text-slate-400">Severity:</span>
+                      <span className="text-slate-400">Danger:</span>
                       <span className="text-rose-400 font-bold">{selectedNode.severity || "MEDIUM"}</span>
                     </div>
                     <p className="text-slate-300 leading-relaxed">
-                      Threat Agent identified active exploit vector against this socket.
+                      Our robot detective spotted a hazard here that needs a lock.
                     </p>
                   </div>
                 )}
@@ -452,11 +451,11 @@ export default function AssetTwinPage({
                 {selectedNode.type === "RISK" && (
                   <div className="mt-3 text-xs space-y-2">
                     <div className="flex justify-between font-mono">
-                      <span className="text-slate-400">Risk Score:</span>
-                      <span className="text-amber-400 font-bold">{selectedNode.riskScore ?? 57}/100</span>
+                      <span className="text-slate-400">Safety Health:</span>
+                      <span className="text-amber-400 font-bold">{Math.max(0, 100 - (selectedNode.riskScore ?? 57))}%</span>
                     </div>
                     <p className="text-slate-300 leading-relaxed">
-                      Evaluated by AI Risk Agent based on asset criticality and proximity to core crown jewels.
+                      Health rating calculated from open doors and nearby shields.
                     </p>
                   </div>
                 )}
@@ -467,17 +466,16 @@ export default function AssetTwinPage({
           {/* Bottom Legend */}
           <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
             <div className="pointer-events-auto flex flex-wrap gap-2 text-[11px] font-mono text-slate-300 bg-slate-950/85 p-2 rounded-xl border border-white/10 backdrop-blur-md">
-              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#00f0ff]" /> Asset ({currentAsset.ipAddress})</span>
-              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-sky-400" /> Sockets</span>
-              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" /> Threats</span>
-              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /> Risks</span>
-              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#00ff9d]" /> Defense</span>
+              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" /> Safe Twin ({currentAsset.ipAddress})</span>
+              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" /> Doors 🚪</span>
+              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e]" /> Hazards ⚠️</span>
+              <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-purple-400" /> Super Locks 🔒</span>
             </div>
 
             <div className="pointer-events-auto text-xs font-mono text-slate-300 bg-slate-950/85 px-3 py-1.5 rounded-xl border border-white/10 backdrop-blur-md flex items-center gap-3">
-              <span className="text-cyan-400 flex items-center gap-1">
+              <span className="text-emerald-400 flex items-center gap-1">
                 <RotateCcw className={`h-3 w-3 ${isSpinning ? "animate-spin" : ""}`} />
-                {isSpinning ? "3D Rotation Active" : "Rotation Paused"}
+                {isSpinning ? "Playground Spinning" : "Spin Paused"}
               </span>
             </div>
           </div>
@@ -485,28 +483,28 @@ export default function AssetTwinPage({
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. TECHNICAL DEEP-DIVE SUB-TABS SPECIFICALLY FOR THIS IP                  */}
+      {/* 3. TECHNICAL DEEP-DIVE SUB-TABS SPECIFICALLY FOR THIS IP (NO BLUE)        */}
       {/* ========================================================================= */}
       <div className="rounded-2xl border border-white/10 bg-slate-950/90 p-6 shadow-2xl backdrop-blur-xl">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6">
           <div>
             <h2 className="text-xl font-black text-white tracking-wide flex items-center gap-2">
-              <Activity className="h-5 w-5 text-cyan-400" />
-              Technical Diagnostics: {currentAsset.ipAddress}
+              <Activity className="h-5 w-5 text-emerald-400" />
+              Device Details: {currentAsset.ipAddress}
             </h2>
             <p className="text-xs text-slate-400 mt-0.5 font-mono">
-              In-depth socket telemetry, threats, attack simulation, and defenses for this asset
+              In-depth doors, hazards, game tests, and shield locks for this device
             </p>
           </div>
 
           {/* Sub-Tab Navigation Pills */}
           <div className="flex flex-wrap items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 text-xs font-mono">
             {[
-              { id: "ports", label: `Sockets & Ports (${ports.length})`, icon: Server },
-              { id: "threats", label: `Threats & CVEs (${threats.length})`, icon: AlertTriangle },
-              { id: "attack", label: "Attack Path Kill-Chain", icon: Flame },
-              { id: "defense", label: `Mitigation Playbooks (${defense?.recommendations?.length || 0})`, icon: ShieldCheck },
-              { id: "risk", label: "Risk Breakdown", icon: Activity },
+              { id: "ports", label: `Doors 🚪 (${ports.length})`, icon: Server },
+              { id: "threats", label: `Hazards ⚠️ (${threats.length})`, icon: AlertTriangle },
+              { id: "attack", label: "Intruder Journey", icon: Flame },
+              { id: "defense", label: `Shield Locks 🔒 (${defense?.recommendations?.length || 0})`, icon: ShieldCheck },
+              { id: "risk", label: "Health Score ⭐", icon: Activity },
             ].map((t) => {
               const Icon = t.icon;
               const active = activeSubTab === t.id;
@@ -519,7 +517,7 @@ export default function AssetTwinPage({
                   }}
                   className={`px-3 py-1.5 rounded-lg transition cursor-pointer flex items-center gap-1.5 ${
                     active
-                      ? "bg-cyan-400 text-slate-950 font-bold shadow-md"
+                      ? "bg-emerald-400 text-slate-950 font-black shadow-md"
                       : "text-slate-400 hover:text-white"
                   }`}
                 >
@@ -538,38 +536,38 @@ export default function AssetTwinPage({
               <table className="w-full text-left text-xs font-mono">
                 <thead className="bg-white/5 text-slate-400 border-b border-white/10">
                   <tr>
-                    <th className="p-3">Port / Protocol</th>
-                    <th className="p-3">Service Name</th>
-                    <th className="p-3">Socket State</th>
-                    <th className="p-3">Daemon Banner</th>
-                    <th className="p-3 text-right">Defense Remediation</th>
+                    <th className="p-3">Door Number</th>
+                    <th className="p-3">App Name</th>
+                    <th className="p-3">Door State</th>
+                    <th className="p-3">Program Details</th>
+                    <th className="p-3 text-right">Lock Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5 text-slate-300">
                   {ports.map((p) => (
                     <tr key={p.id} className="hover:bg-white/[0.03] transition">
-                      <td className="p-3 font-bold text-cyan-300">{p.portNumber}/{p.protocol}</td>
-                      <td className="p-3 text-white font-bold">{p.serviceName || "unknown"}</td>
+                      <td className="p-3 font-bold text-amber-300">Door #{p.portNumber} ({p.protocol})</td>
+                      <td className="p-3 text-white font-bold">{p.serviceName || "Internet App"}</td>
                       <td className="p-3">
                         <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold text-[11px]">
-                          {p.state}
+                          {p.state === "open" ? "🚪 Unlocked" : p.state}
                         </span>
                       </td>
-                      <td className="p-3 text-slate-400 max-w-xs truncate">{p.product || "Standard Network Daemon"}</td>
+                      <td className="p-3 text-slate-400 max-w-xs truncate">{p.product || "Standard System App"}</td>
                       <td className="p-3 text-right">
                         <button
                           onClick={() => applyMitigation(p.portNumber)}
-                          className="px-2.5 py-1 rounded-lg bg-cyan-400/15 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/25 transition cursor-pointer text-[11px] font-bold"
+                          className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 hover:bg-emerald-500/25 transition cursor-pointer text-[11px] font-bold"
                         >
-                          Harden Port {p.portNumber}
+                          Lock Door 🔒
                         </button>
                       </td>
                     </tr>
                   ))}
                   {!ports.length && (
                     <tr>
-                      <td colSpan={5} className="p-8 text-center text-slate-500">
-                        No open ports detected on {currentAsset.ipAddress}. Trigger an Nmap scan to discover services.
+                      <td colSpan={5} className="p-8 text-center text-slate-400">
+                        No open doors detected on {currentAsset.ipAddress}. All clear!
                       </td>
                     </tr>
                   )}
@@ -593,17 +591,17 @@ export default function AssetTwinPage({
                       {t.severity || "HIGH"}
                     </span>
                   </div>
-                  <div className="text-sm font-bold text-white mt-1.5">{t.cveId || "EXPLOIT-VECTOR-01"}</div>
+                  <div className="text-sm font-bold text-white mt-1.5">{t.cveId || "HAZARD-01"}</div>
                   <p className="text-xs text-slate-300 mt-1 leading-relaxed">{t.description}</p>
                   <div className="mt-3 flex items-center justify-between pt-2 border-t border-white/5 text-[11px] font-mono text-slate-400">
-                    <span>Target Port: <strong className="text-cyan-300">{t.portNumber || "80"}</strong></span>
-                    <span>CVSS v3.1: <strong className="text-amber-300">{t.cvssScore ?? "7.5"}</strong></span>
+                    <span>Door Number: <strong className="text-purple-300">#{t.portNumber || "80"}</strong></span>
+                    <span>Safety Score Impact: <strong className="text-amber-300">{t.cvssScore ?? "7.5"}</strong></span>
                   </div>
                 </div>
               ))}
               {!threats.length && (
-                <div className="col-span-2 p-8 text-center text-slate-500 border border-white/5 rounded-xl">
-                  No critical threats mapped for this asset. System is currently aligned with baseline defense posture.
+                <div className="col-span-2 p-8 text-center text-slate-400 border border-white/5 rounded-xl">
+                  No hazards mapped for this device. Everything is running safely!
                 </div>
               )}
             </div>
@@ -615,27 +613,27 @@ export default function AssetTwinPage({
           <div className="space-y-4 animate-fadeIn">
             <div className="p-4 rounded-xl border border-amber-500/25 bg-amber-500/5">
               <div className="text-xs font-mono text-amber-300 font-bold uppercase tracking-wider mb-2">
-                Simulated Multi-Hop Threat Vector Targeting {currentAsset.ipAddress}
+                Simulated Intruder Test Targeting {currentAsset.ipAddress}
               </div>
               <p className="text-xs text-slate-300 leading-relaxed">
-                Graph-theoretic route calculated by the Threat Agent, demonstrating how an adversary leverages exposed entry points to target this machine.
+                Step-by-step game test showing how a sneaky intruder would try to reach toy data if doors are left unlocked.
               </p>
             </div>
 
             <div className="space-y-3">
               {(activePaths[0]?.steps || []).map((step, idx) => (
                 <div key={idx} className="p-4 rounded-xl border border-white/10 bg-slate-900/60 flex items-start gap-4">
-                  <div className="h-8 w-8 rounded-full bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 font-mono font-bold text-sm flex items-center justify-center shrink-0">
+                  <div className="h-8 w-8 rounded-full bg-purple-500/20 border border-purple-400/40 text-purple-300 font-mono font-bold text-sm flex items-center justify-center shrink-0">
                     0{idx + 1}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
                       <div className="text-sm font-bold text-white">{step.name}</div>
-                      <span className="text-xs font-mono text-rose-400 font-bold">{step.tactic || "MITRE ATT&CK"}</span>
+                      <span className="text-xs font-mono text-rose-400 font-bold">{step.tactic || "TACTIC"}</span>
                     </div>
                     <p className="text-xs text-slate-400 mt-1">{step.description}</p>
-                    <div className="mt-2 text-[11px] font-mono text-cyan-300">
-                      Target Technique: {step.techniqueId || "T1190"} · Exploited Port: {step.port || "Open Socket"}
+                    <div className="mt-2 text-[11px] font-mono text-purple-300">
+                      Secret ID: {step.techniqueId || "T1190"} · Door Target: {step.port || "Open Door"}
                     </div>
                   </div>
                 </div>
@@ -663,10 +661,10 @@ export default function AssetTwinPage({
                 {rec.command && (
                   <div className="relative mt-2">
                     <div className="flex items-center justify-between bg-slate-950 px-3 py-1.5 rounded-t-lg border-t border-x border-white/10 text-[10px] font-mono text-slate-400">
-                      <span>Remediation CLI Command</span>
+                      <span>Lock Command</span>
                       <button
                         onClick={() => copyCommand(rec.command, `rec-${idx}`)}
-                        className="text-cyan-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                        className="text-emerald-400 hover:text-white flex items-center gap-1 cursor-pointer"
                       >
                         {copiedCmd === `rec-${idx}` ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
                         <span>{copiedCmd === `rec-${idx}` ? "Copied" : "Copy"}</span>
@@ -680,8 +678,8 @@ export default function AssetTwinPage({
               </div>
             ))}
             {!defense?.recommendations?.length && (
-              <div className="p-8 text-center text-slate-500 border border-white/5 rounded-xl font-mono text-xs">
-                No active defense alerts pending for this asset.
+              <div className="p-8 text-center text-slate-400 border border-white/5 rounded-xl font-mono text-xs">
+                No active defense alerts pending for this device.
               </div>
             )}
           </div>
@@ -692,12 +690,12 @@ export default function AssetTwinPage({
           <div className="space-y-4 animate-fadeIn">
             <div className="p-5 rounded-xl border border-amber-500/20 bg-slate-900/60 flex flex-wrap items-center justify-between gap-4">
               <div>
-                <div className="text-xs font-mono text-amber-300 font-bold uppercase">Quantitative Risk Assessment</div>
+                <div className="text-xs font-mono text-amber-300 font-bold uppercase">Safety Health Assessment</div>
                 <div className="text-2xl font-black text-white font-mono mt-1">
-                  Asset Risk Score: {risk?.overallRiskScore ?? 57} / 100
+                  Safety Rating: {Math.max(0, 100 - (risk?.overallRiskScore ?? 57))} / 100 ⭐
                 </div>
-                <p className="text-xs text-slate-400 mt-1 max-w-xl">
-                  Evaluated using composite telemetry: (Asset Criticality Weight &times; Exposure Sockets) + (Threat CVSS Severity &times; Attack Depth).
+                <p className="text-xs text-slate-300 mt-1 max-w-xl">
+                  Points increase as more doors are protected with super shield locks.
                 </p>
               </div>
               <div className="text-right">
@@ -711,12 +709,12 @@ export default function AssetTwinPage({
               {(risk?.findings || []).map((f, i) => (
                 <div key={i} className="p-3 rounded-xl border border-white/5 bg-slate-950/40 flex items-center justify-between gap-4">
                   <div>
-                    <div className="text-xs font-mono font-bold text-white">{f.category} (Port {f.portNumber})</div>
-                    <p className="text-xs text-slate-400">{f.rationale}</p>
+                    <div className="text-xs font-mono font-bold text-white">{f.category} (Door #{f.portNumber})</div>
+                    <p className="text-xs text-slate-300">{f.rationale}</p>
                   </div>
                   <div className="text-right shrink-0">
                     <span className="text-sm font-mono font-bold text-amber-300">{f.riskScore}/100</span>
-                    <div className="text-[10px] font-mono text-slate-500">{f.riskLevel}</div>
+                    <div className="text-[10px] font-mono text-slate-400">{f.riskLevel}</div>
                   </div>
                 </div>
               ))}
@@ -742,9 +740,9 @@ export default function AssetTwinPage({
             setScanTarget(currentAsset.ipAddress);
             switchPage("recon");
           }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/15 border border-cyan-400/30 text-xs font-mono font-bold text-cyan-300 hover:bg-cyan-500/25 transition cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/15 border border-amber-400/30 text-xs font-mono font-bold text-amber-300 hover:bg-amber-500/25 transition cursor-pointer"
         >
-          <span>Launch Recon on {currentAsset.ipAddress}</span>
+          <span>Inspect Doors on {currentAsset.ipAddress} 🚪</span>
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>

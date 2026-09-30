@@ -5,13 +5,9 @@ import {
   Pause,
   ArrowRight,
   ArrowLeft,
-  ChevronRight,
-  ExternalLink,
   Sparkles,
   Shield,
-  HelpCircle,
-  Info,
-  CheckCircle2,
+  Lock,
 } from "lucide-react";
 import { getPlainEnglishThreat, killChainTranslations } from "../easyEnglish";
 
@@ -24,8 +20,6 @@ export default function ThreatPage({
   setActiveMitreStep,
   simCurrentStepIndex,
   switchPage,
-  plainEnglishMode = true,
-  setPlainEnglishMode,
 }) {
   const activePaths = attackPaths?.attack_paths || [];
   const currentPath = activePaths[0];
@@ -33,73 +27,67 @@ export default function ThreatPage({
 
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
-      {/* Header Banner */}
-      <div className="glass-panel p-6 border-rose-500/30 shadow-2xl relative overflow-hidden flex flex-wrap items-center justify-between gap-4">
+      {/* Header Banner (Warm Coral & Purple - No Blue) */}
+      <div className="card-rose p-6 rounded-3xl shadow-2xl relative overflow-hidden flex flex-wrap items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded bg-rose-500/20 border border-rose-500/40 text-rose-300 font-mono text-xs font-bold">
-              SECTION 05 / 08
+            <span className="px-2.5 py-0.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-300 font-mono text-xs font-bold">
+              🕵️ INTRUDER DETECTIVE
             </span>
-            <span className="text-xs font-mono text-rose-400 font-bold">
-              {plainEnglishMode ? "Security Threat Breakdown · Easy Explanations" : "Graph Pathfinding · MITRE ATT&CK Mapping"}
+            <span className="text-xs font-mono text-purple-300 font-bold">
+              Catching Sneaky Visitors Early
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-white tracking-wide mt-1.5 flex items-center gap-2">
             <Flame className="h-7 w-7 text-rose-500" />
-            {plainEnglishMode ? "Threat Intelligence & Attack Simulator" : "Threat Intelligence Agent & Attack Path Simulator"}
+            Intruder Catcher & Test Game 🕵️‍♂️
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 mt-1 font-sans">
-            {plainEnglishMode
-              ? "See the security risks found on your device explained in clear, simple words, and watch a simulated attack route."
-              : "Graph-theoretic adversary route modeling simulating multi-hop pivots from external exposure to core crown jewels."}
+          <p className="text-xs sm:text-sm text-slate-200 mt-1 font-sans max-w-2xl leading-relaxed">
+            See how sneaky bad guys try to sneak through unlocked digital doors on your toy copy, and watch our guardian robots catch them before they ever reach your real computer!
           </p>
         </div>
 
         <div className="flex items-center gap-2.5 flex-wrap">
           <button
             onClick={toggleAttackSimulation}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border font-mono text-xs font-bold transition shadow-xl cursor-pointer ${
+            className={`flex items-center gap-2 px-5 py-3 rounded-2xl border font-mono text-xs font-black uppercase tracking-wider transition shadow-xl cursor-pointer ${
               simulationRunning
                 ? "border-rose-500 bg-rose-500/30 text-rose-200 shadow-[0_0_20px_rgba(244,63,94,0.6)] animate-pulse"
-                : "border-amber-400/40 bg-amber-400/15 text-amber-200 hover:bg-amber-400/25"
+                : "border-amber-400/40 bg-amber-400/20 text-amber-200 hover:bg-amber-400/30"
             }`}
           >
             {simulationRunning ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            <span>{simulationRunning ? "Pause Attack Simulation" : "Run Live Attack Simulation"}</span>
+            <span>{simulationRunning ? "Pause Game Test" : "🎮 Play Intruder Test Game"}</span>
           </button>
         </div>
       </div>
 
-      {/* Plain English Summary Notice Box */}
-      {plainEnglishMode && (
-        <div className="p-4 rounded-2xl border border-amber-500/30 bg-amber-950/20 backdrop-blur-md flex items-start gap-3">
-          <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
-            <Sparkles className="h-5 w-5" />
-          </div>
-          <div>
-            <h3 className="text-sm font-bold text-amber-300">
-              💡 What does this page tell you in simple words?
-            </h3>
-            <p className="text-xs text-slate-300 mt-1 leading-relaxed font-sans">
-              When your device connects to the internet or Wi-Fi, it opens small &ldquo;digital doors&rdquo; (ports) so apps can work.
-              Below, our AI scanned your digital twin to see if any doors were left unlocked.
-              Each card shows: <strong>1. What the door does</strong>, <strong>2. What bad actors could do</strong>, and <strong>3. How to fix it</strong>.
-            </p>
-          </div>
+      {/* Super Friendly Summary Notice Box */}
+      <div className="p-4 rounded-3xl border border-amber-500/30 bg-amber-950/20 backdrop-blur-md flex items-start gap-3">
+        <div className="p-2 rounded-2xl bg-amber-500/20 text-amber-400 shrink-0 mt-0.5">
+          <Sparkles className="h-5 w-5" />
         </div>
-      )}
+        <div>
+          <h3 className="text-sm font-bold text-amber-300">
+            💡 How does this page work? (Kid-Friendly Explanation)
+          </h3>
+          <p className="text-xs text-slate-200 mt-1 leading-relaxed font-sans">
+            When you play online games or browse the web, your device has tiny invisible doors called <strong>ports</strong>.
+            Our friendly robot tests the copy of your device to make sure no doors are broken or unlocked.
+            Below, you can see each door, what danger might try to sneak in, and the 1-click super lock to seal it tight!
+          </p>
+        </div>
+      </div>
 
-      {/* MITRE ATT&CK Kill-Chain Stepper */}
+      {/* 4 Step Intruder Journey (Kid-Friendly Story) */}
       <div className="glass-panel p-6 border-white/10 shadow-2xl">
         <div className="mb-4">
           <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-rose-400" />
-            {plainEnglishMode ? "How a Hacker Attacks (Step-by-Step)" : "Adversary Multi-Hop Kill Chain Path"}
+            How a Sneaky Bad Guy Tries to Sneak In (Step-by-Step Story)
           </h2>
           <p className="text-xs text-slate-400 mt-0.5 font-sans">
-            {plainEnglishMode
-              ? "This simulation shows the 4 steps an attacker takes to break in and reach private data."
-              : "Step-by-step route analysis from external entry point to internal privilege escalation."}
+            Watch the 4 steps of how intruders try to sneak from an unlocked door to private toy files:
           </p>
         </div>
 
@@ -113,31 +101,31 @@ export default function ThreatPage({
               <div
                 key={idx}
                 onClick={() => setActiveMitreStep(idx)}
-                className={`p-4 rounded-xl border transition cursor-pointer flex flex-col justify-between ${
+                className={`p-4 rounded-2xl border transition cursor-pointer flex flex-col justify-between ${
                   isCurrentSim
                     ? "border-rose-500 bg-rose-500/20 shadow-[0_0_15px_rgba(244,63,94,0.4)]"
                     : isSelected
-                    ? "border-cyan-400/50 bg-cyan-500/10"
+                    ? "border-purple-400/50 bg-purple-500/10"
                     : "border-white/10 bg-slate-900/60 hover:bg-slate-900/90"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between text-xs font-mono mb-2">
-                    <span className="font-bold text-slate-400">HOP 0{idx + 1}</span>
+                    <span className="font-bold text-slate-400">STEP 0{idx + 1}</span>
                     <span className="text-rose-400 font-bold">{step.tactic || "TACTIC"}</span>
                   </div>
 
                   <div className="text-sm font-bold text-white">
-                    {plainEnglishMode ? (plainChain.simpleName || step.name) : step.name}
+                    {plainChain.simpleName || step.name}
                   </div>
 
                   <p className="text-xs text-slate-300 mt-1.5 leading-relaxed font-sans">
-                    {plainEnglishMode ? (plainChain.simpleDesc || step.description) : step.description}
+                    {plainChain.simpleDesc || step.description}
                   </p>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-white/5 text-[11px] font-mono text-cyan-300">
-                  Technique: {step.techniqueId || "T1190"}
+                <div className="mt-3 pt-2 border-t border-white/5 text-[11px] font-mono text-purple-300">
+                  Secret Code: {step.techniqueId || "T1190"}
                 </div>
               </div>
             );
@@ -151,14 +139,14 @@ export default function ThreatPage({
           <div>
             <h2 className="text-base font-bold text-white tracking-wide flex items-center gap-2">
               <Flame className="h-4 w-4 text-rose-400" />
-              {plainEnglishMode ? "Discovered Security Risks & Simple Fixes" : "Mapped Vulnerabilities & Exploit Vectors"}
+              Hazards Found & Easy Fixes 🛡️
             </h2>
             <p className="text-xs text-slate-400 mt-0.5 font-sans">
-              {threats.length} security areas analyzed across this device&apos;s digital twin
+              {threats.length} areas checked on your safe robot twin
             </p>
           </div>
           <span className="text-xs font-mono text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full border border-rose-500/20 font-bold">
-            {threats.length} FINDINGS
+            {threats.length} HAZARDS
           </span>
         </div>
 
@@ -174,7 +162,7 @@ export default function ThreatPage({
                 <div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
-                      {t.category ? t.category.replace(/_/g, " ") : "Threat Vector"}
+                      {t.category ? t.category.replace(/_/g, " ") : "Hazard Alert"}
                     </span>
                     <span className="px-2 py-0.5 rounded bg-rose-500/20 border border-rose-500/30 text-rose-300 font-mono text-[10px] font-bold">
                       {t.severity || "HIGH"}
@@ -183,55 +171,51 @@ export default function ThreatPage({
 
                   {/* Title */}
                   <div className="text-base font-bold text-white mt-2">
-                    {plainEnglishMode ? simple.simpleTitle : (t.cveId || "EXPLOIT-VECTOR-01")}
+                    {simple.simpleTitle || (t.cveId || "HAZARD-01")}
                   </div>
 
                   {/* Plain English breakdown */}
-                  {plainEnglishMode ? (
-                    <div className="mt-3 space-y-2.5 font-sans text-xs">
-                      <div className="p-2.5 rounded-xl bg-slate-950/70 border border-white/5">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-300 block mb-0.5">
-                          🗣️ What this means:
-                        </span>
-                        <p className="text-slate-300 leading-relaxed">
-                          {simple.simpleExplanation}
-                        </p>
-                      </div>
-
-                      <div className="p-2.5 rounded-xl bg-rose-950/20 border border-rose-500/20">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-rose-400 block mb-0.5">
-                          ⚠️ The Danger:
-                        </span>
-                        <p className="text-rose-200 leading-relaxed">
-                          {simple.danger}
-                        </p>
-                      </div>
-
-                      <div className="p-2.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block mb-0.5">
-                          🛡️ How to Fix:
-                        </span>
-                        <p className="text-emerald-200 leading-relaxed">
-                          {simple.fix}
-                        </p>
-                      </div>
+                  <div className="mt-3 space-y-2.5 font-sans text-xs">
+                    <div className="p-2.5 rounded-xl bg-slate-950/70 border border-white/5">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-purple-300 block mb-0.5">
+                        🗣️ What this means:
+                      </span>
+                      <p className="text-slate-300 leading-relaxed">
+                        {simple.simpleExplanation}
+                      </p>
                     </div>
-                  ) : (
-                    <p className="text-xs text-slate-300 mt-2 leading-relaxed font-sans">{t.description}</p>
-                  )}
+
+                    <div className="p-2.5 rounded-xl bg-rose-950/20 border border-rose-500/20">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-rose-400 block mb-0.5">
+                        ⚠️ The Danger:
+                      </span>
+                      <p className="text-rose-200 leading-relaxed">
+                        {simple.danger}
+                      </p>
+                    </div>
+
+                    <div className="p-2.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300 block mb-0.5">
+                        🛡️ How to Fix:
+                      </span>
+                      <p className="text-emerald-200 leading-relaxed">
+                        {simple.fix}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                  <span>Target Port: <strong className="text-cyan-300">{t.portNumber || "80"}</strong></span>
-                  <span>Risk Severity: <strong className="text-amber-300">{t.cvssScore ?? "7.5"}</strong></span>
+                  <span>Target Door: <strong className="text-purple-300">#{t.portNumber || "80"}</strong></span>
+                  <span>Safety Impact: <strong className="text-amber-300">{t.cvssScore ?? "7.5"}</strong></span>
                 </div>
               </div>
             );
           })}
 
           {!threats.length && (
-            <div className="col-span-3 p-8 text-center text-slate-500 font-sans">
-              No threats detected on this device twin. Run a scan from the Recon page to evaluate security posture.
+            <div className="col-span-3 p-8 text-center text-slate-400 font-sans">
+              All clear! No hazards found on this device twin right now.
             </div>
           )}
         </div>
@@ -244,14 +228,14 @@ export default function ThreatPage({
           className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-xs font-mono text-slate-300 hover:text-white hover:bg-white/5 transition cursor-pointer"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>Back to Recon Agent</span>
+          <span>Back to Door Inspector</span>
         </button>
 
         <button
           onClick={() => switchPage("defense")}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/15 border border-cyan-400/30 text-xs font-mono font-bold text-cyan-300 hover:bg-cyan-500/25 transition cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-xs font-mono font-bold text-emerald-300 hover:bg-emerald-500/25 transition cursor-pointer"
         >
-          <span>See Easy Fixes & Defense Playbooks</span>
+          <span>Put Super Locks On Now 🛡️🔒</span>
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>

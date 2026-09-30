@@ -208,7 +208,7 @@ export async function performWholeDeviceScan() {
       name: "Unencrypted DNS",
       easyName: "Website Lookup Logs",
       risk: "Low",
-      color: "blue",
+      color: "purple",
       description: "Queries website addresses in readable text, allowing your internet provider or Wi-Fi owner to see visited sites.",
       remedy: "Turn on 'Secure DNS / Private DNS' (DoH / DoT) in browser settings."
     },

@@ -2,18 +2,19 @@
 
 :root {
   font-family: "Space Grotesk", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
-  color: #e2e8f0;
-  background: #020617;
+  color: #f1f5f9;
+  background: #09090b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* Cyberpunk / Futuristic Security Theme Tokens */
-  --cyber-blue: #0284c7;
-  --cyber-cyan: #06b6d4;
-  --cyber-emerald: #10b981;
-  --cyber-indigo: #6366f1;
-  --cyber-violet: #8b5cf6;
-  --cyber-amber: #f59e0b;
+  /* Kid-Friendly Vibrant Palette (NO BLUE) */
+  --color-safe-emerald: #10b981;
+  --color-mint: #34d399;
+  --color-gold: #fbbf24;
+  --color-amber: #f59e0b;
+  --color-purple: #a855f7;
+  --color-violet: #8b5cf6;
+  --color-coral: #f43f5e;
 }
 
 * {
@@ -21,7 +22,7 @@
 }
 
 html {
-  background: #020617;
+  background: #09090b;
   color-scheme: dark;
 }
 
@@ -31,124 +32,133 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.12), transparent 28rem),
-    radial-gradient(circle at 90% 15%, rgba(99, 102, 241, 0.10), transparent 30rem),
-    radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08), transparent 28rem),
-    radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08), transparent 28rem),
-    linear-gradient(180deg, #020617 0%, #060e1d 40%, #030712 100%);
+    radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.14), transparent 28rem),
+    radial-gradient(circle at 90% 15%, rgba(168, 85, 247, 0.14), transparent 30rem),
+    radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.11), transparent 28rem),
+    radial-gradient(circle at 85% 85%, rgba(244, 63, 94, 0.10), transparent 28rem),
+    linear-gradient(180deg, #09090b 0%, #121217 40%, #09090b 100%);
 }
 
-/* Cyber Themed Cards */
-.card-cyan {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(6, 182, 212, 0.35);
-  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.08);
+/* Kid-Friendly Colorful Theme Cards (Emerald, Purple, Amber, Rose) */
+.card-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(18, 22, 20, 0.85) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.12);
 }
 
 .card-amber {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(23, 27, 38, 0.8) 100%);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.08);
-}
-
-.card-emerald {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.08);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(26, 22, 18, 0.85) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.12);
 }
 
 .card-purple {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.08);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(24, 18, 30, 0.85) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.12);
 }
 
 .card-rose {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.08);
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.12) 0%, rgba(28, 18, 22, 0.85) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  box-shadow: 0 12px 30px rgba(244, 63, 94, 0.12);
 }
 
-/* High-Impact Security Buttons */
+/* High-Impact Friendly Buttons (No Blue) */
 .btn-cyber-accent {
   background: linear-gradient(180deg, #10b981 0%, #059669 100%);
   color: #020617;
   font-weight: 800;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-  border: 1px solid rgba(110, 231, 183, 0.4);
+  border-radius: 0.85rem;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+  border: 1px solid rgba(110, 231, 183, 0.5);
   transition: all 0.2s ease;
 }
 .btn-cyber-accent:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  filter: brightness(1.12);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
   transform: translateY(-1px);
 }
 
 .btn-cyber-primary {
-  background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
+  background: linear-gradient(180deg, #a855f7 0%, #7c3aed 100%);
   color: #ffffff;
   font-weight: 800;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
-  border: 1px solid rgba(125, 211, 252, 0.4);
+  border-radius: 0.85rem;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+  border: 1px solid rgba(216, 180, 254, 0.5);
   transition: all 0.2s ease;
 }
 .btn-cyber-primary:hover {
-  filter: brightness(1.1);
-  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  filter: brightness(1.12);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6);
   transform: translateY(-1px);
 }
 
-/* Cyber Glow Utilities */
-.glow-cyan {
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+.btn-cyber-gold {
+  background: linear-gradient(180deg, #fbbf24 0%, #d97706 100%);
+  color: #09090b;
+  font-weight: 800;
+  border-radius: 0.85rem;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+  border: 1px solid rgba(253, 230, 138, 0.5);
+  transition: all 0.2s ease;
+}
+.btn-cyber-gold:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+  transform: translateY(-1px);
 }
 
-.glow-blue {
-  box-shadow: 0 0 25px rgba(14, 165, 233, 0.4);
+/* Glow Utilities (Emerald, Purple, Amber, Rose) */
+.glow-emerald {
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
 }
 
 .glow-amber {
   box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
 }
 
-.glow-emerald {
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.35);
+.glow-rose {
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.4);
 }
 
 /* Holographic glass HUD */
 .glass-panel {
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(3, 7, 24, 0.75);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(18, 18, 23, 0.8);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 .glass-card {
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(15, 23, 42, 0.55);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(24, 24, 30, 0.65);
   backdrop-filter: blur(12px);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar (Emerald to Purple to Amber) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4, #0284c7, #10b981);
+  background: linear-gradient(180deg, #10b981, #a855f7, #f59e0b);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
+  background: #34d399;
 }

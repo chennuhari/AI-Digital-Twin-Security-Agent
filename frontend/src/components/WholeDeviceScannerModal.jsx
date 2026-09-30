@@ -119,27 +119,27 @@ export default function WholeDeviceScannerModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/85 backdrop-blur-xl animate-fadeIn overflow-y-auto">
-      <div className="relative w-full max-w-4xl rounded-3xl border border-blue-500/40 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
-        {/* Futuristic Top Color Stripe */}
-        <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400" />
+      <div className="relative w-full max-w-4xl rounded-3xl border border-emerald-500/40 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+        {/* Playful Top Color Stripe (Emerald -> Purple -> Amber) */}
+        <div className="h-2 w-full bg-gradient-to-r from-emerald-400 via-purple-500 to-amber-400" />
 
         {/* Modal Header */}
         <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between gap-4 bg-slate-900/80">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-900/40">
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-950/40">
               <Smartphone className="h-6 w-6" />
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 font-mono text-[11px] font-bold">
-                  🛡️ AI DIGITAL TWIN AUDIT
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/15 border border-purple-400/40 text-purple-300 font-mono text-[11px] font-bold">
+                  🤖 SAFE ROBOT TWIN AUDIT
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
-                  ⚡ REAL-TIME HARDWARE &amp; THREAT SCAN
+                  ⚡ 100% SAFE COMPUTER HEALTH SCAN
                 </span>
               </div>
               <h2 className="text-lg sm:text-xl font-black text-white mt-1">
-                Full-Spectrum Device Security &amp; Hardware Scan
+                🩺 Whole Computer &amp; Phone Health Checkup
               </h2>
             </div>
           </div>
@@ -158,17 +158,17 @@ export default function WholeDeviceScannerModal({
           {scanStage === "scanning" && (
             <div className="py-12 px-4 text-center space-y-6">
               <div className="relative mx-auto w-24 h-24 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full border-4 border-blue-500/20 border-t-[#2874F0] border-r-[#FF9900] animate-spin" />
-                <div className="h-16 w-16 rounded-full bg-blue-500/10 flex items-center justify-center">
-                  <Activity className="h-8 w-8 text-[#FF9900] animate-pulse" />
+                <div className="absolute inset-0 rounded-full border-4 border-emerald-500/20 border-t-emerald-400 border-r-amber-400 animate-spin" />
+                <div className="h-16 w-16 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <Activity className="h-8 w-8 text-amber-400 animate-pulse" />
                 </div>
               </div>
 
               <div>
                 <div className="text-xl font-black text-white">
-                  Scanning Whole Device Architecture...
+                  Checking Your Device Health...
                 </div>
-                <div className="text-xs font-mono text-cyan-400 mt-1">
+                <div className="text-xs font-mono text-emerald-400 mt-1">
                   {currentStepName}
                 </div>
               </div>
@@ -177,12 +177,12 @@ export default function WholeDeviceScannerModal({
               <div className="max-w-md mx-auto space-y-2">
                 <div className="h-3 w-full rounded-full bg-slate-800 overflow-hidden p-0.5 border border-white/10">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-[#2874F0] via-[#FF9900] to-[#10B981] transition-all duration-300"
+                    className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-amber-400 to-purple-500 transition-all duration-300"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
                 <div className="flex justify-between text-[11px] font-mono text-slate-400">
-                  <span>Hardware &rarr; Network &rarr; Doors &rarr; Twin</span>
+                  <span>Robot Brain &rarr; Wi-Fi Radar &rarr; Digital Doors &rarr; Safe Twin</span>
                   <span className="font-bold text-white">{progress}%</span>
                 </div>
               </div>
@@ -193,10 +193,10 @@ export default function WholeDeviceScannerModal({
           {scanStage === "completed" && scanResult && (
             <div className="space-y-6">
               {/* Top Score & Certification Hero Card */}
-              <div className="rounded-2xl p-5 border border-blue-500/30 bg-gradient-to-r from-blue-950/40 via-slate-900 to-amber-950/30 shadow-xl flex flex-wrap items-center justify-between gap-6">
+              <div className="rounded-2xl p-5 border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-purple-950/30 shadow-xl flex flex-wrap items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
                   {/* Circular Score Badge */}
-                  <div className="relative h-20 w-20 rounded-2xl bg-gradient-to-br from-[#2874F0] via-blue-600 to-[#10B981] p-1 flex items-center justify-center text-center shadow-lg shadow-blue-900/50">
+                  <div className="relative h-20 w-20 rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-600 to-purple-500 p-1 flex items-center justify-center text-center shadow-lg shadow-emerald-950/50">
                     <div className="h-full w-full rounded-xl bg-slate-950 flex flex-col items-center justify-center">
                       <span className="text-2xl font-black text-white leading-none">
                         {scanResult.healthScore}
@@ -221,7 +221,7 @@ export default function WholeDeviceScannerModal({
                         ))}
                       </div>
                       <span className="text-xs font-bold text-amber-300">
-                        {scanResult.starRating} / 5.0 Device Trust
+                        {scanResult.starRating} / 5.0 Gold Star Safety
                       </span>
                     </div>
 
@@ -229,7 +229,7 @@ export default function WholeDeviceScannerModal({
                       {scanResult.hardware.deviceModel} ({scanResult.hardware.os})
                     </h3>
                     <div className="text-xs text-slate-300 flex flex-wrap items-center gap-2 mt-0.5">
-                      <span className="text-[#FF9900] font-bold">Public IP: {scanResult.network.ip}</span>
+                      <span className="text-amber-400 font-bold">Public IP: {scanResult.network.ip}</span>
                       <span>&bull;</span>
                       <span className="text-emerald-400 font-bold">{scanResult.badgeTier}</span>
                     </div>
@@ -244,7 +244,7 @@ export default function WholeDeviceScannerModal({
                       className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-950/40 transition"
                     >
                       <Zap className="h-4 w-4 fill-slate-950" />
-                      <span>⚡ 1-Click Shield &amp; Harden Device</span>
+                      <span>⚡ 1-Click Lock Doors &amp; Protect</span>
                     </button>
                   ) : (
                     <div className="px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 text-xs font-bold flex items-center gap-2">
@@ -258,9 +258,9 @@ export default function WholeDeviceScannerModal({
                       onClose();
                       switchPage("threat");
                     }}
-                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-mono text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-950/40 transition"
+                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-mono text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-purple-950/40 transition"
                   >
-                    <span>View Threat Twin &rarr;</span>
+                    <span>Test With Friendly Intruder &rarr;</span>
                   </button>
                 </div>
               </div>
@@ -268,11 +268,11 @@ export default function WholeDeviceScannerModal({
               {/* Navigation Tabs for Detailed Deep Dive */}
               <div className="flex flex-wrap items-center gap-2 border-b border-white/10 pb-2">
                 {[
-                  { id: "overview", label: "Overview", icon: Layers, color: "text-blue-400" },
-                  { id: "hardware", label: "Hardware & Specs", icon: Cpu, color: "text-purple-400" },
-                  { id: "network", label: "Network & Speed", icon: Wifi, color: "text-cyan-400" },
-                  { id: "ports", label: "Exposed Doors (Ports)", icon: Radio, color: "text-amber-400" },
-                  { id: "privacy", label: "Privacy & Permissions", icon: Lock, color: "text-emerald-400" },
+                  { id: "overview", label: "Overview", icon: Layers, color: "text-emerald-400" },
+                  { id: "hardware", label: "Robot Specs", icon: Cpu, color: "text-purple-400" },
+                  { id: "network", label: "Wi-Fi Radar", icon: Wifi, color: "text-amber-400" },
+                  { id: "ports", label: "Digital Doors (Ports)", icon: Radio, color: "text-amber-400" },
+                  { id: "privacy", label: "Sensor Privacy", icon: Lock, color: "text-emerald-400" },
                 ].map((t) => {
                   const Icon = t.icon;
                   const active = activeTab === t.id;
@@ -281,7 +281,7 @@ export default function WholeDeviceScannerModal({
                       key={t.id}
                       onClick={() => setActiveTab(t.id)}
                       className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${active
-                          ? "bg-white/10 text-white border-b-2 border-cyan-400 shadow-sm"
+                          ? "bg-white/10 text-white border-b-2 border-emerald-400 shadow-sm"
                           : "text-slate-400 hover:text-white hover:bg-white/5"
                         }`}
                     >
@@ -297,26 +297,26 @@ export default function WholeDeviceScannerModal({
                 <div className="space-y-4">
                   {/* 4 Colorful Spec Feature Cards */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <div className="card-cyan p-4 rounded-xl">
-                      <div className="text-[11px] font-mono text-blue-400 font-bold uppercase">Operating System</div>
+                    <div className="card-purple p-4 rounded-xl">
+                      <div className="text-[11px] font-mono text-purple-300 font-bold uppercase">Operating System</div>
                       <div className="text-sm font-black text-white mt-1 truncate">{scanResult.hardware.os}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.deviceType}</div>
                     </div>
 
                     <div className="card-amber p-4 rounded-xl">
-                      <div className="text-[11px] font-mono text-amber-400 font-bold uppercase">Processing Power</div>
-                      <div className="text-sm font-black text-white mt-1">{scanResult.hardware.cores} CPU Cores</div>
+                      <div className="text-[11px] font-mono text-amber-300 font-bold uppercase">Robot Muscle</div>
+                      <div className="text-sm font-black text-white mt-1">{scanResult.hardware.cores} Brain Cores</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.ram}</div>
                     </div>
 
                     <div className="card-emerald p-4 rounded-xl">
-                      <div className="text-[11px] font-mono text-emerald-400 font-bold uppercase">Network Speed</div>
+                      <div className="text-[11px] font-mono text-emerald-300 font-bold uppercase">Network Speed</div>
                       <div className="text-sm font-black text-white mt-1 truncate">{scanResult.hardware.connectionSpeed}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.latency}</div>
                     </div>
 
                     <div className="card-purple p-4 rounded-xl">
-                      <div className="text-[11px] font-mono text-purple-400 font-bold uppercase">Display &amp; Battery</div>
+                      <div className="text-[11px] font-mono text-purple-300 font-bold uppercase">Screen &amp; Battery</div>
                       <div className="text-sm font-black text-white mt-1 truncate">{scanResult.hardware.screen}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.battery}</div>
                     </div>
@@ -337,8 +337,8 @@ export default function WholeDeviceScannerModal({
                     <p className="text-xs text-slate-300 leading-relaxed font-sans">
                       Your <strong>{scanResult.hardware.deviceModel}</strong> is connected over{" "}
                       <strong>{scanResult.network.connectionSpeed}</strong> with IP{" "}
-                      <code className="text-cyan-300 font-mono">{scanResult.network.ip}</code>. We identified{" "}
-                      <strong>{scanResult.exposedDoors.length} digital communication ports</strong> (like media sharing and device casting) that are visible on your local network.
+                      <code className="text-emerald-300 font-mono">{scanResult.network.ip}</code>. We identified{" "}
+                      <strong>{scanResult.exposedDoors.length} digital communication doors</strong> (like media sharing and device casting) that are visible on your local network.
                     </p>
 
                     {hardened ? (
@@ -348,12 +348,12 @@ export default function WholeDeviceScannerModal({
                       </div>
                     ) : (
                       <div className="p-3 rounded-lg bg-amber-950/40 border border-amber-500/30 text-xs text-amber-300 flex items-center justify-between gap-2">
-                        <span>Click the button to automatically harden and apply safety shields.</span>
+                        <span>Click the button to automatically lock and apply safety shields.</span>
                         <button
                           onClick={handleAutoHarden}
                           className="px-3 py-1 rounded-lg bg-amber-400 text-slate-950 font-bold text-[11px] cursor-pointer"
                         >
-                          Harden Now
+                          Lock Doors Now
                         </button>
                       </div>
                     )}
@@ -415,14 +415,14 @@ export default function WholeDeviceScannerModal({
               {/* Tab 3: Network */}
               {activeTab === "network" && (
                 <div className="space-y-3 text-xs font-mono">
-                  <div className="p-4 rounded-xl card-cyan space-y-2">
-                    <div className="text-blue-300 font-bold uppercase text-[11px] flex items-center gap-1.5">
+                  <div className="p-4 rounded-xl card-purple space-y-2">
+                    <div className="text-purple-300 font-bold uppercase text-[11px] flex items-center gap-1.5">
                       <Wifi className="h-4 w-4" /> Network Identity &amp; Routing
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3 pt-2">
                       <div className="p-3 rounded-lg bg-slate-950/60 border border-white/5">
                         <span className="text-slate-400 block text-[10px]">PUBLIC IP ADDRESS</span>
-                        <span className="text-cyan-300 font-bold text-sm">{scanResult.network.ip}</span>
+                        <span className="text-amber-300 font-bold text-sm">{scanResult.network.ip}</span>
                       </div>
                       <div className="p-3 rounded-lg bg-slate-950/60 border border-white/5">
                         <span className="text-slate-400 block text-[10px]">ROUND-TRIP LATENCY</span>
@@ -462,7 +462,7 @@ export default function WholeDeviceScannerModal({
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
                             <span className="px-2 py-0.5 rounded font-mono font-bold text-xs bg-slate-900 border border-white/10 text-white">
-                              Port {d.port} ({d.protocol})
+                              Door {d.port} ({d.protocol})
                             </span>
                             <span className="font-bold text-white text-xs">
                               {plainEnglishMode ? d.easyName : d.name}
@@ -477,14 +477,14 @@ export default function WholeDeviceScannerModal({
                                   : "bg-amber-500/20 text-amber-300"
                               }`}
                           >
-                            {hardened ? "SHIELDED" : `${d.risk.toUpperCase()} RISK`}
+                            {hardened ? "LOCKED & SHIELDED" : `${d.risk.toUpperCase()} ATTENTION`}
                           </span>
                         </div>
 
                         <p className="mt-1.5 text-xs text-slate-300 leading-relaxed font-sans">
                           {d.description}
                         </p>
-                        <div className="mt-2 text-[11px] text-cyan-300 font-mono flex items-center gap-1">
+                        <div className="mt-2 text-[11px] text-emerald-300 font-mono flex items-center gap-1">
                           <span className="font-bold text-slate-400">💡 Easy Fix:</span> {d.remedy}
                         </div>
                       </div>
@@ -503,7 +503,7 @@ export default function WholeDeviceScannerModal({
                     <div className="grid sm:grid-cols-3 gap-3 pt-2">
                       <div className="p-3 rounded-lg bg-slate-950/60 border border-white/5 space-y-1">
                         <div className="flex items-center gap-1.5 text-slate-400 text-[10px]">
-                          <Camera className="h-3.5 w-3.5 text-blue-400" /> CAMERA PERMISSION
+                          <Camera className="h-3.5 w-3.5 text-purple-400" /> CAMERA PERMISSION
                         </div>
                         <div className="text-white font-bold">{scanResult.permissions.camera}</div>
                       </div>
@@ -542,8 +542,8 @@ export default function WholeDeviceScannerModal({
               disabled={scanStage === "scanning"}
               className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 text-xs font-mono font-bold transition cursor-pointer flex items-center gap-1.5"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${scanStage === "scanning" ? "animate-spin text-cyan-400" : ""}`} />
-              <span>Rescan Whole Device</span>
+              <RefreshCw className={`h-3.5 w-3.5 ${scanStage === "scanning" ? "animate-spin text-emerald-400" : ""}`} />
+              <span>Rescan Device</span>
             </button>
 
             <button

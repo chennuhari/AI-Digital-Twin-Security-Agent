@@ -11,11 +11,11 @@ import { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import * as THREE from "three";
 import { cyberAudio } from "./soundEffects";
 
-// Color palettes for nodes
+// Color palettes for nodes (Vibrant Kid-Friendly: Emerald, Amber, Rose, Purple - Zero Blue)
 function nodeColor(type, severity = "", isSimulatedAttack = false) {
   if (isSimulatedAttack) return "#ff0055"; // Laser crimson
-  if (type === "ASSET") return "#00f0ff"; // Holographic cyan
-  if (type === "SERVICE") return "#38bdf8"; // Sky blue
+  if (type === "ASSET") return "#10b981"; // Vibrant Emerald (Safe Robot Twin)
+  if (type === "SERVICE") return "#fbbf24"; // Warm Amber (Digital Door)
   if (type === "THREAT") {
     if (severity === "HIGH" || severity === "CRITICAL") return "#f43f5e";
     return "#fb923c";
@@ -26,21 +26,21 @@ function nodeColor(type, severity = "", isSimulatedAttack = false) {
     if (severity === "MEDIUM") return "#eab308";
     return "#10b981";
   }
-  if (type === "RECOMMENDATION") return "#00ff9d"; // Neon emerald
+  if (type === "RECOMMENDATION") return "#a855f7"; // Royal Purple Shield
   return "#94a3b8";
 }
 
 function edgeColor(type, isAttackEdge = false) {
   if (isAttackEdge) return "#ff0055";
-  if (type === "HAS_SERVICE") return "#00f0ff";
+  if (type === "HAS_SERVICE") return "#fbbf24";
   if (type === "HAS_THREAT") return "#f43f5e";
   if (type === "ASSESSED_AS") return "#f59e0b";
-  if (type === "MITIGATED_BY") return "#00ff9d";
+  if (type === "MITIGATED_BY") return "#10b981";
   return "#475569";
 }
 
 // Glowing Holographic Energy Ring around Assets
-function AssetEnergyRing({ radius, speed, color = "#00f0ff" }) {
+function AssetEnergyRing({ radius, speed, color = "#10b981" }) {
   const ringRef = useRef();
 
   useFrame((_, delta) => {
@@ -58,7 +58,7 @@ function AssetEnergyRing({ radius, speed, color = "#00f0ff" }) {
 }
 
 // Data packet travelling along edge (Optimized: cached vectors, 0 per-frame allocations)
-function DataPacket({ start, end, speed = 1.6, color = "#00f0ff", size = 0.06 }) {
+function DataPacket({ start, end, speed = 1.6, color = "#10b981", size = 0.06 }) {
   const meshRef = useRef();
   const progress = useRef(Math.random());
   const p1 = useMemo(() => new THREE.Vector3(start[0], start[1], start[2]), [start[0], start[1], start[2]]);
@@ -128,7 +128,7 @@ function TwinNode({
     <group position={position}>
       {isAsset && !dimmed && (
         <>
-          <AssetEnergyRing radius={0.55} speed={0.9} color={isAttackActive ? "#ff0055" : "#00f0ff"} />
+          <AssetEnergyRing radius={0.55} speed={0.9} color={isAttackActive ? "#ff0055" : "#10b981"} />
           <AssetEnergyRing radius={0.72} speed={-0.6} color={isAttackActive ? "#f43f5e" : "#8b5cf6"} />
         </>
       )}
@@ -179,7 +179,7 @@ function TwinNode({
           <div
             className={`transition-all duration-200 pointer-events-none select-none px-2 py-1 rounded-md backdrop-blur-md border ${
               isSelected
-                ? "border-cyan-400 bg-slate-950/95 shadow-[0_0_20px_rgba(0,240,255,0.7)] scale-110"
+                ? "border-emerald-400 bg-slate-950/95 shadow-[0_0_20px_rgba(16,185,129,0.7)] scale-110"
                 : isAttackActive
                 ? "border-rose-500 bg-slate-950/95 shadow-[0_0_20px_rgba(244,63,94,0.7)]"
                 : "border-white/15 bg-slate-950/85"
@@ -196,7 +196,7 @@ function TwinNode({
             <div
               style={{
                 fontWeight: 700,
-                color: isAttackActive ? "#f43f5e" : isAsset ? "#00f0ff" : "#f1f5f9",
+                color: isAttackActive ? "#f43f5e" : isAsset ? "#10b981" : "#f1f5f9",
               }}
             >
               {node.label}
@@ -231,13 +231,13 @@ function GyroscopeRings({ isSpinning, speed = 0.35, multiAsset = false }) {
   return (
     <group>
       <Torus ref={ringX} args={[radius, 0.016, 12, 48]} rotation={[Math.PI / 6, 0, 0]}>
-        <meshBasicMaterial color="#00f0ff" transparent opacity={0.32} />
+        <meshBasicMaterial color="#10b981" transparent opacity={0.32} />
       </Torus>
       <Torus ref={ringY} args={[radius + 0.6, 0.016, 12, 48]} rotation={[0, Math.PI / 4, 0]}>
         <meshBasicMaterial color="#8b5cf6" transparent opacity={0.28} />
       </Torus>
       <Torus ref={ringZ} args={[radius + 1.2, 0.014, 12, 48]} rotation={[0, 0, Math.PI / 3]}>
-        <meshBasicMaterial color="#00ff9d" transparent opacity={0.22} />
+        <meshBasicMaterial color="#fbbf24" transparent opacity={0.22} />
       </Torus>
     </group>
   );
@@ -255,10 +255,10 @@ function CyberGridFloor() {
 
   return (
     <group position={[0, -2.8, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <gridHelper args={[26, 26, "#00f0ff", "#1e293b"]} rotation={[Math.PI / 2, 0, 0]} />
+      <gridHelper args={[26, 26, "#10b981", "#1e293b"]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh ref={gridRef}>
         <ringGeometry args={[12.2, 12.6, 64]} />
-        <meshBasicMaterial color="#00f0ff" transparent opacity={0.35} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#10b981" transparent opacity={0.35} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );
@@ -508,7 +508,7 @@ function FullGraphScene({
       <CameraRig cameraPreset={cameraPreset} focusTarget={focusPosition} controlsRef={controlsRef} />
 
       <ambientLight intensity={0.7} />
-      <pointLight position={[6, 8, 9]} intensity={18} color="#00f0ff" distance={30} />
+      <pointLight position={[6, 8, 9]} intensity={18} color="#10b981" distance={30} />
       <pointLight position={[-6, -6, 7]} intensity={14} color="#8b5cf6" distance={30} />
       <pointLight position={[0, -5, -4]} intensity={12} color="#00ff9d" distance={25} />
 
@@ -652,7 +652,7 @@ export default function NetworkScene({
       </Canvas>
 
       {/* Floating 3D In-Diagram Zoom Controls (+ and -) */}
-      <div className="absolute bottom-5 right-5 z-20 flex flex-col items-center gap-1.5 bg-slate-950/85 border border-cyan-500/30 p-2 rounded-2xl backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.8)]">
+      <div className="absolute bottom-5 right-5 z-20 flex flex-col items-center gap-1.5 bg-slate-950/85 border border-emerald-500/30 p-2 rounded-2xl backdrop-blur-xl shadow-[0_0_25px_rgba(0,0,0,0.8)]">
         <button
           type="button"
           onClick={(e) => {
@@ -660,7 +660,7 @@ export default function NetworkScene({
             internalZoomRef.current?.zoomIn();
             cyberAudio.playBeep(700, 0.04);
           }}
-          className="h-9 w-9 rounded-xl bg-white/5 hover:bg-cyan-400/20 text-cyan-300 hover:text-white flex items-center justify-center font-mono font-bold text-2xl border border-white/10 hover:border-cyan-400/60 transition cursor-pointer active:scale-95 shadow-md"
+          className="h-9 w-9 rounded-xl bg-white/5 hover:bg-emerald-400/20 text-emerald-300 hover:text-white flex items-center justify-center font-mono font-bold text-2xl border border-white/10 hover:border-emerald-400/60 transition cursor-pointer active:scale-95 shadow-md"
           title="Zoom In (+)"
         >
           +
@@ -673,7 +673,7 @@ export default function NetworkScene({
             internalZoomRef.current?.zoomOut();
             cyberAudio.playBeep(500, 0.04);
           }}
-          className="h-9 w-9 rounded-xl bg-white/5 hover:bg-cyan-400/20 text-cyan-300 hover:text-white flex items-center justify-center font-mono font-bold text-2xl border border-white/10 hover:border-cyan-400/60 transition cursor-pointer active:scale-95 shadow-md"
+          className="h-9 w-9 rounded-xl bg-white/5 hover:bg-emerald-400/20 text-emerald-300 hover:text-white flex items-center justify-center font-mono font-bold text-2xl border border-white/10 hover:border-emerald-400/60 transition cursor-pointer active:scale-95 shadow-md"
           title="Zoom Out (-)"
         >
           &minus;
@@ -685,7 +685,7 @@ export default function NetworkScene({
             internalZoomRef.current?.resetZoom();
             cyberAudio.playBeep(600, 0.04);
           }}
-          className="mt-1 px-2 py-0.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-cyan-300 text-[10px] font-mono tracking-wider uppercase border border-white/10 transition cursor-pointer"
+          className="mt-1 px-2 py-0.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-emerald-300 text-[10px] font-mono tracking-wider uppercase border border-white/10 transition cursor-pointer"
           title="Reset 3D Camera Zoom"
         >
           Reset

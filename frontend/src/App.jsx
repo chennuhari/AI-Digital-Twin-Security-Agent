@@ -48,16 +48,16 @@ import RiskPage from "./pages/RiskPage";
 import AuditPage from "./pages/AuditPage";
 import WholeDeviceScannerModal from "./components/WholeDeviceScannerModal";
 
-// Available Page Tabs
+// Available Page Tabs (Kid-Friendly & No Blue)
 const PAGES = [
-  { id: "overview", number: "01", category: "MISSION CONTROL", label: "Overview", icon: LayoutDashboard, title: "Executive Mission Control & Fleet Posture" },
-  { id: "diagram", number: "02", category: "MISSION CONTROL", label: "3D Diagram", icon: Compass, title: "3D Holographic Twin Command Center" },
-  { id: "asset-twin", number: "TWIN", category: "MISSION CONTROL", label: "IP Twin", icon: Cpu, title: "Dedicated IP Digital Twin & Constellation" },
-  { id: "recon", number: "03", category: "SECURITY AGENTS", label: "Recon Agent", icon: Radar, title: "Autonomous Reconnaissance Agent" },
-  { id: "threat", number: "04", category: "SECURITY AGENTS", label: "Threat Intel", icon: Flame, title: "Threat Agent & Kill Chain" },
-  { id: "defense", number: "05", category: "SECURITY AGENTS", label: "Defense Agent", icon: ShieldCheck, title: "Autonomous Defense Agent" },
-  { id: "risk", number: "06", category: "ANALYTICS & AUDIT", label: "Risk Matrix", icon: Activity, title: "Quantitative Risk Matrix" },
-  { id: "audit", number: "07", category: "ANALYTICS & AUDIT", label: "Audit Ledger", icon: TerminalSquare, title: "Audit & Evolution Logs" },
+  { id: "overview", number: "01", category: "ROBOT HEADQUARTERS", label: "Safe Overview 🤖", icon: LayoutDashboard, title: "Robot Headquarters - Safe Device Overview" },
+  { id: "diagram", number: "02", category: "ROBOT HEADQUARTERS", label: "Playground Map 🗺️", icon: Compass, title: "3D Device Playground & Safe Network Map" },
+  { id: "asset-twin", number: "TWIN", category: "ROBOT HEADQUARTERS", label: "My Toy Device 📱", icon: Cpu, title: "My Computer's Safe Cartoon Twin" },
+  { id: "recon", number: "03", category: "SUPER DETECTIVES", label: "Door Inspector 🚪", icon: Radar, title: "Scout Detective - Checking Every Digital Door" },
+  { id: "threat", number: "04", category: "SUPER DETECTIVES", label: "Intruder Catcher 🕵️", icon: Flame, title: "Catching Sneaky Bad Guys Before They Knock" },
+  { id: "defense", number: "05", category: "SUPER DETECTIVES", label: "Super Locks 🛡️", icon: ShieldCheck, title: "Super Guardian - 1-Click Protective Padlocks" },
+  { id: "risk", number: "06", category: "SAFETY REPORT", label: "Safety Score ⭐", icon: Activity, title: "Gold Star Score - Is My Device Happy & Safe?" },
+  { id: "audit", number: "07", category: "SAFETY REPORT", label: "Robot Diary 📜", icon: TerminalSquare, title: "Diary of Everything Our Robot Did" },
 ];
 
 function LoginPanel({ onLogin }) {
@@ -164,56 +164,56 @@ function LoginPanel({ onLogin }) {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-8 flex items-center justify-center bg-[#020617]">
-      {/* Background Cyber Ambient Glows */}
-      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="relative min-h-screen overflow-hidden px-4 py-8 flex items-center justify-center bg-[#09090b]">
+      {/* Background Cyber Ambient Glows (Emerald & Purple - No Blue) */}
+      <div className="absolute top-1/4 -left-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-5xl mx-auto grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
         {/* Left Side: Plain English Introduction */}
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/50 px-3.5 py-1.5 text-xs font-mono uppercase tracking-widest text-cyan-300">
-            <BrainCircuit className="h-4 w-4 text-cyan-400 animate-pulse" />
-            Autonomous AI Security Platform
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-950/50 px-3.5 py-1.5 text-xs font-mono uppercase tracking-widest text-emerald-300">
+            <BrainCircuit className="h-4 w-4 text-emerald-400 animate-pulse" />
+            Super Friendly Safety Guard 🤖
           </div>
 
           <h1 className="mt-4 text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-            AI Digital Twin <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
-              Security Agent
+            Safe Robot Twin <br />
+            <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-purple-400 bg-clip-text text-transparent">
+              Device Guardian 🛡️
             </span>
           </h1>
 
           {/* Plain English Explanation Box */}
-          <div className="mt-5 p-4 rounded-2xl border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-md">
-            <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+          <div className="mt-5 p-4 rounded-3xl border border-emerald-500/30 bg-emerald-950/20 backdrop-blur-md">
+            <div className="flex items-center gap-2 text-emerald-300 font-bold text-sm">
               <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
-              <span>In Plain English: What does this system do?</span>
+              <span>What is a Digital Twin? (Easy Explanation)</span>
             </div>
-            <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-              It creates a <strong>safe, 3D virtual copy (Digital Twin)</strong> of your phone, computer, or office network.
-              Instead of testing risks on your real device, our AI agents simulate cyber attacks in the virtual copy,
-              spot unlocked security doors, and show you exactly how to protect yourself!
+            <p className="mt-2 text-xs sm:text-sm text-slate-200 leading-relaxed font-sans">
+              Think of it like a <strong>safe cartoon or robot copy</strong> of your phone or laptop.
+              Instead of testing risks on your real device, our friendly AI robots test the copy in a safe toy world,
+              spot any unlocked digital doors, and put strong padlocks on them so you stay 100% safe!
             </p>
           </div>
 
           <div className="mt-6 flex flex-wrap gap-4 text-xs font-mono text-slate-400">
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" /> Python FastAPI Cloud</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> 3D Three.js Visualizer</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-violet-400" /> MITRE ATT&CK Paths</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-amber-400" /> 1-Click Defense Hardening</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Fast Cloud Protection</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-purple-400" /> 3D Virtual Robot Twin</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-amber-400" /> Intruder Detective</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> 1-Click Shield Locks</span>
           </div>
         </div>
 
         {/* Right Side: Interactive Sign In / Sign Up Form */}
-        <div className="glass-panel p-6 sm:p-7 relative border-cyan-500/30 shadow-2xl rounded-3xl bg-slate-950/85 backdrop-blur-xl">
+        <div className="glass-panel p-6 sm:p-7 relative border-emerald-500/30 shadow-2xl rounded-3xl bg-slate-950/85 backdrop-blur-xl">
           {/* Security Twin Status Badges */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-400/30">
-              🛡️ AI DIGITAL TWIN CERTIFIED
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-purple-500/15 text-purple-300 border border-purple-400/30">
+              🛡️ 100% SAFE ROBOT TWIN
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
-              ⚡ LIVE DEFENSE AGENT
+              ⚡ LIVE HERO ACTIVE
             </span>
           </div>
 
@@ -224,7 +224,7 @@ function LoginPanel({ onLogin }) {
               onClick={() => { setAuthMode("signin"); setError(""); setSuccessMsg(""); }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${
                 authMode === "signin"
-                  ? "bg-gradient-to-r from-[#2874F0] to-[#1558C7] text-white shadow-md shadow-blue-900/50"
+                  ? "bg-gradient-to-r from-purple-500 to-violet-600 text-white shadow-md shadow-purple-900/50"
                   : "text-slate-400 hover:text-white"
               }`}
             >
@@ -277,7 +277,7 @@ function LoginPanel({ onLogin }) {
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <UserIcon className="h-3.5 w-3.5 text-cyan-400" />
+                  <UserIcon className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Username</span>
                 </label>
                 <input
@@ -286,13 +286,13 @@ function LoginPanel({ onLogin }) {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="e.g. testuser3"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                  <KeyRound className="h-3.5 w-3.5 text-cyan-400" />
+                  <KeyRound className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Password</span>
                 </label>
                 <input
@@ -301,18 +301,18 @@ function LoginPanel({ onLogin }) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2.5 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
               {/* Demo Credentials Quick Fill */}
               <div
                 onClick={() => { setUsername("testuser3"); setPassword("Test@123"); }}
-                className="p-2 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-[11px] font-mono text-cyan-300 cursor-pointer hover:bg-cyan-900/40 transition flex items-center justify-between"
+                className="p-2 rounded-xl bg-emerald-950/30 border border-emerald-500/20 text-[11px] font-mono text-emerald-300 cursor-pointer hover:bg-emerald-900/40 transition flex items-center justify-between"
                 title="Click to auto-fill default demo account"
               >
                 <span>Demo Account: <strong>testuser3</strong></span>
-                <span className="text-cyan-400 font-bold underline">Click to Auto-fill</span>
+                <span className="text-emerald-400 font-bold underline">Click to Auto-fill</span>
               </div>
 
               <button
@@ -348,7 +348,7 @@ function LoginPanel({ onLogin }) {
             <form onSubmit={handleRegister} className="space-y-3.5">
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <UserIcon className="h-3.5 w-3.5 text-cyan-400" />
+                  <UserIcon className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Choose Username</span>
                 </label>
                 <input
@@ -357,13 +357,13 @@ function LoginPanel({ onLogin }) {
                   value={regUsername}
                   onChange={(e) => setRegUsername(e.target.value)}
                   placeholder="e.g. cyber_analyst"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <Mail className="h-3.5 w-3.5 text-cyan-400" />
+                  <Mail className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Email Address</span>
                 </label>
                 <input
@@ -372,13 +372,13 @@ function LoginPanel({ onLogin }) {
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
                   placeholder="e.g. user@digitaltwin.ai"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <KeyRound className="h-3.5 w-3.5 text-cyan-400" />
+                  <KeyRound className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Password</span>
                 </label>
                 <input
@@ -387,13 +387,13 @@ function LoginPanel({ onLogin }) {
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
                   placeholder="At least 4 characters"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-cyan-400" />
+                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
                   <span>Confirm Password</span>
                 </label>
                 <input
@@ -402,7 +402,7 @@ function LoginPanel({ onLogin }) {
                   value={regConfirmPassword}
                   onChange={(e) => setRegConfirmPassword(e.target.value)}
                   placeholder="Re-enter password"
-                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition font-mono"
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/90 px-4 py-2 text-sm text-white outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 transition font-mono"
                 />
               </div>
 
@@ -421,7 +421,7 @@ function LoginPanel({ onLogin }) {
                   <button
                     type="button"
                     onClick={() => { setAuthMode("signin"); setError(""); }}
-                    className="text-cyan-400 font-bold hover:underline cursor-pointer"
+                    className="text-emerald-400 font-bold hover:underline cursor-pointer"
                   >
                     Sign In
                   </button>
@@ -948,10 +948,10 @@ export default function App() {
       )}
 
       {/* ========================================================================= */}
-      {/* ENTERPRISE CYBERPUNK SIDEBAR NAVIGATION                                   */}
+      {/* KID-FRIENDLY & CLEAN SIDEBAR NAVIGATION (NO BLUE)                         */}
       {/* ========================================================================= */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 xl:w-72 bg-slate-950/95 border-r border-cyan-500/20 backdrop-blur-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 xl:w-72 bg-slate-950/95 border-r border-emerald-500/20 backdrop-blur-2xl flex flex-col justify-between transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
@@ -965,15 +965,15 @@ export default function App() {
               }}
               className="flex items-center gap-3 cursor-pointer group"
             >
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-600 flex items-center justify-center shadow-[0_0_20px_rgba(0,240,255,0.35)] group-hover:scale-105 transition">
-                <BrainCircuit className="h-6 w-6 text-slate-950" />
+              <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-400 via-teal-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.35)] group-hover:scale-105 transition text-lg">
+                🤖
               </div>
               <div>
-                <div className="text-xs font-mono font-black tracking-widest text-cyan-400 uppercase">
-                  AI Digital Twin
+                <div className="text-xs font-mono font-black tracking-widest text-emerald-400 uppercase">
+                  Robot Guardian
                 </div>
                 <div className="text-[11px] font-semibold text-white tracking-wider">
-                  Cyber Operations
+                  Safe Device Twin
                 </div>
               </div>
             </div>
@@ -987,12 +987,12 @@ export default function App() {
             </button>
           </div>
 
-          <div className="mt-3.5 flex items-center justify-between px-3 py-1.5 rounded-xl bg-cyan-950/40 border border-cyan-500/20 text-[10px] font-mono">
+          <div className="mt-3.5 flex items-center justify-between px-3 py-1.5 rounded-xl bg-emerald-950/40 border border-emerald-500/20 text-[10px] font-mono">
             <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
-              FASTAPI + NEO4J
+              SAFE ROBOT ONLINE
             </span>
-            <span className="text-cyan-400 font-bold">LIVE v2.5</span>
+            <span className="text-purple-400 font-bold">v2.5 ⭐</span>
           </div>
 
           {/* Active Target Twin Quick-Card inside Sidebar */}
@@ -1001,43 +1001,43 @@ export default function App() {
               switchPage("asset-twin");
               setSidebarOpen(false);
             }}
-            className={`mt-3 p-2.5 rounded-xl border transition cursor-pointer group ${
+            className={`mt-3 p-2.5 rounded-2xl border transition cursor-pointer group ${
               activePage === "asset-twin"
-                ? "border-cyan-400 bg-cyan-500/15 shadow-[0_0_15px_rgba(0,240,255,0.15)]"
-                : "border-white/10 bg-slate-900/80 hover:bg-cyan-950/30 hover:border-cyan-500/30"
+                ? "border-emerald-400 bg-emerald-500/15 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                : "border-white/10 bg-slate-900/80 hover:bg-emerald-950/30 hover:border-emerald-500/30"
             }`}
           >
             <div className="flex items-center justify-between text-[10px] font-mono text-slate-400">
-              <span className="text-cyan-400 uppercase tracking-wider font-bold flex items-center gap-1">
-                <Cpu className="h-3 w-3 text-cyan-400" /> Active Target
+              <span className="text-emerald-400 uppercase tracking-wider font-bold flex items-center gap-1">
+                <Cpu className="h-3 w-3 text-emerald-400" /> Current Toy Device
               </span>
-              <span className="text-emerald-400 font-bold">ID #{assetId}</span>
+              <span className="text-amber-400 font-bold">ID #{assetId}</span>
             </div>
             <div className="mt-1 flex items-center justify-between">
               <div>
-                <div className="text-xs font-mono font-bold text-white group-hover:text-cyan-300 transition">
+                <div className="text-xs font-mono font-bold text-white group-hover:text-emerald-300 transition">
                   {selectedAsset?.ipAddress || "127.0.0.1"}
                 </div>
                 <div className="text-[10px] text-slate-400 truncate max-w-[120px]">
                   {selectedAsset?.hostname || "localhost"}
                 </div>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 group-hover:bg-cyan-500/40 transition">
-                View Twin →
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 group-hover:bg-emerald-500/40 transition">
+                Inspect →
               </span>
             </div>
           </div>
         </div>
 
-        {/* MIDDLE: CATEGORIZED NAVIGATION PAGES */}
+        {/* MIDDLE: CATEGORIZED NAVIGATION PAGES (KID-FRIENDLY & NO BLUE) */}
         <div className="flex-1 overflow-y-auto px-3 py-3 space-y-4 text-xs font-mono">
-          {/* Section: Mission Control */}
+          {/* Section: Robot Headquarters */}
           <div>
-            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">
-              Mission Control
+            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-emerald-400 mb-1.5 flex items-center gap-1.5">
+              <span>🤖 Robot Headquarters</span>
             </div>
             <div className="space-y-1">
-              {PAGES.filter((p) => p.category === "MISSION CONTROL").map((p) => {
+              {PAGES.filter((p) => p.category === "ROBOT HEADQUARTERS").map((p) => {
                 const isActive = activePage === p.id;
                 const Icon = p.icon;
                 const isTwin = p.id === "asset-twin";
@@ -1050,12 +1050,12 @@ export default function App() {
                     }}
                     className={`w-full px-3 py-2 rounded-xl transition flex items-center justify-between group cursor-pointer ${
                       isActive
-                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/10 border-l-4 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_12px_rgba(0,240,255,0.15)]"
+                        ? "bg-gradient-to-r from-emerald-500/25 to-teal-500/10 border-l-4 border-emerald-400 text-emerald-300 font-bold shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                         : "text-slate-300 hover:text-white hover:bg-white/5 border-l-4 border-transparent"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className={`p-1 rounded-lg ${isActive ? "bg-cyan-400/20 text-cyan-300" : "text-slate-400 group-hover:text-cyan-400"}`}>
+                      <div className={`p-1 rounded-lg ${isActive ? "bg-emerald-400/20 text-emerald-300" : "text-slate-400 group-hover:text-emerald-400"}`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       <div className="truncate text-left">
@@ -1068,7 +1068,7 @@ export default function App() {
                       </div>
                     </div>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                      isActive ? "bg-cyan-400 text-slate-950" : "bg-white/5 text-slate-400"
+                      isActive ? "bg-emerald-400 text-slate-950" : "bg-white/5 text-slate-400"
                     }`}>
                       {p.number}
                     </span>
@@ -1078,13 +1078,13 @@ export default function App() {
             </div>
           </div>
 
-          {/* Section: Security Agents */}
+          {/* Section: Super Detectives */}
           <div>
-            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">
-              Security Agents
+            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-amber-400 mb-1.5 flex items-center gap-1.5">
+              <span>🔍 Super Detectives</span>
             </div>
             <div className="space-y-1">
-              {PAGES.filter((p) => p.category === "SECURITY AGENTS").map((p) => {
+              {PAGES.filter((p) => p.category === "SUPER DETECTIVES").map((p) => {
                 const isActive = activePage === p.id;
                 const Icon = p.icon;
                 return (
@@ -1096,18 +1096,18 @@ export default function App() {
                     }}
                     className={`w-full px-3 py-2 rounded-xl transition flex items-center justify-between group cursor-pointer ${
                       isActive
-                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/10 border-l-4 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_12px_rgba(0,240,255,0.15)]"
+                        ? "bg-gradient-to-r from-emerald-500/25 to-teal-500/10 border-l-4 border-emerald-400 text-emerald-300 font-bold shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                         : "text-slate-300 hover:text-white hover:bg-white/5 border-l-4 border-transparent"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className={`p-1 rounded-lg ${isActive ? "bg-cyan-400/20 text-cyan-300" : "text-slate-400 group-hover:text-cyan-400"}`}>
+                      <div className={`p-1 rounded-lg ${isActive ? "bg-emerald-400/20 text-emerald-300" : "text-slate-400 group-hover:text-emerald-400"}`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       <span className="truncate font-semibold">{p.label}</span>
                     </div>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                      isActive ? "bg-cyan-400 text-slate-950" : "bg-white/5 text-slate-400"
+                      isActive ? "bg-emerald-400 text-slate-950" : "bg-white/5 text-slate-400"
                     }`}>
                       {p.number}
                     </span>
@@ -1117,13 +1117,13 @@ export default function App() {
             </div>
           </div>
 
-          {/* Section: Analytics & Audit */}
+          {/* Section: Safety Report */}
           <div>
-            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">
-              Analytics & Audit
+            <div className="px-3 text-[10px] uppercase font-bold tracking-widest text-purple-400 mb-1.5 flex items-center gap-1.5">
+              <span>⭐ Safety Report</span>
             </div>
             <div className="space-y-1">
-              {PAGES.filter((p) => p.category === "ANALYTICS & AUDIT").map((p) => {
+              {PAGES.filter((p) => p.category === "SAFETY REPORT").map((p) => {
                 const isActive = activePage === p.id;
                 const Icon = p.icon;
                 return (
@@ -1135,18 +1135,18 @@ export default function App() {
                     }}
                     className={`w-full px-3 py-2 rounded-xl transition flex items-center justify-between group cursor-pointer ${
                       isActive
-                        ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/10 border-l-4 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_12px_rgba(0,240,255,0.15)]"
+                        ? "bg-gradient-to-r from-emerald-500/25 to-teal-500/10 border-l-4 border-emerald-400 text-emerald-300 font-bold shadow-[0_0_15px_rgba(16,185,129,0.25)]"
                         : "text-slate-300 hover:text-white hover:bg-white/5 border-l-4 border-transparent"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      <div className={`p-1 rounded-lg ${isActive ? "bg-cyan-400/20 text-cyan-300" : "text-slate-400 group-hover:text-cyan-400"}`}>
+                      <div className={`p-1 rounded-lg ${isActive ? "bg-emerald-400/20 text-emerald-300" : "text-slate-400 group-hover:text-emerald-400"}`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       <span className="truncate font-semibold">{p.label}</span>
                     </div>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
-                      isActive ? "bg-cyan-400 text-slate-950" : "bg-white/5 text-slate-400"
+                      isActive ? "bg-emerald-400 text-slate-950" : "bg-white/5 text-slate-400"
                     }`}>
                       {p.number}
                     </span>
@@ -1165,17 +1165,17 @@ export default function App() {
               className="p-1.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 flex flex-col items-center gap-1 cursor-pointer transition"
               title="Refresh Digital Twin Data"
             >
-              <RefreshCw className={`h-3.5 w-3.5 ${busy ? "animate-spin text-cyan-400" : ""}`} />
+              <RefreshCw className={`h-3.5 w-3.5 ${busy ? "animate-spin text-emerald-400" : ""}`} />
               <span className="text-[9px]">Sync</span>
             </button>
 
             <button
               onClick={toggleSound}
               className="p-1.5 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 flex flex-col items-center gap-1 cursor-pointer transition"
-              title={soundEnabled ? "Mute Cyber Audio" : "Enable Cyber Audio"}
+              title={soundEnabled ? "Mute Game Audio" : "Enable Game Audio"}
             >
-              {soundEnabled ? <Volume2 className="h-3.5 w-3.5 text-cyan-400" /> : <VolumeX className="h-3.5 w-3.5 text-slate-500" />}
-              <span className="text-[9px]">{soundEnabled ? "Audio On" : "Muted"}</span>
+              {soundEnabled ? <Volume2 className="h-3.5 w-3.5 text-emerald-400" /> : <VolumeX className="h-3.5 w-3.5 text-slate-500" />}
+              <span className="text-[9px]">{soundEnabled ? "Sound On" : "Muted"}</span>
             </button>
 
             <button
@@ -1184,18 +1184,18 @@ export default function App() {
               title="Export Report (JSON)"
             >
               <FileDown className="h-3.5 w-3.5 text-slate-300" />
-              <span className="text-[9px]">Export</span>
+              <span className="text-[9px]">Save File</span>
             </button>
           </div>
 
           <div className="flex items-center justify-between pt-1">
             <div className="flex items-center gap-2 truncate">
-              <div className="h-7 w-7 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-xs font-bold font-mono shrink-0">
-                SA
+              <div className="h-7 w-7 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 text-xs font-bold font-mono shrink-0">
+                🛡️
               </div>
               <div className="truncate">
-                <div className="text-xs font-bold text-white leading-none truncate">Security Admin</div>
-                <div className="text-[10px] text-slate-400 font-mono">SecOps Team</div>
+                <div className="text-xs font-bold text-white leading-none truncate">Super Guardian</div>
+                <div className="text-[10px] text-emerald-400 font-mono">Safe Helper</div>
               </div>
             </div>
             <button
@@ -1213,8 +1213,8 @@ export default function App() {
       {/* RIGHT MAIN VIEWPORT: HEADER + ACTIVE CONTENT                               */}
       {/* ========================================================================= */}
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-        {/* TOP HUD BAR (Clean, spacious, prominent IP search) */}
-        <header className="sticky top-0 z-30 h-16 border-b border-cyan-500/20 bg-slate-950/85 backdrop-blur-xl px-4 sm:px-6 flex items-center justify-between gap-4 shadow-xl">
+        {/* TOP HUD BAR (Kid-friendly, spacious, prominent IP search - NO BLUE) */}
+        <header className="sticky top-0 z-30 h-16 border-b border-emerald-500/20 bg-slate-950/85 backdrop-blur-xl px-4 sm:px-6 flex items-center justify-between gap-4 shadow-xl">
           {/* Left: Mobile Toggle & Page Title */}
           <div className="flex items-center gap-3 shrink-0">
             <button
@@ -1222,14 +1222,14 @@ export default function App() {
               className="p-2 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 lg:hidden cursor-pointer"
               title="Open Navigation Menu"
             >
-              <Menu className="h-4 w-4 text-cyan-400" />
+              <Menu className="h-4 w-4 text-emerald-400" />
             </button>
 
             <div>
               <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-                <span>Operations</span>
+                <span>Safe Playground</span>
                 <ChevronRight className="h-3 w-3 text-slate-600" />
-                <span className="text-cyan-400 font-semibold">{activePageMeta.label}</span>
+                <span className="text-emerald-400 font-semibold">{activePageMeta.label}</span>
               </div>
               <h1 className="text-sm sm:text-base font-bold text-white truncate max-w-[180px] sm:max-w-xs">
                 {activePageMeta.title}
@@ -1239,10 +1239,10 @@ export default function App() {
 
           {/* Center: Spacious Interactive IP Address Search Bar */}
           <div className="relative flex items-center w-full max-w-md mx-2" ref={searchDropdownRef}>
-            <Search className="absolute left-3.5 h-4 w-4 text-cyan-400 pointer-events-none" />
+            <Search className="absolute left-3.5 h-4 w-4 text-emerald-400 pointer-events-none" />
             <input
               type="text"
-              placeholder="Search IP address to isolate 3D twin (e.g. 127.0.0.1)..."
+              placeholder="Search your device or IP address (e.g. 127.0.0.1)..."
               value={searchIpQuery}
               onChange={(e) => {
                 setSearchIpQuery(e.target.value);
@@ -1254,7 +1254,7 @@ export default function App() {
                   handleSearchIpSubmit(searchIpQuery);
                 }
               }}
-              className="w-full pl-10 pr-8 py-2 rounded-xl border border-cyan-500/30 bg-slate-900/90 text-xs font-mono text-white placeholder-slate-400 outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition shadow-inner"
+              className="w-full pl-10 pr-8 py-2 rounded-xl border border-emerald-500/30 bg-slate-900/90 text-xs font-mono text-white placeholder-slate-400 outline-none focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400/50 transition shadow-inner"
             />
             {searchIpQuery && (
               <button
@@ -1270,10 +1270,10 @@ export default function App() {
 
             {/* Interactive Floating Dropdown for IP Search */}
             {isSearchDropdownOpen && (
-              <div className="absolute left-0 right-0 top-full mt-2 max-h-80 overflow-y-auto rounded-xl border border-cyan-500/30 bg-slate-950/95 p-2 shadow-2xl backdrop-blur-2xl z-50 text-xs font-mono">
+              <div className="absolute left-0 right-0 top-full mt-2 max-h-80 overflow-y-auto rounded-xl border border-emerald-500/30 bg-slate-950/95 p-2 shadow-2xl backdrop-blur-2xl z-50 text-xs font-mono">
                 <div className="px-2.5 py-1.5 text-[10px] text-slate-400 uppercase tracking-wider font-bold border-b border-white/5 flex items-center justify-between">
-                  <span>Fleet Digital Twins</span>
-                  <span>{searchResults.length} Match(es)</span>
+                  <span>Safe Devices Saved</span>
+                  <span className="text-emerald-400">{searchResults.length} Match(es)</span>
                 </div>
                 {searchResults.length > 0 ? (
                   searchResults.map((a) => {
@@ -1284,7 +1284,7 @@ export default function App() {
                         onClick={() => handleSelectAssetByIp(a)}
                         className={`px-3 py-2 my-1 rounded-lg flex items-center justify-between transition cursor-pointer ${
                           isCur
-                            ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold"
+                            ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold"
                             : "hover:bg-white/10 text-slate-300 hover:text-white"
                         }`}
                       >
@@ -1295,7 +1295,7 @@ export default function App() {
                         </div>
                         <div className="flex items-center gap-1.5 text-[10px]">
                           <span className="px-1.5 py-0.5 rounded bg-white/5 text-slate-400">{a.operatingSystem || "OS"}</span>
-                          <ChevronRight className="h-3.5 w-3.5 text-cyan-400" />
+                          <ChevronRight className="h-3.5 w-3.5 text-emerald-400" />
                         </div>
                       </div>
                     );
@@ -1305,13 +1305,13 @@ export default function App() {
                     onClick={() => handleSearchIpSubmit(searchIpQuery)}
                     className="p-3 text-center text-slate-300 hover:bg-white/5 rounded-lg transition cursor-pointer"
                   >
-                    <div className="text-rose-400 font-bold mb-1 flex items-center justify-center gap-1.5">
-                      <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
-                      IP Not in Current Fleet
+                    <div className="text-amber-400 font-bold mb-1 flex items-center justify-center gap-1.5">
+                      <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
+                      Device Not Registered Yet
                     </div>
-                    <div className="text-[11px] text-cyan-300 flex items-center justify-center gap-1">
-                      <Radar className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
-                      Click to Run Recon & Auto-Discover {searchIpQuery}
+                    <div className="text-[11px] text-emerald-300 flex items-center justify-center gap-1">
+                      <Radar className="h-3.5 w-3.5 text-emerald-400 animate-pulse" />
+                      Click Scout Detective to inspect {searchIpQuery}
                     </div>
                   </div>
                 )}
@@ -1319,7 +1319,7 @@ export default function App() {
             )}
           </div>
 
-          {/* Right: Fleet Switcher, Plain English Mode & Status */}
+          {/* Right: Fleet Switcher & Status */}
           <div className="flex items-center gap-2.5 shrink-0">
             {/* Scan Whole Device Button */}
             <button
@@ -1347,9 +1347,9 @@ export default function App() {
                   loadDashboard(id);
                 }
               }}
-              className="rounded-xl border border-cyan-500/30 bg-slate-900 px-3 py-1.5 text-xs font-mono text-cyan-300 outline-none hover:border-cyan-400 transition cursor-pointer hidden md:block"
+              className="rounded-xl border border-emerald-500/30 bg-slate-900 px-3 py-1.5 text-xs font-mono text-emerald-300 outline-none hover:border-emerald-400 transition cursor-pointer hidden md:block"
             >
-              <option value="all">🌍 Multi-Asset Fleet</option>
+              <option value="all">🌍 All Family Devices</option>
               {assets.map((a) => (
                 <option key={a.id} value={a.id}>
                   #{a.id} - {a.ipAddress} ({a.hostname || "host"})
@@ -1360,7 +1360,7 @@ export default function App() {
             <div className="hidden xl:flex items-center gap-2 text-xs font-mono text-slate-400 px-3 py-1 rounded-xl bg-white/5 border border-white/10">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>{message}</span>
-              {busy && <RefreshCw className="h-3.5 w-3.5 text-cyan-400 animate-spin" />}
+              {busy && <RefreshCw className="h-3.5 w-3.5 text-emerald-400 animate-spin" />}
             </div>
           </div>
         </header>
@@ -1371,8 +1371,8 @@ export default function App() {
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3 bg-slate-900/60 border border-white/5 p-3 rounded-2xl backdrop-blur-md">
             <div className="flex items-center gap-2 text-xs font-mono">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-              <span className="text-slate-400">ACTIVE VIEW:</span>
-              <span className="text-cyan-300 font-bold uppercase tracking-wider">
+              <span className="text-slate-400">PLAYGROUND ROOM:</span>
+              <span className="text-emerald-300 font-bold uppercase tracking-wider">
                 {activePageMeta.title}
               </span>
               {activePage === "asset-twin" && (
@@ -1382,8 +1382,8 @@ export default function App() {
               )}
             </div>
             <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-              <span>Target: #{selectedAsset?.id} ({selectedAsset?.ipAddress})</span>
-              {busy && <RefreshCw className="h-3.5 w-3.5 text-cyan-400 animate-spin" />}
+              <span>Checking Device: #{selectedAsset?.id} ({selectedAsset?.ipAddress})</span>
+              {busy && <RefreshCw className="h-3.5 w-3.5 text-emerald-400 animate-spin" />}
             </div>
           </div>
 
@@ -1537,8 +1537,8 @@ export default function App() {
       </main>
 
       {/* Global Footer */}
-      <footer className="border-t border-white/10 py-6 text-center text-xs font-mono text-slate-500 mt-auto">
-        AI Digital Twin Security Agent · Proactive Cybersecurity Intelligence Platform · Python FastAPI + PostgreSQL + Neo4j + Nmap
+      <footer className="border-t border-white/10 py-6 text-center text-xs font-mono text-emerald-400/80 mt-auto">
+        Safe Robot Twin 🤖 · Kid-Friendly Cyber Guardian Platform · Keeping Your Digital Doors Locked & Safe 🛡️
       </footer>
       </div>
 
