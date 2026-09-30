@@ -1,15 +1,17 @@
 # 🛡️ AI Digital Twin Security Agent (TwinAgent AI)
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Release-v2.0.0-10b981?style=for-the-badge&logo=github" alt="Release" />
   <img src="https://img.shields.io/badge/Live%20Demo-Vercel%20Active-10b981?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   <img src="https://img.shields.io/badge/Frontend-React%2019%20%7C%20Vite-a855f7?style=for-the-badge&logo=react&logoColor=white" alt="React 19" />
-  <img src="https://img.shields.io/badge/3D%20Engine-Three.js%20%7C%20R3F-fbbf24?style=for-the-badge&logo=threedotjs&logoColor=black" alt="Three.js" />
-  <img src="https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.11-059669?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
-  <img src="https://img.shields.io/badge/License-MIT-f43f5e?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/badge/3D%20Engine-Three.js-fbbf24?style=for-the-badge&logo=threedotjs&logoColor=black" alt="Three.js" />
+  <img src="https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python-059669?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Security-Policy%20Active-f43f5e?style=for-the-badge&logo=shield" alt="Security Policy" />
+  <img src="https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge" alt="License" />
 </p>
 
 <p align="center">
-  <strong>An Intelligent Autonomous Cybersecurity Digital Twin Platform featuring 3D Holographic Graph Modeling, Plain English Kid-Friendly Story Mode, and Real-Time Hardware & Network Telemetry.</strong>
+  <strong>An Intelligent Autonomous Cybersecurity Digital Twin Platform featuring 3D Holographic Graph Modeling, Plain English Kid-Friendly Story Mode, TwinBot AI Copilot, and Real-Time Hardware & Network Telemetry.</strong>
 </p>
 
 <p align="center">
@@ -31,22 +33,36 @@
 
 ## 🚀 Key Innovations & Superpowers
 
-### 🤖 1. Dual Persona: Kid-Friendly & Enterprise Modes
-- **Safe Robot Twin 🤖**: Explains complex cybersecurity concepts through playful, relatable analogies (Digital Doors, Sneaky Bad Guys, Super Shield Padlocks, and Gold Star Safety Scores).
-- **Zero Blue Palette**: Warm, accessible visual design built entirely with Emerald Green (`#10b981`), Royal Purple (`#a855f7`), Sunny Amber (`#fbbf24`), and Coral Rose (`#f43f5e`).
-- **Permanently Built-In Plain English**: Eliminates confusing switches or toggles—every vulnerability includes a 1-sentence plain English translation and an easy fix.
+### 🤖 1. TwinBot AI Security Copilot
+- **Plain English Cybersecurity Assistant**: Ask natural questions like *"Is my computer safe?"*, *"What does port 22 mean?"*, or *"How do I protect my Wi-Fi?"*.
+- **1-Click Shield Actions**: Execute simulated firewall locks and vulnerability patches directly from chat messages.
+- **Friendly Metaphors**: Explains complex cybersecurity concepts through relatable analogies (Digital Doors, Sneaky Bugs, Super Shield Padlocks).
 
-### 🩺 2. Whole Computer & Phone Health Checkup
+### 🎮 2. Defend Your Fortress Mini-Game
+- **Kid-Friendly 30-Second Mini-Game**: Interactive challenge where players click to neutralize incoming cyber threats before they breach the fortress.
+- **Score, Combos & Gold Medals**: Earn multipliers and unlock the Gold Shield Defender Medal upon victory.
+- **Hands-On Learning**: Teaches reactive defense and threat prioritization in a fun, gamified environment.
+
+### 📄 3. 1-Click Executive PDF & Security Dossier
+- **Instant Printable Audit Certificate**: Generates a professional, high-resolution audit dossier directly in the browser.
+- **Complete Metric Summary**: Includes device hardware specs, overall Gold Star safety score, active open doors, and remediation checklists.
+- **Raw JSON Export**: Instant copy/download for compliance logging and SIEM integration.
+
+### 📡 4. Local Home Wi-Fi Subnet Radar
+- **Live 3D Sweep Animation**: Visual radar sweep detecting smart home IoT devices (Routers, 4K Smart TVs, Voice Assistants, Network Printers, Gaming Consoles).
+- **1-Click Twin Topology Import**: Directly map newly discovered local devices into the 3D fortress graph with one click.
+
+### 🩺 5. Whole Computer & Phone Health Checkup
 - **Deep WebGL Hardware Fingerprinting**: Inspects GPU render engine, CPU concurrency cores, RAM estimate, screen resolution, and battery state.
 - **Sensor & Privacy Exposure Audit**: Checks browser permissions for camera, microphone, and geolocation.
 - **Wi-Fi Radar & Latency Diagnostic**: Measures round-trip network response times and public IPv4 routing context.
 
-### 🌐 3. 3D Holographic Interactive Command Center
+### 🌐 6. 3D Holographic Interactive Command Center
 - **Smooth 3D Topology Playground**: OrbitControls with dynamic group rotation, speed adjustments (0.2x to 2.0x), and pause/resume.
 - **Dedicated Floating Zoom Controls**: `+`, `−`, and `Reset` camera buttons with interactive click-to-focus node inspection.
 - **Animated Attack Vector Conduits**: Glowing laser conduits and moving energy packets demonstrating lateral attacker pivots in 3D space.
 
-### ⚡ 4. Autonomous On-Device Twin Synthesizer
+### ⚡ 7. Autonomous On-Device Twin Synthesizer
 - **100% Offline & Firewall Resilient**: When scanning public IPs (like `152.59.201.253`) where mobile carrier NATs or firewalls block raw Nmap probes, the built-in browser engine autonomously synthesizes the twin, ensuring zero scan failures.
 
 ---
@@ -122,6 +138,24 @@ graph TD
 4. **Open in Browser**:
    * Dashboard: `http://localhost:5173`
    * Swagger API Docs: `http://localhost:8001/docs`
+
+---
+
+## 🤝 Community & Contributing
+
+Contributions are always welcome!
+- Check out [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on code standards, kid-friendly UX rules, and submitting pull requests.
+- Read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community pledges.
+- Review our [SECURITY.md](SECURITY.md) to report vulnerabilities privately.
+
+---
+
+## 📬 Contact & Author
+
+- **Maintainer:** Hari Krishna Reddy Chennu
+- **GitHub:** [@chennuhari](https://github.com/chennuhari)
+- **Email:** `harikrishnachennu607@gmail.com`
+- **Live Demo:** [ai-digital-twin-security-agent.vercel.app](https://ai-digital-twin-security-agent.vercel.app)
 
 ---
 
