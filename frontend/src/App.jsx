@@ -31,6 +31,10 @@ import {
   Mail,
   User as UserIcon,
   Smartphone,
+  Bot,
+  Trophy,
+  Radio,
+  FileText,
 } from "lucide-react";
 
 import { api, setToken, savedToken } from "./api";
@@ -47,6 +51,10 @@ import DefensePage from "./pages/DefensePage";
 import RiskPage from "./pages/RiskPage";
 import AuditPage from "./pages/AuditPage";
 import WholeDeviceScannerModal from "./components/WholeDeviceScannerModal";
+import AiSecurityCopilot from "./components/AiSecurityCopilot";
+import DefendFortressGameModal from "./components/DefendFortressGameModal";
+import SecurityReportModal from "./components/SecurityReportModal";
+import LocalSubnetRadarModal from "./components/LocalSubnetRadarModal";
 
 // Available Page Tabs (Kid-Friendly & No Blue)
 const PAGES = [
@@ -497,6 +505,12 @@ export default function App() {
   // Whole Device Deep Scanner Modal State
   const [showDeviceScannerModal, setShowDeviceScannerModal] = useState(false);
 
+  // Next-Level Superpowers States
+  const [showCopilot, setShowCopilot] = useState(false);
+  const [showGameModal, setShowGameModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showSubnetRadarModal, setShowSubnetRadarModal] = useState(false);
+
   // Active Page Routing State - default to overview
   const [activePage, setActivePage] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -527,6 +541,9 @@ export default function App() {
 
   // Active MITRE step for preview
   const [activeMitreStep, setActiveMitreStep] = useState(0);
+
+  // Active Asset Object derivation
+  const activeAssetObj = assets.find((a) => a.id === assetId) || assets[0] || null;
 
   // Close search dropdown on click outside
   useEffect(() => {
@@ -1480,8 +1497,50 @@ export default function App() {
               title="Deep scan hardware, CPU, RAM, GPU, network, ports, privacy & generate digital twin"
             >
               <Smartphone className="h-4 w-4 text-slate-950" />
-              <span className="hidden sm:inline">📱 Scan Whole Device</span>
+              <span className="hidden sm:inline">📱 Scan Device</span>
               <span className="sm:hidden">📱 Scan</span>
+            </button>
+
+            {/* Play Fortress Defense Game Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowGameModal(true);
+                cyberAudio.playSuccess();
+              }}
+              className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 text-purple-300 font-mono text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-md"
+              title="Play Defend Your Digital Fortress Game"
+            >
+              <Trophy className="h-3.5 w-3.5 text-purple-400" />
+              <span className="hidden md:inline">🎮 Play Game</span>
+            </button>
+
+            {/* Local Wi-Fi Subnet Radar Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowSubnetRadarModal(true);
+                cyberAudio.playScan();
+              }}
+              className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 font-mono text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-md"
+              title="Scan Home Wi-Fi Subnet for Smart IoT Devices"
+            >
+              <Radio className="h-3.5 w-3.5 text-amber-400" />
+              <span className="hidden lg:inline">📡 Wi-Fi Radar</span>
+            </button>
+
+            {/* Export Printable PDF Report Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setShowReportModal(true);
+                cyberAudio.playSuccess();
+              }}
+              className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-md"
+              title="Export Official PDF Security Report & Certificate"
+            >
+              <FileText className="h-3.5 w-3.5 text-emerald-400" />
+              <span className="hidden lg:inline">📄 PDF Report</span>
             </button>
 
             <select
@@ -1702,6 +1761,63 @@ export default function App() {
         }}
         switchPage={switchPage}
         plainEnglishMode={plainEnglishMode}
+      />
+
+      {/* Floating TwinBot AI Copilot Trigger Button (Bottom Right) */}
+      <button
+        type="button"
+        onClick={() => {
+          setShowCopilot(!showCopilot);
+          cyberAudio.playBeep(640, 0.05);
+        }}
+        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-purple-600 hover:from-emerald-400 hover:to-purple-500 text-slate-950 flex items-center justify-center shadow-2xl shadow-emerald-950/60 border-2 border-white/20 cursor-pointer active:scale-95 transition-all group"
+        title="Ask TwinBot AI - Your Security Copilot"
+      >
+        <Bot className="h-7 w-7 text-slate-950 group-hover:scale-110 transition-transform" />
+        <span className="absolute -top-1 -right-1 flex h-4 w-4">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-400 text-[9px] font-black text-slate-950 items-center justify-center">AI</span>
+        </span>
+      </button>
+
+      {/* 1. AI Security Copilot Chat Modal / Drawer */}
+      <AiSecurityCopilot
+        isOpen={showCopilot}
+        onToggle={() => setShowCopilot(!showCopilot)}
+        onApplyMitigation={applyMitigation}
+        currentAsset={activeAssetObj}
+        healthScore={risk?.overallScore || 78}
+        activePorts={ports}
+      />
+
+      {/* 2. Defend Fortress Mini-Game Modal */}
+      <DefendFortressGameModal
+        isOpen={showGameModal}
+        onClose={() => setShowGameModal(false)}
+      />
+
+      {/* 3. Official Printable Security Report & Certificate Modal */}
+      <SecurityReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        asset={activeAssetObj}
+        ports={ports}
+        threats={threats}
+        risk={risk}
+        defense={defense}
+      />
+
+      {/* 4. Local Home Wi-Fi Subnet Radar Modal */}
+      <LocalSubnetRadarModal
+        isOpen={showSubnetRadarModal}
+        onClose={() => setShowSubnetRadarModal(false)}
+        onAddDeviceToFleet={(newDevice) => {
+          setAssets((prev) => [newDevice, ...prev.filter((a) => a.ipAddress !== newDevice.ipAddress)]);
+          setAssetId(newDevice.id);
+          switchPage("asset-twin");
+          setShowSubnetRadarModal(false);
+          setMessage(`Smart Device ${newDevice.ipAddress} added to 3D Digital Twin fleet!`);
+        }}
       />
     </div>
   );
