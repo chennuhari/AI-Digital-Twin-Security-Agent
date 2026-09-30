@@ -206,14 +206,14 @@ function LoginPanel({ onLogin }) {
         </div>
 
         {/* Right Side: Interactive Sign In / Sign Up Form */}
-        <div className="glass-panel p-6 sm:p-7 relative border-blue-500/30 shadow-2xl rounded-3xl bg-slate-950/85 backdrop-blur-xl">
-          {/* Flipkart & Amazon Trust Badges */}
+        <div className="glass-panel p-6 sm:p-7 relative border-cyan-500/30 shadow-2xl rounded-3xl bg-slate-950/85 backdrop-blur-xl">
+          {/* Security Twin Status Badges */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <span className="badge-flipkart-assured">
-              🛡️ FLIPKART ASSURED TWIN
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-cyan-500/15 text-cyan-300 border border-cyan-400/30">
+              🛡️ AI DIGITAL TWIN CERTIFIED
             </span>
-            <span className="badge-amazon-choice">
-              AMAZON&apos;S <span className="accent">CHOICE</span> CLOUD
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+              ⚡ LIVE DEFENSE AGENT
             </span>
           </div>
 
@@ -318,7 +318,7 @@ function LoginPanel({ onLogin }) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full btn-flipkart-primary py-3 text-sm font-bold text-white hover:brightness-110 transition cursor-pointer shadow-lg font-mono uppercase tracking-wider flex items-center justify-center gap-2"
+                className="w-full btn-cyber-primary py-3 text-sm font-bold text-white hover:brightness-110 transition cursor-pointer shadow-lg font-mono uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <LogIn className="h-4 w-4" />
                 <span>{loading ? "Authenticating Session..." : "Sign In to Dashboard"}</span>
@@ -335,7 +335,7 @@ function LoginPanel({ onLogin }) {
                 type="button"
                 onClick={guestLoginAndScan}
                 disabled={loading}
-                className="w-full btn-amazon-primary py-2.5 px-4 text-xs font-mono font-black text-slate-950 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg"
+                className="w-full btn-cyber-accent py-2.5 px-4 text-xs font-mono font-black text-slate-950 transition cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg"
               >
                 <Smartphone className="h-4 w-4 text-slate-950" />
                 <span>⚡ 1-Click Instant Device Scan</span>
@@ -1321,38 +1321,19 @@ export default function App() {
 
           {/* Right: Fleet Switcher, Plain English Mode & Status */}
           <div className="flex items-center gap-2.5 shrink-0">
-            {/* Scan Whole Device Button (Amazon Style Amber 1-Click Action) */}
+            {/* Scan Whole Device Button */}
             <button
               type="button"
               onClick={() => {
                 setShowDeviceScannerModal(true);
                 cyberAudio.playScan();
               }}
-              className="btn-amazon-primary px-3 py-1.5 flex items-center gap-1.5 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-black uppercase tracking-wider flex items-center gap-1.5 transition cursor-pointer shadow-lg shadow-emerald-950/40"
               title="Deep scan hardware, CPU, RAM, GPU, network, ports, privacy & generate digital twin"
             >
-              <Smartphone className="h-4 w-4" />
+              <Smartphone className="h-4 w-4 text-slate-950" />
               <span className="hidden sm:inline">📱 Scan Whole Device</span>
               <span className="sm:hidden">📱 Scan</span>
-            </button>
-
-            {/* Plain English vs Cyber Mode Toggle Button */}
-            <button
-              type="button"
-              onClick={() => {
-                setPlainEnglishMode((prev) => !prev);
-                cyberAudio.playBeep(plainEnglishMode ? 440 : 660, 0.06);
-              }}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-mono font-bold transition cursor-pointer shadow-md ${
-                plainEnglishMode
-                  ? "bg-amber-400/20 border-amber-400/50 text-amber-300 shadow-amber-950/40 hover:bg-amber-400/30"
-                  : "bg-white/5 border-white/10 text-slate-400 hover:text-white hover:bg-white/10"
-              }`}
-              title="Toggle between Easy Plain English (for non-technical users) and Advanced Cyber Mode"
-            >
-              <Sparkles className={`h-3.5 w-3.5 ${plainEnglishMode ? "text-amber-400 animate-spin" : "text-slate-400"}`} style={{ animationDuration: "6s" }} />
-              <span className="hidden sm:inline">{plainEnglishMode ? "💡 Plain English: ON" : "⚙️ Advanced Cyber Mode"}</span>
-              <span className="sm:hidden">{plainEnglishMode ? "💡 Simple" : "⚙️ Expert"}</span>
             </button>
 
             <select

@@ -7,16 +7,13 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* Flipkart & Amazon Iconic Brand Color Tokens */
-  --flipkart-blue: #2874f0;
-  --flipkart-blue-dark: #1259c7;
-  --flipkart-yellow: #ffe500;
-  --flipkart-orange: #fb641b;
-  --amazon-orange: #ff9900;
-  --amazon-amber: #ffa41c;
-  --amazon-gold: #ffd814;
-  --amazon-navy: #131921;
-  --amazon-slate: #232f3e;
+  /* Cyberpunk / Futuristic Security Theme Tokens */
+  --cyber-blue: #0284c7;
+  --cyber-cyan: #06b6d4;
+  --cyber-emerald: #10b981;
+  --cyber-indigo: #6366f1;
+  --cyber-violet: #8b5cf6;
+  --cyber-amber: #f59e0b;
 }
 
 * {
@@ -34,24 +31,24 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 10% 10%, rgba(40, 116, 240, 0.12), transparent 28rem),
-    radial-gradient(circle at 90% 15%, rgba(255, 153, 0, 0.10), transparent 30rem),
+    radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.12), transparent 28rem),
+    radial-gradient(circle at 90% 15%, rgba(99, 102, 241, 0.10), transparent 30rem),
     radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08), transparent 28rem),
     radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.08), transparent 28rem),
     linear-gradient(180deg, #020617 0%, #060e1d 40%, #030712 100%);
 }
 
-/* Amazon & Flipkart Vibrant Cards */
-.card-flipkart {
-  background: linear-gradient(135deg, rgba(40, 116, 240, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
-  border: 1px solid rgba(40, 116, 240, 0.35);
-  box-shadow: 0 12px 30px rgba(40, 116, 240, 0.08);
+/* Cyber Themed Cards */
+.card-cyan {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.09) 0%, rgba(15, 23, 42, 0.75) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  box-shadow: 0 12px 30px rgba(6, 182, 212, 0.08);
 }
 
-.card-amazon {
-  background: linear-gradient(135deg, rgba(255, 153, 0, 0.09) 0%, rgba(23, 27, 38, 0.8) 100%);
-  border: 1px solid rgba(255, 153, 0, 0.35);
-  box-shadow: 0 12px 30px rgba(255, 153, 0, 0.08);
+.card-amber {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.09) 0%, rgba(23, 27, 38, 0.8) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.08);
 }
 
 .card-emerald {
@@ -72,84 +69,48 @@ body {
   box-shadow: 0 12px 30px rgba(239, 68, 68, 0.08);
 }
 
-/* Flipkart Assured & Amazon's Choice Style Badges */
-.badge-flipkart-assured {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background: linear-gradient(90deg, #2874f0 0%, #1754be 100%);
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
-  border-radius: 9999px;
-  box-shadow: 0 2px 8px rgba(40, 116, 240, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.badge-amazon-choice {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  background: #131921;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.65rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 0.375rem;
-  border-left: 3px solid #ff9900;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-.badge-amazon-choice .accent {
-  color: #ffa41c;
-  font-weight: 800;
-}
-
-/* High-Impact Vibrant Buttons */
-.btn-amazon-primary {
-  background: linear-gradient(180deg, #ffa41c 0%, #ff8800 100%);
-  color: #0f172a;
+/* High-Impact Security Buttons */
+.btn-cyber-accent {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #020617;
   font-weight: 800;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
-  border: 1px solid rgba(255, 200, 100, 0.4);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(110, 231, 183, 0.4);
   transition: all 0.2s ease;
 }
-.btn-amazon-primary:hover {
-  filter: brightness(1.08);
-  box-shadow: 0 6px 20px rgba(255, 153, 0, 0.5);
+.btn-cyber-accent:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
   transform: translateY(-1px);
 }
 
-.btn-flipkart-primary {
-  background: linear-gradient(180deg, #2874f0 0%, #1558c7 100%);
+.btn-cyber-primary {
+  background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
   color: #ffffff;
   font-weight: 800;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 14px rgba(40, 116, 240, 0.35);
-  border: 1px solid rgba(120, 180, 255, 0.4);
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.35);
+  border: 1px solid rgba(125, 211, 252, 0.4);
   transition: all 0.2s ease;
 }
-.btn-flipkart-primary:hover {
-  filter: brightness(1.08);
-  box-shadow: 0 6px 20px rgba(40, 116, 240, 0.5);
+.btn-cyber-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
   transform: translateY(-1px);
 }
 
 /* Cyber Glow Utilities */
 .glow-cyan {
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
 }
 
-.glow-flipkart {
-  box-shadow: 0 0 25px rgba(40, 116, 240, 0.4);
+.glow-blue {
+  box-shadow: 0 0 25px rgba(14, 165, 233, 0.4);
 }
 
-.glow-amazon {
-  box-shadow: 0 0 25px rgba(255, 153, 0, 0.4);
+.glow-amber {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
 }
 
 .glow-emerald {
@@ -184,10 +145,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2874f0, #ff9900, #10b981);
+  background: linear-gradient(180deg, #06b6d4, #0284c7, #10b981);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2874f0;
+  background: #06b6d4;
 }

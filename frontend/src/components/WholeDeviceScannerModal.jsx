@@ -120,22 +120,22 @@ export default function WholeDeviceScannerModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/85 backdrop-blur-xl animate-fadeIn overflow-y-auto">
       <div className="relative w-full max-w-4xl rounded-3xl border border-blue-500/40 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
-        {/* Amazon & Flipkart Vibrant Top Color Stripe */}
-        <div className="h-2 w-full bg-gradient-to-r from-[#2874F0] via-[#FF9900] to-[#10B981]" />
+        {/* Futuristic Top Color Stripe */}
+        <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400" />
 
         {/* Modal Header */}
         <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between gap-4 bg-slate-900/80">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-[#2874F0] to-[#FF9900] flex items-center justify-center text-white shadow-lg shadow-blue-900/40">
+            <div className="h-11 w-11 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-900/40">
               <Smartphone className="h-6 w-6" />
             </div>
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="badge-flipkart-assured">
-                  🛡️ FLIPKART ASSURED TWIN
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 font-mono text-[11px] font-bold">
+                  🛡️ AI DIGITAL TWIN AUDIT
                 </span>
-                <span className="badge-amazon-choice">
-                  AMAZON&apos;S <span className="accent">CHOICE</span> POSTURE
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
+                  ⚡ REAL-TIME HARDWARE &amp; THREAT SCAN
                 </span>
               </div>
               <h2 className="text-lg sm:text-xl font-black text-white mt-1">
@@ -213,11 +213,10 @@ export default function WholeDeviceScannerModal({
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`h-4 w-4 ${
-                              i < Math.floor(scanResult.starRating)
+                            className={`h-4 w-4 ${i < Math.floor(scanResult.starRating)
                                 ? "fill-amber-400"
                                 : "fill-slate-700 text-slate-700"
-                            }`}
+                              }`}
                           />
                         ))}
                       </div>
@@ -237,12 +236,12 @@ export default function WholeDeviceScannerModal({
                   </div>
                 </div>
 
-                {/* 1-Click Action Buttons (Amazon / Flipkart Style) */}
+                {/* 1-Click Action Buttons */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
                   {!hardened ? (
                     <button
                       onClick={handleAutoHarden}
-                      className="btn-amazon-primary px-5 py-3 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer"
+                      className="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-mono text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-950/40 transition"
                     >
                       <Zap className="h-4 w-4 fill-slate-950" />
                       <span>⚡ 1-Click Shield &amp; Harden Device</span>
@@ -259,7 +258,7 @@ export default function WholeDeviceScannerModal({
                       onClose();
                       switchPage("threat");
                     }}
-                    className="btn-flipkart-primary px-5 py-3 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer"
+                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-mono text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-blue-950/40 transition"
                   >
                     <span>View Threat Twin &rarr;</span>
                   </button>
@@ -281,11 +280,10 @@ export default function WholeDeviceScannerModal({
                     <button
                       key={t.id}
                       onClick={() => setActiveTab(t.id)}
-                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${
-                        active
-                          ? "bg-white/10 text-white border-b-2 border-[#2874F0] shadow-sm"
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${active
+                          ? "bg-white/10 text-white border-b-2 border-cyan-400 shadow-sm"
                           : "text-slate-400 hover:text-white hover:bg-white/5"
-                      }`}
+                        }`}
                     >
                       <Icon className={`h-4 w-4 ${t.color}`} />
                       <span>{t.label}</span>
@@ -299,13 +297,13 @@ export default function WholeDeviceScannerModal({
                 <div className="space-y-4">
                   {/* 4 Colorful Spec Feature Cards */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <div className="card-flipkart p-4 rounded-xl">
+                    <div className="card-cyan p-4 rounded-xl">
                       <div className="text-[11px] font-mono text-blue-400 font-bold uppercase">Operating System</div>
                       <div className="text-sm font-black text-white mt-1 truncate">{scanResult.hardware.os}</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.deviceType}</div>
                     </div>
 
-                    <div className="card-amazon p-4 rounded-xl">
+                    <div className="card-amber p-4 rounded-xl">
                       <div className="text-[11px] font-mono text-amber-400 font-bold uppercase">Processing Power</div>
                       <div className="text-sm font-black text-white mt-1">{scanResult.hardware.cores} CPU Cores</div>
                       <div className="text-[10px] text-slate-400 mt-0.5">{scanResult.hardware.ram}</div>
@@ -417,7 +415,7 @@ export default function WholeDeviceScannerModal({
               {/* Tab 3: Network */}
               {activeTab === "network" && (
                 <div className="space-y-3 text-xs font-mono">
-                  <div className="p-4 rounded-xl card-flipkart space-y-2">
+                  <div className="p-4 rounded-xl card-cyan space-y-2">
                     <div className="text-blue-300 font-bold uppercase text-[11px] flex items-center gap-1.5">
                       <Wifi className="h-4 w-4" /> Network Identity &amp; Routing
                     </div>
@@ -454,13 +452,12 @@ export default function WholeDeviceScannerModal({
                     {scanResult.exposedDoors.map((d) => (
                       <div
                         key={d.port}
-                        className={`p-3.5 rounded-xl border transition ${
-                          hardened
+                        className={`p-3.5 rounded-xl border transition ${hardened
                             ? "bg-emerald-950/20 border-emerald-500/30"
                             : d.risk === "High"
-                            ? "bg-rose-950/20 border-rose-500/30"
-                            : "bg-amber-950/20 border-amber-500/30"
-                        }`}
+                              ? "bg-rose-950/20 border-rose-500/30"
+                              : "bg-amber-950/20 border-amber-500/30"
+                          }`}
                       >
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
@@ -473,13 +470,12 @@ export default function WholeDeviceScannerModal({
                           </div>
 
                           <span
-                            className={`px-2 py-0.5 rounded font-mono font-bold text-[10px] ${
-                              hardened
+                            className={`px-2 py-0.5 rounded font-mono font-bold text-[10px] ${hardened
                                 ? "bg-emerald-500/20 text-emerald-300"
                                 : d.risk === "High"
-                                ? "bg-rose-500/20 text-rose-300"
-                                : "bg-amber-500/20 text-amber-300"
-                            }`}
+                                  ? "bg-rose-500/20 text-rose-300"
+                                  : "bg-amber-500/20 text-amber-300"
+                              }`}
                           >
                             {hardened ? "SHIELDED" : `${d.risk.toUpperCase()} RISK`}
                           </span>

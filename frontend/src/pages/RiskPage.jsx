@@ -73,21 +73,6 @@ export default function RiskPage({
               : "Mathematical risk calculation based on asset criticality, CVSS vulnerability severity, and attack path depth."}
           </p>
         </div>
-
-        {setPlainEnglishMode && (
-          <button
-            onClick={() => setPlainEnglishMode(!plainEnglishMode)}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-mono font-bold transition cursor-pointer ${
-              plainEnglishMode
-                ? "bg-amber-400/20 border-amber-400/50 text-amber-300 shadow-md shadow-amber-950/40"
-                : "bg-white/5 border-white/10 text-slate-400 hover:text-white"
-            }`}
-            title="Toggle Easy English Explanations"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-            <span>{plainEnglishMode ? "💡 Easy English: ON" : "⚙️ Advanced Cyber Mode"}</span>
-          </button>
-        )}
       </div>
 
       {/* Plain English Score Breakdown */}

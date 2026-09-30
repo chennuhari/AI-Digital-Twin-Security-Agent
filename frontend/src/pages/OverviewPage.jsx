@@ -49,26 +49,26 @@ export default function OverviewPage({
 
   return (
     <div className="space-y-8 animate-fadeIn pb-12">
-      {/* Executive Hero Banner (Amazon & Flipkart Vibrant Colors) */}
-      <div className="relative overflow-hidden rounded-3xl border border-blue-500/30 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-blue-950/40 p-7 shadow-2xl backdrop-blur-xl">
+      {/* Executive Hero Banner */}
+      <div className="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-slate-950/95 via-slate-900/90 to-blue-950/40 p-7 shadow-2xl backdrop-blur-xl">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="max-w-2xl">
-            {/* Vibrant E-Commerce Trust Badges */}
+            {/* Cyber Security Twin Trust Badges */}
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="badge-flipkart-assured">
-                🛡️ FLIPKART ASSURED TWIN
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 font-mono text-[11px] font-bold">
+                🛡️ AI DIGITAL TWIN CERTIFIED
               </span>
-              <span className="badge-amazon-choice">
-                AMAZON&apos;S <span className="accent">CHOICE</span> SECURITY
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-bold">
+                ⚡ 24/7 AUTONOMOUS DEFENSE
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 font-mono text-[10px] font-bold">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-300 font-mono text-[10px] font-bold">
                 ⭐ 4.9/5 RATED DEFENSE
               </span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
               Enterprise Digital Twin <br />
-              <span className="bg-gradient-to-r from-[#2874F0] via-[#FF9900] to-[#10B981] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
                 Security Command Center
               </span>
             </h1>
@@ -78,13 +78,13 @@ export default function OverviewPage({
           </div>
 
           <div className="flex flex-col gap-2.5 shrink-0 w-full sm:w-auto">
-            {/* Primary Amazon Amber 1-Click Scan Button */}
+            {/* Primary 1-Click Scan Button */}
             <button
               onClick={() => {
                 if (onOpenWholeDeviceScanner) onOpenWholeDeviceScanner();
                 else if (scanVisitorDevice) scanVisitorDevice();
               }}
-              className="btn-amazon-primary px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-xl"
+              className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-xl shadow-emerald-950/40 transition"
             >
               <Smartphone className="h-4 w-4 text-slate-950" />
               <span>📱 Scan Whole Device (Phone/PC)</span>
@@ -92,7 +92,7 @@ export default function OverviewPage({
 
             <button
               onClick={() => switchPage("diagram")}
-              className="btn-flipkart-primary px-6 py-3 flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white flex items-center justify-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg shadow-blue-950/40 transition"
             >
               <Compass className="h-4 w-4" />
               <span>Open 3D Twin Diagram</span>
@@ -103,17 +103,17 @@ export default function OverviewPage({
 
       {/* Plain English Guide for Non-Technical Users */}
       {plainEnglishMode && (
-        <div className="p-5 rounded-2xl border border-blue-500/30 bg-gradient-to-r from-blue-950/30 via-slate-900/80 to-amber-950/20 backdrop-blur-md shadow-xl">
-          <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
-            <Sparkles className="h-4 w-4 text-amber-400 shrink-0" />
+        <div className="p-5 rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-blue-950/30 via-slate-900/80 to-cyan-950/20 backdrop-blur-md shadow-xl">
+          <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+            <Sparkles className="h-4 w-4 text-cyan-400 shrink-0" />
             <span>💡 How this system works in 3 Easy Steps (Plain English):</span>
           </div>
           <div className="mt-3 grid sm:grid-cols-3 gap-3 text-xs text-slate-300 font-sans">
-            <div className="p-3.5 rounded-xl card-flipkart">
-              <span className="font-bold text-blue-400 block mb-1">1. Scan &amp; Discover</span>
+            <div className="p-3.5 rounded-xl card-cyan">
+              <span className="font-bold text-cyan-400 block mb-1">1. Scan &amp; Discover</span>
               Tap <strong>&ldquo;Scan Whole Device&rdquo;</strong> to inspect phone hardware, Wi-Fi speed, and open digital doors. We create a safe 3D virtual copy.
             </div>
-            <div className="p-3.5 rounded-xl card-amazon">
+            <div className="p-3.5 rounded-xl card-amber">
               <span className="font-bold text-amber-400 block mb-1">2. Simulate Attacks</span>
               Our AI simulates how an internet intruder would try to break into your virtual copy, without touching or risking your real phone.
             </div>
@@ -125,15 +125,15 @@ export default function OverviewPage({
         </div>
       )}
 
-      {/* Visitor Device Threat Telemetry Widget (Vibrant E-Commerce Card) */}
-      <div className="rounded-2xl border border-blue-500/40 bg-gradient-to-r from-blue-950/50 via-slate-900/95 to-amber-950/40 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
+      {/* Visitor Device Threat Telemetry Widget */}
+      <div className="rounded-2xl border border-cyan-500/40 bg-gradient-to-r from-blue-950/50 via-slate-900/95 to-slate-950/90 p-5 shadow-2xl backdrop-blur-xl flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#2874F0] to-[#FF9900] flex items-center justify-center text-white shrink-0 shadow-lg shadow-blue-950/60">
+          <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-blue-950/60">
             <Smartphone className="h-6 w-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="badge-flipkart-assured">
+              <span className="px-2.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300 border border-cyan-400/30 text-[10px] font-mono font-bold uppercase">
                 AI DEVICE SCANNER
               </span>
               <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
@@ -160,7 +160,7 @@ export default function OverviewPage({
               if (onOpenWholeDeviceScanner) onOpenWholeDeviceScanner();
               else if (scanVisitorDevice) scanVisitorDevice();
             }}
-            className="btn-amazon-primary px-5 py-2.5 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg shadow-emerald-950/40 transition"
           >
             <Zap className="h-4 w-4 fill-slate-950" />
             <span>Deep Scan Whole Device</span>
@@ -168,10 +168,10 @@ export default function OverviewPage({
         </div>
       </div>
 
-      {/* 4 Executive KPI Hero Cards (Flipkart Blue, Amazon Orange, Rose, Emerald) */}
+      {/* 4 Executive KPI Hero Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="card-flipkart p-5 rounded-2xl relative overflow-hidden group hover:border-blue-400 transition">
-          <div className="flex items-center justify-between text-xs font-mono text-blue-300 font-bold">
+        <div className="card-cyan p-5 rounded-2xl relative overflow-hidden group hover:border-cyan-400 transition">
+          <div className="flex items-center justify-between text-xs font-mono text-cyan-300 font-bold">
             <span>MONITORED TWINS</span>
             <Server className="h-4 w-4 text-blue-400" />
           </div>
@@ -181,7 +181,7 @@ export default function OverviewPage({
           <p className="mt-1 text-xs text-slate-300">Synchronized in PostgreSQL &amp; Neo4j</p>
         </div>
 
-        <div className="card-amazon p-5 rounded-2xl relative overflow-hidden group hover:border-amber-400 transition">
+        <div className="card-amber p-5 rounded-2xl relative overflow-hidden group hover:border-amber-400 transition">
           <div className="flex items-center justify-between text-xs font-mono text-amber-300 font-bold">
             <span>EXPOSED SOCKETS</span>
             <Radar className="h-4 w-4 text-amber-400" />
@@ -228,10 +228,10 @@ export default function OverviewPage({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Agent 1: Recon (Flipkart Blue) */}
+          {/* Agent 1: Recon */}
           <div
             onClick={() => switchPage("recon")}
-            className="card-flipkart p-5 rounded-2xl hover:border-blue-400 transition cursor-pointer group flex flex-col justify-between"
+            className="card-cyan p-5 rounded-2xl hover:border-cyan-400 transition cursor-pointer group flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center justify-between mb-3">

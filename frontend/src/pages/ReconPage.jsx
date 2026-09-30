@@ -33,16 +33,16 @@ export default function ReconPage({
 }) {
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
-      {/* Header Banner (Flipkart Blue & Amazon Orange Accents) */}
-      <div className="card-flipkart p-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      {/* Header Banner */}
+      <div className="card-cyan p-6 rounded-3xl shadow-2xl relative overflow-hidden">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="badge-flipkart-assured">
-                🛡️ FLIPKART ASSURED RECON
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 font-mono text-[11px] font-bold">
+                🛡️ AUTOMATED NETWORK RECON
               </span>
-              <span className="badge-amazon-choice">
-                AMAZON&apos;S <span className="accent">DISCOVERY</span> ENGINE
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/15 border border-blue-400/40 text-blue-300 font-mono text-[11px] font-bold">
+                ⚡ HIGH-SPEED ACTIVE PROBES
               </span>
               <span className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -66,7 +66,7 @@ export default function ReconPage({
                 else if (scanVisitorDevice) scanVisitorDevice();
               }}
               disabled={busy}
-              className="btn-amazon-primary px-4 py-2.5 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg"
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 flex items-center gap-2 text-xs font-mono font-black uppercase tracking-wider cursor-pointer shadow-lg shadow-emerald-950/40 transition"
             >
               <Smartphone className="h-4 w-4 text-slate-950" />
               <span>📱 Scan Whole Device</span>
